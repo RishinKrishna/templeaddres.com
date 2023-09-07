@@ -16,7 +16,7 @@ export const serviceCard = [
   {
     id: 2,
     image:
-      "https://cdn.siasat.com/wp-content/uploads/2021/04/Guruvayoor-temple-Kerala-1024x768.jpg",
+      "https://cdn.pixabay.com/photo/2017/04/18/11/03/traditional-2238582_1280.jpg",
     title: "Guruvayur temple",
     location: "India, Kerala",
     description:
@@ -68,7 +68,7 @@ const TempleCards = () => {
           <div
             className={`${Styles["services_card"]} ${Styles[id]} flex flex-col justify-start items-center mb-6`}
           >
-            <Image src={image} alt="" className="w-full items-center h-[230px] object-cover rounded-[20px]" />
+            <Image width={200} height={200} src={image} alt="" className="w-full items-center h-[230px] object-cover rounded-[20px]" />
             <h3
               className={`${Styles["services_title"]} text-[22px] mt-4 font-semibold text-[#141824] hover:text-[#ff6b07] `}
             >

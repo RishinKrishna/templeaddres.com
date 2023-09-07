@@ -2,6 +2,7 @@ import Styles from "../styles/navbar.module.css";
 import { useState, useEffect } from "react";
 import { menu, close } from "@/assets";
 import Image from "next/image";
+import Link from "next/link";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
@@ -26,21 +27,21 @@ const Navbar = () => {
       <nav
         className={`${Styles["navbar"]} fixed w-full top-0 left-0 flex justify-between items-center z-[10000000] py-[25px] px-[50px]`}
       >
-        <a href="/" className={`${Styles["logo"]}`}>
+        <Link href="/" className={`${Styles["logo"]}`}>
           Logo
-        </a>
+        </Link>
         <ul className="relative flex justify-center items-center">
           <li>
-            <a href="/dashboard">Dashboard</a>
+            <Link href="/dashboard">Dashboard</Link>
           </li>
           <li>
-            <a href="/about">About</a>
+            <Link href="/about">About</Link>
           </li>
           <li>
-            <a href="/list">List</a>
+            <Link href="/list">List</Link>
           </li>
           <li>
-            <a href="galary">Gallery</a>
+            <Link href="galary">Gallery</Link>
           </li>
         </ul>
 
@@ -64,19 +65,19 @@ const Navbar = () => {
           >
             <ul className="relative flex justify-center items-center">
               <li>
-                <a href="#">Home</a>
+                <Link href="#">Home</Link>
               </li>
               <li>
-                <a href="#">Dashboard</a>
+                <Link href="#">Dashboard</Link>
               </li>
               <li>
-                <a href="#">About</a>
+                <Link href="#">About</Link>
               </li>
               <li>
-                <a href="#">List</a>
+                <Link href="#">List</Link>
               </li>
               <li>
-                <a href="#">Gallery</a>
+                <Link href="#">Gallery</Link>
               </li>
             </ul>
           </div>

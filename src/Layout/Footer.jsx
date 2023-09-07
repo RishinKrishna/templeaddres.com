@@ -23,32 +23,32 @@ const Footer = () => (
         /> */}
   
         <div className="flex gap-3 text-[#ffff] ">
-          <a href="#" className="flex mt-6">
+          <Link href="#" className="flex mt-6">
             <FontAwesomeIcon
               icon={faFacebook}
               className="social_icons_footer py-2 px-2  rounded-[5px] hover:text-[#ff6b07] text-[20px]"
             />
-          </a>
-          <a href="#" target="_blank" className="flex mt-6">
+          </Link>
+          <Link href="#" target="_blank" className="flex mt-6">
             <FontAwesomeIcon
               icon={faInstagram}
               className="social_icons_footer py-2 px-2  rounded-[5px] hover:text-[#ff6b07] text-[20px]"
             />
-          </a>
+          </Link>
 
-          <a href="#" target="_blank" className="flex mt-6">
+          <Link href="#" target="_blank" className="flex mt-6">
             <FontAwesomeIcon
               icon={faTwitter}
               className="social_icons_footer py-2 px-2  rounded-[5px] hover:text-[#ff6b07] text-[20px]"
             />
-          </a>
+          </Link>
           
-          <a href="#" target="_blank" className="flex mt-6">
+          <Link href="#" target="_blank" className="flex mt-6">
             <FontAwesomeIcon
               icon={faYoutube}
               className="social_icons_footer py-2 px-2  rounded-[5px] hover:text-[#ff6b07] text-[20px]"
             />
-          </a>
+          </Link>
           
           
         </div>

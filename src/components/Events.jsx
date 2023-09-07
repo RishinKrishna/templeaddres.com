@@ -21,6 +21,8 @@ const Events = () => {
             <span className="text-[30px] text-[#666666]">Jan,2023</span>
           </div>
           <Image
+          width={2000}
+          height={200}
             src="https://cdn.pixabay.com/photo/2017/04/18/11/03/traditional-2238582_1280.jpg"
             alt=""
             className="w-[550px] h-[150px] object-cover ml-10"
@@ -48,7 +50,9 @@ const Events = () => {
             <span className="text-[30px] text-[#666666]">Jan,2023</span>
           </div>
           <Image
-            src="https://cdn.siasat.com/wp-content/uploads/2021/04/Guruvayoor-temple-Kerala-1024x768.jpg"
+          width={200}
+          height={200}
+            src="https://cdn.pixabay.com/photo/2017/04/18/11/03/traditional-2238582_1280.jpg"
             alt=""
             className="w-[550px] h-[150px] object-cover ml-10"
           />
