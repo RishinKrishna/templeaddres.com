@@ -55,9 +55,9 @@ const Footer = () => (
       </div>
 
       <div className="flex-[2.5] w-full flex flex-row justify-between flex-wrap md:mt-0 mt-10">
-        {footerLinks.map((footerLinks) => (
+        {footerLinks.map((footerLinks,index) => (
           <div
-            key={id}
+            key={index}
             className="flex flex-col ss:my-0 my-4 min-w-[150px]"
           >
             <h4 className="font-poppins font-medium text-[18px] leading-[27px] text-white">
@@ -66,7 +66,7 @@ const Footer = () => (
             <ul className="list-none mt-4">
               {footerLinks.links.map((link, index) => (
                 <li
-                  key={link.name}
+                  key={index}
                   className={`font-poppins font-normal text-[16px] leading-[24px] text-dimWhite hover:text-[#ff6b07] cursor-pointer ${
                     index !== footerLinks.links.length - 1 ? "mb-4" : "mb-0"
                   }`}

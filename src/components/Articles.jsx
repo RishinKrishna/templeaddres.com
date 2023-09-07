@@ -25,11 +25,11 @@ const Articles = () => {
     <h2 className="text-[#ff6b07] font-semibold text-[25px] ml-4 lg:mt-10 mt-5" >Latest Articles</h2>
     <div className={`${Styles["articles_container"]} grid mt-3 lg:pb-[100px] pb-10`}>
       
-      {serviceCard.map(({ id, image }) => {
+      {serviceCard.map(({ id, image },index) => {
         
         return (
           <div
-          key={id}
+          key={index}
             className={`${Styles["articles_images"]} ${Styles[id]} flex flex-col justify-start items-center mb-6`}
           >
             <Image

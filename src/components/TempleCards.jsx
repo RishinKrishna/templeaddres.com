@@ -63,10 +63,10 @@ export const serviceCard = [
 const TempleCards = () => {
   return (
     <div className={`${Styles["temple_container"]} grid lg:py-10 md:py-6 `}>
-      {serviceCard.map(({ id, image, title, location, description }) => {
+      {serviceCard.map(({ id, image, title, location, description },index) => {
         return (
           <div
-          key={id}
+          key={index}
             className={`${Styles["services_card"]} ${Styles[id]} flex flex-col justify-start items-center mb-6`}
           >
             <Image width={200} height={200} src={image} alt="" className="w-full items-center h-[230px] object-cover rounded-[20px]" />
