@@ -22,7 +22,7 @@ const Events = () => {
           </div>
           <Image
           width={2000}
-          height={200}
+          height={2000}
             src="https://cdn.pixabay.com/photo/2017/04/18/11/03/traditional-2238582_1280.jpg"
             alt=""
             className="w-[550px] h-[150px] object-cover ml-10"
@@ -44,14 +44,14 @@ const Events = () => {
             </p>
           </div>
         </div>
-        <div className="flex py-7">
+        <div className={`${Styles["events-list-container"]}  flex py-7 `} >
           <div className="">
             <h3 className="text-[60px]">11</h3>
             <span className="text-[30px] text-[#666666]">Jan,2023</span>
           </div>
           <Image
-          width={200}
-          height={200}
+          width={2000}
+          height={2000}
             src="https://cdn.pixabay.com/photo/2017/04/18/11/03/traditional-2238582_1280.jpg"
             alt=""
             className="w-[550px] h-[150px] object-cover ml-10"

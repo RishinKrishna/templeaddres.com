@@ -34,8 +34,8 @@ const Articles = () => {
           >
             <Image
               src={image}
-              width={200}
-              height={200}
+              width={1000}
+              height={1000}
               alt="Articles"
               className="w-full items-center h-[280px] object-cover"
             />

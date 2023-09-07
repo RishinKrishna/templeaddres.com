@@ -69,7 +69,7 @@ const TempleCards = () => {
           key={index}
             className={`${Styles["services_card"]} ${Styles[id]} flex flex-col justify-start items-center mb-6`}
           >
-            <Image width={200} height={200} src={image} alt="" className="w-full items-center h-[230px] object-cover rounded-[20px]" />
+            <Image width={2000} height={2000} src={image} alt="" className="w-full items-center h-[230px] object-cover rounded-[20px]" />
             <h3
               className={`${Styles["services_title"]} text-[22px] mt-4 font-semibold text-[#141824] hover:text-[#ff6b07] `}
             >
