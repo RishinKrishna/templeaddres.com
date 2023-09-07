@@ -1,5 +1,6 @@
 import Styles from "../styles/footer.module.css";
 import { footerLinks } from "@/constants";
+import Image from "next/image";
 import Link from 'next/link';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,7 +16,7 @@ const Footer = () => (
     <div className={`${Styles[""]} flex justify-center items-start md:flex-row flex-col mb-8 w-full`}  >
       <div className="flex-1 flex flex-col justify-start mr-10">
         <h2 className="text-[#ff6b07] font-semibold text-[25px] font-Montserrat">TEMPLE ADDRESS</h2>
-        {/* <img
+        {/* <Image
           src={logo}
           alt="hoobank"
           className="w-[266px] h-[72px] object-contain"

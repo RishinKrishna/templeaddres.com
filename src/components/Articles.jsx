@@ -1,4 +1,7 @@
 import Styles from "../styles/articles.module.css";
+import Image from "next/image";
+import Link from "next/link";
+
 export const serviceCard = [
   {
     id: 1,
@@ -26,7 +29,7 @@ const Articles = () => {
           <div
             className={`${Styles["articles_images"]} ${Styles[id]} flex flex-col justify-start items-center mb-6`}
           >
-            <img
+            <Image
               src={image}
               alt="Articles"
               className="w-full items-center h-[280px] object-cover"

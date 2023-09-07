@@ -1,6 +1,7 @@
 import Styles from "../styles/events.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 const Events = () => {
   return (
     <section className={`${Styles["event-container"]}  grid py-10`}>
@@ -19,7 +20,7 @@ const Events = () => {
             <h3 className="text-[60px]">11</h3>
             <span className="text-[30px] text-[#666666]">Jan,2023</span>
           </div>
-          <img
+          <Image
             src="https://cdn.pixabay.com/photo/2017/04/18/11/03/traditional-2238582_1280.jpg"
             alt=""
             className="w-[550px] h-[150px] object-cover ml-10"
@@ -46,7 +47,7 @@ const Events = () => {
             <h3 className="text-[60px]">11</h3>
             <span className="text-[30px] text-[#666666]">Jan,2023</span>
           </div>
-          <img
+          <Image
             src="https://cdn.siasat.com/wp-content/uploads/2021/04/Guruvayoor-temple-Kerala-1024x768.jpg"
             alt=""
             className="w-[550px] h-[150px] object-cover ml-10"

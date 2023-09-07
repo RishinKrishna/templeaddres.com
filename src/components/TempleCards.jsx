@@ -1,6 +1,7 @@
 import Styles from "../styles/templrCard.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 
 export const serviceCard = [
   {
@@ -67,7 +68,7 @@ const TempleCards = () => {
           <div
             className={`${Styles["services_card"]} ${Styles[id]} flex flex-col justify-start items-center mb-6`}
           >
-            <img src={image} alt="" className="w-full items-center h-[230px] object-cover rounded-[20px]" />
+            <Image src={image} alt="" className="w-full items-center h-[230px] object-cover rounded-[20px]" />
             <h3
               className={`${Styles["services_title"]} text-[22px] mt-4 font-semibold text-[#141824] hover:text-[#ff6b07] `}
             >
