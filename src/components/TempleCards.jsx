@@ -66,6 +66,7 @@ const TempleCards = () => {
       {serviceCard.map(({ id, image, title, location, description }) => {
         return (
           <div
+          key={id}
             className={`${Styles["services_card"]} ${Styles[id]} flex flex-col justify-start items-center mb-6`}
           >
             <Image width={200} height={200} src={image} alt="" className="w-full items-center h-[230px] object-cover rounded-[20px]" />
