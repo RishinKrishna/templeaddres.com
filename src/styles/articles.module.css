@@ -1,0 +1,22 @@
+.articles_container {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 1rem;
+  }
+  .articles_images {
+    text-align: center;
+    padding: 1rem;
+    border-radius: 20px;
+    background: white;
+  }
+  @media screen and (max-width: 1024px) {
+    .articles_container {
+      grid-template-columns: repeat(2 330px);
+      justify-content: center;
+      row-gap: 1.875rem;
+    }
+  }
+  @media screen and (max-width: 868px) {
+    .articles_container {
+      grid-template-columns: 310px;
+    }
+  }

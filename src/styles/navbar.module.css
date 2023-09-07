@@ -1,0 +1,58 @@
+
+.navbar{
+    transition: 0.6s;
+}
+.navbar.sticky{
+    padding: 8px 50px;
+    background-color: #ffff;
+}
+.navbar .logo{
+    position: relative;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 2em;
+    letter-spacing: 2px;
+    transition: 0.6s;
+    color: #ffff;
+}
+.navbar ul{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbar ul li{
+    position: relative;
+    list-style: none;
+
+}
+.navbar ul li a{
+    position: relative;
+    margin: 0 15px;
+    text-decoration: none;
+    color: #ffff;
+    letter-spacing: 2px;
+    font-weight: 500;
+    transition: 0.6s;
+}
+.navbar ul li a:hover{
+    color: #ff6b07;
+}
+.banner{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-image: url("https://cdn.pixabay.com/photo/2021/06/04/05/45/god-6308823_1280.jpg");
+}
+
+.navbar.sticky ul li a{
+    color: #000;
+}
+.navbar.sticky ul li a:hover{
+    color: #ff6b07;
+}
+
+.navbar.sticky .logo{
+    color: #000;
+}

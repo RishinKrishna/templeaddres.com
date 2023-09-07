@@ -1,0 +1,3 @@
+.galary-row::-webkit-scrollbar{
+    display: none;
+}
