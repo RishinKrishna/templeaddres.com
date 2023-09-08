@@ -1,6 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import Styles from "../styles/galaryRow.module.css";
 import Image from "next/image";
+import gallary_img_01 from '../assets/gallary_img_01.jpg'
+import gallary_img_02 from '../assets/gallary_img_02.jpg'
+import gallary_img_03 from '../assets/gallary_img_03.jpg'
+import gallary_img_04 from '../assets/gallary_img_04.jpg'
 
 const GalaryRow = () => {
   const containerRef = useRef(null);
@@ -27,36 +31,36 @@ const GalaryRow = () => {
 
   return (
     <div className="lg:p-10 ">
-      <h2 className="text-[#ff6b07] font-semibold text-[25px]" >GALARY</h2>
+      <h2 className="text-[#ff6b07] font-semibold text-[25px]">GALARY</h2>
       <div
         ref={containerRef}
-        className={`${Styles["galary-row"]} flex pr-5 overflow-x-scroll cursor-pointer lg-mt-12 mt-6`}
+        className={`${Styles["galary-row"]} flex pr-5 overflow-x-scroll lg-mt-12 mt-6`}
       >
         <Image
         width={2000}
         height={2000}
-          src="https://cdn.pixabay.com/photo/2013/11/05/17/41/pura-mandara-giri-semeru-agung-205909_1280.jpg"
+          src={gallary_img_01}
           alt="Galary"
           className="h-[250px] mr-7"
         />
         <Image
         width={2000}
         height={2000}
-          src="https://cdn.pixabay.com/photo/2017/05/28/20/06/hindu-2352118_1280.jpg"
+          src={gallary_img_02}
           alt="Galary"
           className="h-[250px] mr-7"
         />
         <Image
         width={2000}
         height={2000}
-          src="https://cdn.pixabay.com/photo/2017/04/26/11/15/theyyam-2262364_1280.jpg"
+          src={gallary_img_03}
           alt="Galary"
           className="h-[250px] mr-7"
         />
         <Image
         width={2000}
         height={2000}
-          src="https://cdn.pixabay.com/photo/2020/01/22/12/11/rishikesh-4785189_1280.jpg"
+          src={gallary_img_04}
           alt="Galary"
           className="h-[250px] mr-7"
         />

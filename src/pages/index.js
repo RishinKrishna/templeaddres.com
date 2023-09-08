@@ -36,9 +36,9 @@ const Home = () => {
       </div>
       <Image
         src={circular_pattern_img}
-        width={200}
-        height={200}
-        className="left-0"
+        width={300}
+        height={300}
+        className="left-0 top-0 relative"
       />
       <div className={`bg-[#fff] flex justify-center items-start sm:px-12 px-6`}>
         <div className={`${styles.boxWidth}`}>

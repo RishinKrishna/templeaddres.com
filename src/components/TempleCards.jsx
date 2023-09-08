@@ -2,12 +2,19 @@ import Styles from "../styles/templrCard.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
+import Link from "next/link";
+import templeCard_01 from '../assets/templeCard_01.jpg'
+import templeCard_02 from '../assets/templeCard_02.jpg'
+import templeCard_03 from '../assets/templeCard_03.jpg'
+import templeCard_04 from '../assets/templeCard_04.jpg'
+import templeCard_05 from '../assets/templeCard_05.jpg'
+import templeCard_06 from '../assets/templeCard_06.jpg'
 
 export const serviceCard = [
   {
     id: 1,
     image:
-      "https://cdn.pixabay.com/photo/2021/06/04/05/45/god-6308823_1280.jpg",
+    templeCard_01,
     title: "Sree Padmanabhaswamy Temple",
     location: "India, Kerala",
     description:
@@ -16,7 +23,7 @@ export const serviceCard = [
   {
     id: 2,
     image:
-      "https://cdn.pixabay.com/photo/2017/04/18/11/03/traditional-2238582_1280.jpg",
+    templeCard_02,
     title: "Guruvayur temple",
     location: "India, Kerala",
     description:
@@ -25,7 +32,7 @@ export const serviceCard = [
   {
     id: 3,
     image:
-      "https://cdn.pixabay.com/photo/2017/04/18/11/03/traditional-2238582_1280.jpg",
+    templeCard_03,
     title: "Isha Temple",
     location: "India, Kerala",
     description:
@@ -34,8 +41,8 @@ export const serviceCard = [
   {
     id: 4,
     image:
-      "https://cdn.pixabay.com/photo/2020/03/17/11/29/temple-4939831_1280.jpg",
-    title: "Isha Temple",
+    templeCard_04,
+    title: "Murudeshwar temple",
     location: "India, Kerala",
     description:
       "The Sree Padmanabhaswamy Temple, situated in Thiruvananthapuram, the capital city of Kerala, India, is a remarkable testament to both architectural splendor and profound spirituality.",
@@ -43,8 +50,8 @@ export const serviceCard = [
   {
     id: 5,
     image:
-      "https://cdn.pixabay.com/photo/2013/11/05/17/41/pura-mandara-giri-semeru-agung-205909_1280.jpg",
-    title: "Isha Temple",
+    templeCard_05,
+    title: "Thanchavoor temple",
     location: "India, Kerala",
     description:
       "The Sree Padmanabhaswamy Temple, situated in Thiruvananthapuram, the capital city of Kerala, India, is a remarkable testament to both architectural splendor and profound spirituality.",
@@ -52,8 +59,8 @@ export const serviceCard = [
   {
     id: 6,
     image:
-      "https://cdn.pixabay.com/photo/2021/10/14/03/46/arul-mihu-navasakthi-vinayagar-6708016_1280.jpg",
-    title: "Isha Temple",
+    templeCard_06,
+    title: "Pazhani Temple",
     location: "India, Kerala",
     description:
       "The Sree Padmanabhaswamy Temple, situated in Thiruvananthapuram, the capital city of Kerala, India, is a remarkable testament to both architectural splendor and profound spirituality.",
@@ -88,7 +95,7 @@ const TempleCards = () => {
               {description}
             </p>
 
-            <p className={`text-[#ff6b07] text-[18px] mt-5`}>view more</p>
+            <Link href="" className={`text-[#ff6b07] font-semibold text-[16px] mt-5`}>view more</Link>
           </div>
         );
       })}
