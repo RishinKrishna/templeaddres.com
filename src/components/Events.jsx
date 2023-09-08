@@ -112,8 +112,5 @@ const Events = () => {
     </section>
   );
 };
-{
-  `${Styles["temple_container"]} grid lg:py-10 md:py-6 `;
-}
 
 export default Events;
