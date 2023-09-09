@@ -68,42 +68,45 @@ const Navbar = () => {
               alt="menu"
               width={28}
               height={28}
-              className="object-contain"
+              className="object-contain m-2"
             />
           </button>
           <div
             className={`${
               toggle ? "flex" : "hidden"
-            } p-6 bg-[#fefefe] absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl sidebar`}
+            } p-6 bg-[#fefefe] absolute top-20 right-0 min-w-[140px] z-10 rounded-xl sidebar`}
           >
             
             <ul className="relative flex flex-col justify-center items-start">
-              <li>
-                <Link className="text-black" href="/">
+            <Link href="/" className={`${Styles[""]} text-[#ff6b07] text-[25px] font-semibold mb-2`}>
+            TempleAddres
+          </Link>
+              <li className="mt-2">
+                <Link className="text-black mt-5" href="/">
                   Home
                 </Link>
               </li>
-              <li>
+              <li className="mt-2">
                 <Link className="text-black" href="/dashboard">
                   Dashboard
                 </Link>
               </li>
-              <li>
+              <li className="mt-2">
                 <Link className="text-black" href="/about">
                   About
                 </Link>
               </li>
-              <li>
-                <Link className="text-black" href="/list">
+              <li className="mt-2">
+                <Link className="text-black"href="/list">
                   List
                 </Link>
               </li>
-              <li>
-                <Link className="text-black" href="/galary">
+              <li className="mt-2">
+                <Link className="text-black"href="/galary">
                   Gallery
                 </Link>
               </li>
-              <div className="mt-2">
+              <div className="mt-5 ">
               <Link
             href="/login"
             className=" py-[7px] font-semibold text-[#fff] px-8 bg-[#ff6b07] rounded-[10px]"
