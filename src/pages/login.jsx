@@ -4,7 +4,7 @@ import Link from "next/link";
 import Styles from "../styles/login.module.css";
 import { useState } from "react";
 
-const login = () => {
+const Login = () => {
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
@@ -56,12 +56,14 @@ const login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const isValid = validateForm()
   };
 
   return (
     <section className="flex relative w-full h-[100vh] ">
       <div className="relative w-full h-[20%] md:h-[100vh] hidden md:block">
         <Image
+        alt="Login"
           src={login_img}
           width={1000}
           height={1000}
@@ -131,4 +133,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;

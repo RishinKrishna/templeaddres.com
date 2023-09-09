@@ -2,8 +2,100 @@ import signup_img from "../assets/signup_img.jpg";
 import Image from "next/image";
 import Link from "next/link";
 import Styles from "../styles/login.module.css";
+import { useState } from "react";
 
-const signup = () => {
+const Signup = () => {
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: "",
+    phone: "",
+    password: "",
+    confirmpassword: "",
+  });
+
+  const [FormError, setFormError] = useState({
+    nameErr: '',
+    emailErr: "",
+    phoneErr: "",
+    passwordErr: "",
+    confirmpasswordErr: "",
+  });
+
+
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+    let errorKey = `${[e.target.name]}Err`;
+    setFormError({
+      ...FormError,
+      [errorKey]: "",
+    });
+  };
+
+
+
+  
+  const validateForm = () => {
+    let nameErr = '';
+    let emailErr = "";
+    let phoneErr = "";
+    let passwordErr = "";
+    let confirmpasswordErr = "";
+
+
+    if (!formData.name || formData.name == "") {
+      nameErr = "Please enter your name ";
+    }
+
+
+    if (!formData.email && formData.email == "") {
+      emailErr = "Please enter your email ";
+    }
+
+    if (formData.phone == "") {
+      phoneErr = "Please enter your phone number";
+    } else if(formData.phone.length != 10){
+      phoneErr = "Phone should have 10 digits";
+    }
+
+    if (formData.password == "" || formData.password.length < 6) {
+      passwordErr = "Please enter your password";
+    }
+    if (formData.confirmpassword == "" || formData.confirmpassword.length < 6) {
+      confirmpasswordErr = "Please re-enter your password";
+    }
+    if (formData.password !== formData.confirmpassword) {
+      confirmpasswordErr = "Passwords do not match";
+    }
+
+    if (nameErr || emailErr || phoneErr || passwordErr || confirmpasswordErr) {
+      setFormError({
+        ...FormError,
+        nameErr,
+        emailErr,
+        phoneErr,
+        passwordErr,
+        confirmpasswordErr,
+      });
+      return false;
+    }
+    return true;
+  };
+
+
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const isValid = validateForm()
+  };
+
+
+
   return (
     <section className="flex relative w-full h-[100vh] ">
       <div className="relative w-full h-[20%] md:h-[100vh] hidden md:block">
@@ -30,33 +122,50 @@ const signup = () => {
             <div className="mb-2 font-semibold">
               <span>Name</span>
               <input
-                type="text"
+                type="name"
+                    name="name"
+                    id="name"
                 className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px] mt-1"
                 placeholder="Enter your email"
+                onChange={handleChange}
+                value={formData.email}
               />
             </div>
             <div className="mb-2 font-semibold">
               <span>Mobile Number</span>
               <input
                 type="number"
+                name="phone"
+                    id="phone"
                 className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px] mt-1"
                 placeholder="Enter your email"
+                onChange={handleChange}
+                    value={formData.phone}
               />
+              <span className="text-[red]">{FormError.phoneErr}</span>
             </div>
             <div className="mb-2 font-semibold">
               <span>Password</span>
               <input
                 type="password"
+                name="password"
+                id="password"
                 className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px] mt-1"
                 placeholder=" Enter your password"
+                onChange={handleChange}
+                    value={formData.password}
               />
             </div>
             <div className="mb-2 font-semibold">
               <span>Confirm Password</span>
               <input
                 type="password"
+                name="confirmpassword"
+                    id="confirmpassword"
                 className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px] mt-1"
                 placeholder=" Enter your password"
+                onChange={handleChange}
+                    value={formData.confirmpassword}
               />
             </div>
             <div className="font-semibold">
@@ -74,15 +183,16 @@ const signup = () => {
               </label>
             </div>
             <div className="mt-4 flex justify-center items-center">
-              <Link
+              <button
                 href="/#"
                 className="py-[9px] font-semibold text-[#fff] px-[150px] bg-[#ff6b07] rounded-[10px]"
+                onClick={handleSubmit}
               >
                 Register
-              </Link>
+              </button>
             </div>
             <div className="mt-1 text-center font-semibold ">
-            Already a member? <Link href="/login" className="underline text-blue-500">&nbsp;Login</Link>
+            Already a member? <Link href="/login" className="underline text-blue-500">{" "};Login</Link>
             </div>
           </form>
         </div>
@@ -91,4 +201,4 @@ const signup = () => {
   );
 };
 
-export default signup;
+export default Signup;
