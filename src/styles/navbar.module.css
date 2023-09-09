@@ -3,7 +3,7 @@
     transition: 0.6s;
 }
 .navbar.sticky{
-    padding: 12px 50px;
+    /* padding: 12px 50px; */
     background-color: #ffff;
 }
 .navbar .logo{

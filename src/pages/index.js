@@ -37,9 +37,9 @@ const Home = () => {
       </div>
       <Image
         src={circular_pattern_img}
-        width={300}
-        height={300}
-        className="left-0 bottom-0 absolute"
+        width={320}
+        height={320}
+        className="left-0 bottom-0 hidden md:block absolute"
       />
       </div>
       <div className={`bg-[#fff] flex justify-center items-start sm:px-12 px-6`}>
