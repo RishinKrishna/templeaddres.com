@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Styles from "../styles/login.module.css";
 import { useState } from "react";
-
+import axios from "../config/axiosConfig";
 const Login = () => {
   const [loginForm, setLoginForm] = useState({
     email: "",
@@ -37,8 +37,6 @@ const Login = () => {
       emailErr = "Please enter your email ";
     }
 
-    console.log(loginForm.password, loginForm.email);
-
     if (loginForm.password == "" || loginForm.password.length < 6) {
       passwordErr = "Please enter your password";
     }
@@ -56,14 +54,29 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const isValid = validateForm()
+    const isValid = validateForm();
+
+    if (!isValid) return;
+
+    axios
+      .post("/login", {
+        identifier: loginForm.email,
+        password: loginForm.password,
+      })
+      .then((response) => {
+        console.log(response);
+        // SET THE TOKEN IN LOCAL STORAGE  AS ACCESSTOKEN
+        // SHOW A MESSAGE
+        // REDIRECT TO DAHBOARD
+      })
+      .catch((error) => {});
   };
 
   return (
     <section className="flex relative w-full h-[100vh] ">
       <div className="relative w-full h-[20%] md:h-[100vh] hidden md:block">
         <Image
-        alt="Login"
+          alt="Login"
           src={login_img}
           width={1000}
           height={1000}
