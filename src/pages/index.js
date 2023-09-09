@@ -29,6 +29,7 @@ const Home = () => {
           <GalaryRow />
         </div>
       </div>
+      <div className="relative">
       <div className={`flex justify-center items-start sm:px-12 px-6`}>
         <div className={`${styles.boxWidth}`}>
           <Events />
@@ -38,8 +39,9 @@ const Home = () => {
         src={circular_pattern_img}
         width={300}
         height={300}
-        className="left-0 top-0 relative"
+        className="left-0 bottom-0 absolute"
       />
+      </div>
       <div className={`bg-[#fff] flex justify-center items-start sm:px-12 px-6`}>
         <div className={`${styles.boxWidth}`}>
           <Articles />

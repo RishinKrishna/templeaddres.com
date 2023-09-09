@@ -81,7 +81,7 @@ const Footer = () => (
     </div>
     <div className="w-full flex justify-center md:flex-row flex-col text-center pt-6 border-t-[1px] border-t-[#3f3e45]">
       <p className="font-poppins font-normal text-center text-[16px] leading-[27px] text-[#ccc]">
-      Copyright © 2023 TempleAddress.com.
+      Copyright © 2023 TempleAddress.com
       </p>
       <div className="flex flex-row md:mt-0 mt-6">
         

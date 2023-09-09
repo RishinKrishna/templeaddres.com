@@ -15,7 +15,7 @@ const login = () => {
         />
       </div>
       <div
-        className={`${Styles[""]} flex w-full md:w-[80%] h-[100%] justify-center items-center `}
+        className={`${Styles[""]} flex w-full md:w-[80%] h-[100%] bg-[#fff] justify-center items-center `}
       >
         <div className="w-full lg:px-[50px]">
           <div className={`${Styles["form-box"]} flex flex-col justify-center items-center m-auto`}>
@@ -26,11 +26,11 @@ const login = () => {
           </div>
           <form action="" className="px-5" >
             <div className="mb-5 font-semibold">
-              <span>Username</span>
+              <span>Email</span>
               <input
                 type="text"
                 className="w-full py-3 pl-4 outline-none border-[#000] text-[#000] rounded-[6px] mt-2"
-                placeholder="Enter your mobile number"
+                placeholder="Enter your email"
               />
             </div>
             <div className="font-semibold">
@@ -47,14 +47,18 @@ const login = () => {
                 {" "}Remember me
               </label>
             </div>
-            <div className="mt-10 flex justify-center items-center">
+            <div className="mt-8 flex justify-center items-center">
               <Link
                 href="/login"
-                className="py-[7px] font-semibold text-[#fff] px-[150px] bg-[#ff6b07] rounded-[10px]"
+                className="py-[9px] font-semibold text-[#fff] px-[150px] bg-[#ff6b07] rounded-[10px]"
               >
                 Login
               </Link>
+              
             </div>
+            <div className="mt-4 text-center text-blue-500 font-semibold underline">
+                  <Link href="/signup">Create an Account?</Link>
+                </div>
           </form>
         </div>
       </div>

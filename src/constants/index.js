@@ -66,7 +66,7 @@ export const footerLinks = [
     ],
   },
   {
-    title: "SUPPOTR",
+    title: "SUPPOT",
     links: [
       {
         name: "Help Live Chart",

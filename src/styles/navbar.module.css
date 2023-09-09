@@ -19,7 +19,6 @@
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 .navbar ul li{
     position: relative;
@@ -30,7 +29,6 @@
     position: relative;
     margin: 0 25px;
     text-decoration: none;
-    color: #ffff;
     letter-spacing: 2px;
     font-weight: 500;
     transition: 0.6s;
@@ -43,7 +41,7 @@
     width: 100%;
     height: 100vh;
     background-size: cover;
-    background-image: url("https://cdn.pixabay.com/photo/2021/06/04/05/45/god-6308823_1280.jpg");
+    background-image: url(../assets/banner_img.jpg);
 }
 
 .navbar.sticky ul li a{
