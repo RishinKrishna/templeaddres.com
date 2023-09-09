@@ -130,8 +130,8 @@ const Signup = () => {
                 onChange={handleChange}
                 value={formData.email}
               />
-            </div>
               <span className="text-[red]">{FormError.nameErr}</span>
+            </div>
 
             <div className="mb-2 font-semibold">
               <span>Mobile Number</span>
@@ -157,8 +157,8 @@ const Signup = () => {
                 onChange={handleChange}
                     value={formData.password}
               />
-            </div>
             <span className="text-[red]">{FormError.passwordErr}</span>
+            </div>
 
             <div className="mb-2 font-semibold">
               <span>Confirm Password</span>
@@ -171,8 +171,8 @@ const Signup = () => {
                 onChange={handleChange}
                     value={formData.confirmpassword}
               />
-            </div>
             <span className="text-[red]">{FormError.confirmpasswordErr}</span>
+            </div>
             <div className="font-semibold">
               <span>Referral ID</span>
               <input
