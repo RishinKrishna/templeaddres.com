@@ -107,7 +107,7 @@ const Signup = () => {
         />
       </div>
       <div
-        className={`${Styles[""]} flex w-full md:w-[80%] h-[100%] bg-[#fff] justify-center items-center `}
+        className={`${Styles[""]} flex w-full md:w-[80%] h-[100%] bg-[#fff] justify-center items-center overfloew-auto`}
       >
         <div className="w-full lg:px-[50px]">
           <div
@@ -131,6 +131,8 @@ const Signup = () => {
                 value={formData.email}
               />
             </div>
+              <span className="text-[red]">{FormError.nameErr}</span>
+
             <div className="mb-2 font-semibold">
               <span>Mobile Number</span>
               <input
@@ -156,6 +158,8 @@ const Signup = () => {
                     value={formData.password}
               />
             </div>
+            <span className="text-[red]">{FormError.passwordErr}</span>
+
             <div className="mb-2 font-semibold">
               <span>Confirm Password</span>
               <input
@@ -168,6 +172,7 @@ const Signup = () => {
                     value={formData.confirmpassword}
               />
             </div>
+            <span className="text-[red]">{FormError.confirmpasswordErr}</span>
             <div className="font-semibold">
               <span>Referral ID</span>
               <input
