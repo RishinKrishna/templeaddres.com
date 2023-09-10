@@ -69,7 +69,7 @@ export const serviceCard = [
 
 const TempleCards = () => {
   return (
-    <div className={`${Styles["temple_container"]} grid lg:py-10 md:py-6 `}>
+    <div className={`${Styles["temple_container"]} grid lg:py-10 md:py-6 mt-10`}>
       {serviceCard.map(({ id, image, title, location, description },index) => {
         return (
           <div

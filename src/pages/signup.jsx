@@ -3,11 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import Styles from "../styles/login.module.css";
 import { useState } from "react";
+import axios from "axios";
+import router from "next/router";
 
 const Signup = () => {
-
   const [formData, setFormData] = useState({
-    name: '',
+    name: "",
     email: "",
     phone: "",
     password: "",
@@ -15,14 +16,12 @@ const Signup = () => {
   });
 
   const [FormError, setFormError] = useState({
-    nameErr: '',
+    nameErr: "",
     emailErr: "",
     phoneErr: "",
     passwordErr: "",
     confirmpasswordErr: "",
   });
-
-
 
   const handleChange = (e) => {
     setFormData({
@@ -36,21 +35,16 @@ const Signup = () => {
     });
   };
 
-
-
-  
   const validateForm = () => {
-    let nameErr = '';
+    let nameErr = "";
     let emailErr = "";
     let phoneErr = "";
     let passwordErr = "";
     let confirmpasswordErr = "";
 
-
     if (!formData.name || formData.name == "") {
       nameErr = "Please enter your name ";
     }
-
 
     if (!formData.email && formData.email == "") {
       emailErr = "Please enter your email ";
@@ -58,7 +52,7 @@ const Signup = () => {
 
     if (formData.phone == "") {
       phoneErr = "Please enter your phone number";
-    } else if(formData.phone.length != 10){
+    } else if (formData.phone.length != 10) {
       phoneErr = "Phone should have 10 digits";
     }
 
@@ -86,15 +80,24 @@ const Signup = () => {
     return true;
   };
 
-
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const isValid = validateForm()
+    const isValid = validateForm();
+    if (!isValid) return;
+    axios
+      .post("auth/register", {
+        name: formData.name,
+        email: formData.email,
+        mobile: formData.phone,
+        password: formData.password,
+      })
+      .then((response) => {
+        router.push("/login");
+      })
+      .catch((error) => {
+        
+      });
   };
-
-
 
   return (
     <section className="flex relative w-full h-[100vh] ">
@@ -119,75 +122,82 @@ const Signup = () => {
             <h2 className="text-[25px] font-bold text-[#000]">Register</h2>
           </div>
           <form action="" className="px-5">
-            <div className="mb-2 font-semibold">
+            <div className=" font-semibold">
               <span>Name</span>
               <input
                 type="name"
-                    name="name"
-                    id="name"
-                className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px] mt-1"
+                name="name"
+                id="name"
+                className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px]"
                 placeholder="Enter your email"
                 onChange={handleChange}
-                value={formData.email}
               />
-              <span className="text-[red]">{FormError.nameErr}</span>
+              <span className="text-[red] text-[13px]">
+                {FormError.nameErr}
+              </span>
             </div>
 
-            <div className="mb-2 font-semibold">
+            <div className="mb-1 font-semibold">
               <span>Mobile Number</span>
               <input
                 type="number"
                 name="phone"
-                    id="phone"
-                className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px] mt-1"
+                id="phone"
+                className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px]"
                 placeholder="Enter your email"
                 onChange={handleChange}
-                    value={formData.phone}
+                value={formData.phone}
               />
-              <span className="text-[red]">{FormError.phoneErr}</span>
+              <span className="text-[red] text-[13px]">
+                {FormError.phoneErr}
+              </span>
             </div>
-            <div className="mb-2 font-semibold">
+            <div className="mb-1 font-semibold">
               <span>Password</span>
               <input
                 type="password"
                 name="password"
                 id="password"
-                className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px] mt-1"
+                className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px]"
                 placeholder=" Enter your password"
                 onChange={handleChange}
-                    value={formData.password}
+                value={formData.password}
               />
-            <span className="text-[red]">{FormError.passwordErr}</span>
+              <span className="text-[red] text-[13px]">
+                {FormError.passwordErr}
+              </span>
             </div>
 
-            <div className="mb-2 font-semibold">
+            <div className="mb-1 font-semibold">
               <span>Confirm Password</span>
               <input
                 type="password"
                 name="confirmpassword"
-                    id="confirmpassword"
-                className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px] mt-1"
+                id="confirmpassword"
+                className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px]"
                 placeholder=" Enter your password"
                 onChange={handleChange}
-                    value={formData.confirmpassword}
+                value={formData.confirmpassword}
               />
-            <span className="text-[red]">{FormError.confirmpasswordErr}</span>
+              <span className="text-[red] text-[13px]">
+                {FormError.confirmpasswordErr}
+              </span>
             </div>
             <div className="font-semibold">
               <span>Referral ID</span>
               <input
                 type="text"
-                className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px] mt-1"
+                className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px]"
                 placeholder="Full name without special characters"
               />
             </div>
-            <div className="mt-3 font-semibold text-[14px]">
+            <div className="mt-1 font-semibold text-[14px]">
               <label htmlFor="">
-                <input type="checkbox" /> I have read and agree to the Terms &
-                Conditions
+                <input type="checkbox" required /> I have read and agree to the
+                Terms & Conditions
               </label>
             </div>
-            <div className="mt-4 flex justify-center items-center">
+            <div className="mt-2 flex justify-center items-center">
               <button
                 href="/#"
                 className="py-[9px] font-semibold text-[#fff] px-[150px] bg-[#ff6b07] rounded-[10px]"
@@ -197,7 +207,11 @@ const Signup = () => {
               </button>
             </div>
             <div className="mt-1 text-center font-semibold ">
-            Already a member? <Link href="/login" className="underline text-blue-500">{" "};Login</Link>
+              Already a member?{" "}
+              <Link href="/login" className="underline text-blue-500">
+                {" "}
+                Login
+              </Link>
             </div>
           </form>
         </div>

@@ -4,6 +4,8 @@ import Link from "next/link";
 import Styles from "../styles/login.module.css";
 import { useState } from "react";
 import axios from "../config/axiosConfig";
+import router from "next/router";
+
 const Login = () => {
   const [loginForm, setLoginForm] = useState({
     email: "",
@@ -59,7 +61,7 @@ const Login = () => {
     if (!isValid) return;
 
     axios
-      .post("/login", {
+      .post("auth/login", {
         identifier: loginForm.email,
         password: loginForm.password,
       })
@@ -68,6 +70,7 @@ const Login = () => {
         // SET THE TOKEN IN LOCAL STORAGE  AS ACCESSTOKEN
         // SHOW A MESSAGE
         // REDIRECT TO DAHBOARD
+        router.push('/')
       })
       .catch((error) => {});
   };
@@ -84,7 +87,7 @@ const Login = () => {
         />
       </div>
       <div
-        className={`${Styles[""]} flex w-full md:w-[80%] h-[100%] bg-[#fff] justify-center items-center `}
+        className={`flex w-full md:w-[80%] h-[100%] bg-[#fff] justify-center items-center `}
       >
         <div className="w-full lg:px-[50px]">
           <div
@@ -107,7 +110,7 @@ const Login = () => {
                 required
                 onChange={handleChange}
               />
-              <span className="text-[red]">{loginError.emailErr}</span>
+              <span className="text-[red] text-[13px]">{loginError.emailErr}</span>
             </div>
             <div className="font-semibold">
               <span>Password</span>
@@ -120,11 +123,11 @@ const Login = () => {
                 required
                 onChange={handleChange}
               />
-              <span className="text-[red]">{loginError.passwordErr}</span>
+              <span className="text-[red] text-[13px]">{loginError.passwordErr}</span>
             </div>
             <div className="mt-5 font-semibold">
               <label htmlFor="">
-                <input type="checkbox" /> Remember me
+                <input type="checkbox" required /> Remember me
               </label>
             </div>
             <div className="mt-8 flex justify-center items-center">
