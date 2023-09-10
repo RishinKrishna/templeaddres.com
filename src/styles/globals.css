@@ -2,8 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-
-body {
-  background-color: #faf7ed;
-  /* font-family: "Outfit"; */
-}
