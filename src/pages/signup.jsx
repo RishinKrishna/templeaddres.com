@@ -66,7 +66,13 @@ const Signup = () => {
       confirmpasswordErr = "Passwords do not match";
     }
 
-    if (nameErr || emailErr || phoneErr || passwordErr || confirmpasswordErr) {
+    if (
+      nameErr !== null ||
+      emailErr !== null ||
+      phoneErr !== null ||
+      passwordErr !== null ||
+      confirmpasswordErr !== null
+    ) {
       setFormError({
         ...FormError,
         nameErr,
@@ -205,8 +211,8 @@ const Signup = () => {
             </div>
             <div className="font-semibold text-[14px]">
               <label htmlFor="remember-me">
-                <input type="checkbox" id="remember-me" name="rememberMe" />{" "}
-                I have read and agree to the Terms & Conditions
+                <input type="checkbox" id="remember-me" name="rememberMe" /> I
+                have read and agree to the Terms & Conditions
               </label>
             </div>
 
