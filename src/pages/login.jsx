@@ -70,7 +70,7 @@ const Login = () => {
         // SET THE TOKEN IN LOCAL STORAGE  AS ACCESSTOKEN
         // SHOW A MESSAGE
         // REDIRECT TO DAHBOARD
-        router.push('/')
+        router.push("/");
       })
       .catch((error) => {});
   };
@@ -110,7 +110,9 @@ const Login = () => {
                 required
                 onChange={handleChange}
               />
-              <span className="text-[red] text-[13px]">{loginError.emailErr}</span>
+              <span className="text-[red] text-[13px]">
+                {loginError.emailErr}
+              </span>
             </div>
             <div className="font-semibold">
               <span>Password</span>
@@ -123,13 +125,17 @@ const Login = () => {
                 required
                 onChange={handleChange}
               />
-              <span className="text-[red] text-[13px]">{loginError.passwordErr}</span>
+              <span className="text-[red] text-[13px]">
+                {loginError.passwordErr}
+              </span>
             </div>
-            <div className="mt-5 font-semibold">
-              <label htmlFor="">
-                <input type="checkbox" required /> Remember me
+            <div className="mt-1 font-semibold">
+              <label htmlFor="remember-me">
+                <input type="checkbox" id="remember-me" name="rememberMe" />{" "}
+                Remember me
               </label>
             </div>
+
             <div className="mt-8 flex justify-center items-center">
               <button
                 type="submit"
@@ -139,7 +145,7 @@ const Login = () => {
                 Login
               </button>
             </div>
-            <div className="mt-4 text-center text-blue-500 font-semibold underline">
+            <div className="mt-2 text-center text-blue-500 font-semibold underline">
               <Link href="/signup">Create an Account?</Link>
             </div>
           </form>

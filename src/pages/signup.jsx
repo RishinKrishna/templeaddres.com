@@ -94,9 +94,7 @@ const Signup = () => {
       .then((response) => {
         router.push("/login");
       })
-      .catch((error) => {
-        
-      });
+      .catch((error) => {});
   };
 
   return (
@@ -110,7 +108,7 @@ const Signup = () => {
         />
       </div>
       <div
-        className={`${Styles[""]} flex w-full md:w-[80%] h-[100%] bg-[#fff] justify-center items-center overfloew-auto`}
+        className={`${Styles[""]} flex w-full md:w-[80%] h-[100%] bg-[#fff] justify-center items-center `}
       >
         <div className="w-full lg:px-[50px]">
           <div
@@ -122,7 +120,7 @@ const Signup = () => {
             <h2 className="text-[25px] font-bold text-[#000]">Register</h2>
           </div>
           <form action="" className="px-5">
-            <div className=" font-semibold">
+            <div className="mb-5 font-semibold">
               <span>Name</span>
               <input
                 type="name"
@@ -136,8 +134,22 @@ const Signup = () => {
                 {FormError.nameErr}
               </span>
             </div>
+            <div className="mb-5 font-semibold">
+              <span>Email</span>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px]"
+                placeholder="Enter your email"
+                onChange={handleChange}
+              />
+              <span className="text-[red] text-[13px]">
+                {FormError.emailErr}
+              </span>
+            </div>
 
-            <div className="mb-1 font-semibold">
+            <div className="mb-5 font-semibold">
               <span>Mobile Number</span>
               <input
                 type="number"
@@ -152,7 +164,7 @@ const Signup = () => {
                 {FormError.phoneErr}
               </span>
             </div>
-            <div className="mb-1 font-semibold">
+            <div className="mb-5 font-semibold">
               <span>Password</span>
               <input
                 type="password"
@@ -168,7 +180,7 @@ const Signup = () => {
               </span>
             </div>
 
-            <div className="mb-1 font-semibold">
+            <div className="mb-5 font-semibold">
               <span>Confirm Password</span>
               <input
                 type="password"
@@ -183,7 +195,7 @@ const Signup = () => {
                 {FormError.confirmpasswordErr}
               </span>
             </div>
-            <div className="font-semibold">
+            <div className="mb-1 font-semibold">
               <span>Referral ID</span>
               <input
                 type="text"
@@ -191,22 +203,23 @@ const Signup = () => {
                 placeholder="Full name without special characters"
               />
             </div>
-            <div className="mt-1 font-semibold text-[14px]">
-              <label htmlFor="">
-                <input type="checkbox" required /> I have read and agree to the
-                Terms & Conditions
+            <div className="font-semibold text-[14px]">
+              <label htmlFor="remember-me">
+                <input type="checkbox" id="remember-me" name="rememberMe" />{" "}
+                I have read and agree to the Terms & Conditions
               </label>
             </div>
-            <div className="mt-2 flex justify-center items-center">
+
+            <div className="mt-5 flex justify-center items-center">
               <button
                 href="/#"
-                className="py-[9px] font-semibold text-[#fff] px-[150px] bg-[#ff6b07] rounded-[10px]"
+                className="py-[9px]  font-semibold text-[#fff] px-[150px] bg-[#ff6b07] rounded-[10px]"
                 onClick={handleSubmit}
               >
                 Register
               </button>
             </div>
-            <div className="mt-1 text-center font-semibold ">
+            <div className="mt-2 text-center font-semibold ">
               Already a member?{" "}
               <Link href="/login" className="underline text-blue-500">
                 {" "}
