@@ -1,19 +1,11 @@
 import Header from "@/components/admin/Sidebar/Header";
-import Sidebar from '@/components/admin/Sidebar';
-import Counts from "@/components/admin/Sidebar/Counts";
+import Sidebar from "@/components/admin/Sidebar";
+import Counts from "@/components/admin/Counts";
+import Layout from "@/Layout/admin";
 
 const Dashboard = () => {
-  return (
-    <div className='flex bg-[#faf7ed] h-screen'>
-      <Sidebar />
-      <div className="flex flex-1 flex-col justify-between">
-        <Header />
-        <div className="flex-1 p-5">
-        <Counts />
-        </div>
-      </div>
-    </div>
-  )
-}
+  return <Counts />;
+};
 
+Dashboard.getLayout = (page) => <Layout>{page}</Layout>;
 export default Dashboard;

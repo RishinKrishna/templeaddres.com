@@ -9,10 +9,20 @@ const outfit = Outfit({
 });
 
 export default function App({ Component, pageProps }) {
-  return (
-    <div className={outfit.className}>
-      <Component {...pageProps} />
-      <ToastContainer />
-    </div>
-  );
+  let getPage = Component.getLayout
+    ? () =>
+        Component.getLayout(
+          <div className={outfit.className}>
+            <Component {...pageProps} />
+            <ToastContainer />
+          </div>
+        )
+    : () => (
+        <div className={outfit.className}>
+          <Component {...pageProps} />
+          <ToastContainer />
+        </div>
+      );
+
+  return <>{getPage()}</>;
 }
