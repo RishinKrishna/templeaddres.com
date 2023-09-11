@@ -74,7 +74,7 @@ const Login = () => {
       },
     }).then((response) => {
       if (response.data.success) {
-        router.push("/dashboard"); 
+        router.push("/"); 
       }
     });
 
