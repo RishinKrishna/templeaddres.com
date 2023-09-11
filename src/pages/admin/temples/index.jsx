@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Temples = () => {
+const temples = () => {
   return (
     <div>Temples</div>
   )
 }
 
-export default Temples
+export default temples

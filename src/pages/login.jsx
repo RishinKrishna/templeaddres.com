@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Styles from "../styles/login.module.css";
 import { useState } from "react";
-import axios from "../config/axiosConfig";
+import { post } from "../config/axiosConfig";
 import router from "next/router";
 
 const Login = () => {
@@ -59,20 +59,26 @@ const Login = () => {
     const isValid = validateForm();
 
     if (!isValid) return;
-
-    axios
-      .post("auth/login", {
+    post({
+      api: "/auth/login",
+      data: {
         identifier: loginForm.email,
         password: loginForm.password,
-      })
-      .then((response) => {
-        console.log(response);
-        // SET THE TOKEN IN LOCAL STORAGE  AS ACCESSTOKEN
-        // SHOW A MESSAGE
-        // REDIRECT TO DAHBOARD
-        router.push("/");
-      })
-      .catch((error) => {});
+      },
+      toastConfig: {
+        messages: {
+          pending: "Please wait",
+          success: "Login Successful",
+          error: "Incorrect email or password",
+        },
+      },
+    }).then((response) => {
+      if (response.data.success) {
+        router.push("/dashboard"); 
+      }
+    });
+
+      
   };
 
   return (

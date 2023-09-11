@@ -121,9 +121,9 @@ const Signup = () => {
           className={`${Styles["img-box"]} absolute top-0 left-0 w-full h-full object-cover`}
         />
       </div>
-      <div className={` overflow-auto w-full md:w-[80%]  p-[50px]`}>
-        <div className={`${Styles["form-box"]}  `}>
-          <h1 className="text-[27px] font-bold text-[#ff6b07] text-center mb-8">
+      <div className={` overflow-auto w-full md:w-[80%]  lg:p-[50px] `}>
+        <div className={`${Styles["form-box"]} m-auto `}>
+          <h1 className="text-[27px] font-bold text-[#ff6b07] text-center mb-6 lg:mt-0 mt-6">
             TempleAddress
           </h1>
           <h2 className="text-[25px] font-bold text-[#000] text-center mb-4">
