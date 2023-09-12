@@ -74,11 +74,9 @@ const Login = () => {
       },
     }).then((response) => {
       if (response.data.success) {
-        router.push("/"); 
+        router.push("/");
       }
     });
-
-      
   };
 
   return (

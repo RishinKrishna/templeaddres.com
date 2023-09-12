@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   mode: "jit",
   theme: {
     extend: {
@@ -11,10 +11,9 @@ module.exports = {
         dimBlue: "rgba(9, 151, 124, 0.1)",
       },
       fontFamily: {
-        poppins: ["Poppins", "sans-serif"],
-        Montserrat: ['Montserrat', "sans-serif"],
+        poppins: ["'__Poppins_73a870'"],
+        Montserrat: ["Montserrat", "sans-serif"],
       },
-      
     },
     screens: {
       xs: "480px",
