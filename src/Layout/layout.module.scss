@@ -1,0 +1,9 @@
+.sidelink {
+  @apply flex hover:bg-[#ff6b07] mb-4 py-2 px-4 rounded-[6px] gap-3 hover:text-white font-poppins;
+
+  &:hover {
+    svg path {
+      fill: #fff;
+    }
+  }
+}

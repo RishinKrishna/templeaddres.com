@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import { Outfit } from "next/font/google";
+import { Poppins } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const outfit = Outfit({
@@ -7,12 +8,18 @@ const outfit = Outfit({
   display: "auto",
   adjustFontFallback: false,
 });
+const poppins = Poppins({
+  subsets: ["latin"],
+  display: "auto",
+  adjustFontFallback: false,
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 
 export default function App({ Component, pageProps }) {
   let getPage = Component.getLayout
     ? () =>
         Component.getLayout(
-          <div className={outfit.className}>
+          <div className={`${outfit.className} ${poppins.className}`}>
             <Component {...pageProps} />
             <ToastContainer />
           </div>

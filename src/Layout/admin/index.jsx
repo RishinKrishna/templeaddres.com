@@ -9,9 +9,9 @@ const Layout = ({
   return (
     <div className="flex bg-[#faf7ed] h-screen">
       {sidebar.state && <Sidebar />}
-      <div className="flex flex-1 flex-col justify-between">
+      <div className="w-full ">
         {header.state && <Header />}
-        <div className="flex-1 p-5">{children}</div>
+        <div className=" p-5 w-full ">{children}</div>
       </div>
     </div>
   );
