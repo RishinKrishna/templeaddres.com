@@ -3,7 +3,7 @@ import React from "react";
 const Activites = () => {
   return (
     <div className="p-5 w-full">
-      <div className="bg-white w-full rounded-[12px] p-6">
+      <div className="bg-white w-full rounded-[12px]">
         <h5 className="font-poppins text-[#666666] text-[15px]">Activities</h5>
         <div className="border-t-2 border-gray-100 my-2" />
 

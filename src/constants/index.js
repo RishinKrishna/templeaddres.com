@@ -1,3 +1,9 @@
+import DashboardIcon from "@/components/icons/DashboardIcon";
+import MessageIcon from "@/components/icons/MessageIcon";
+import RewardsIcon from "@/components/icons/RewardsIcon";
+import ServiesIcon from "@/components/icons/ServiesIcon";
+import TemplesIcon from "@/components/icons/TemplesIcon";
+
 export const navLinks = [
   {
     id: "/home",
@@ -19,6 +25,38 @@ export const navLinks = [
   {
     id: "/gallery",
     title: "Gallery",
+  },
+];
+export const sideLinks = [
+  {
+    id: "/admin",
+    icon: <DashboardIcon/>,
+    title: "Dashboard",
+
+  },
+  {
+    id: "/admin/temples",
+    icon: <TemplesIcon/>,
+    title: "Temples",
+
+  },
+  {
+    id: "/home",
+    icon: <ServiesIcon/>,
+    title: "Servies",
+
+  },
+  {
+    id: "/home",
+    icon: <MessageIcon/>,
+    title: "Messages",
+
+  },
+  {
+    id: "/home",
+    icon: <RewardsIcon/>,
+    title: "Rewards",
+
   },
 ];
 
