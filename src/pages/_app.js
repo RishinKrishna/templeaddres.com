@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import "@/styles/table.scss";
 import { Outfit } from "next/font/google";
 import { Poppins } from "next/font/google";
 import { ToastContainer } from "react-toastify";
