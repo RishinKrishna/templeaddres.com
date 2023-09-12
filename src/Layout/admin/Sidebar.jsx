@@ -1,6 +1,6 @@
 import { sideLinks } from "@/constants";
 import Link from "next/link";
-import Styles from '@/Layout/layout.module.scss'
+import Styles from "@/Layout/layout.module.scss";
 const Sidebar = () => {
   return (
     <div className="bg-white text-[grey] h-screen p-6">
@@ -9,12 +9,11 @@ const Sidebar = () => {
       </h2>
       <ul className="flex flex-col justify-center text-[14px]">
         {sideLinks.map((link) => (
-          <li
-            key={link.id}
-            className={Styles["sidelink"]}
-          >
-            {link.icon}
-            <Link href={link.id}>{link.title}</Link>
+          <li key={link.id}>
+            <Link href={link.id} className={Styles["sidelink"]}>
+              {link.icon}
+              {link.title}
+            </Link>
           </li>
         ))}
       </ul>
