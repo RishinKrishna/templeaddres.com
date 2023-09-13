@@ -15,16 +15,30 @@ const handleResponse = (error) => {
   let status = error.response?.status;
   let errorStatusCode = [400, 500, 404, 403];
 };
-const get = (api, data, config) => {
+const get = ({ api, data, config, toastConfig }) => {
+  if (toastConfig && toastConfig.messages) {
+    return toast.promise(
+      new Promise((resolve, reject) => {
+        axiosInstance
+          .get(api, data, config)
+          .then((response) => {
+            resolve(response);
+          })
+          .catch((error) => {
+            reject();
+          });
+      }),
+      toastConfig.messages
+    );
+  }
   return new Promise((resolve, reject) => {
     axiosInstance
       .get(api, data, config)
       .then((response) => {
-        // handleResponse(response);
         resolve(response);
       })
       .catch((error) => {
-        // reject(error);
+        reject();
       });
   });
 };
@@ -56,7 +70,6 @@ const post = ({ api, data, config, toastConfig }) => {
       });
   });
 };
-
 
 const put = ({ api, data, config }) => {
   return toast.promise(

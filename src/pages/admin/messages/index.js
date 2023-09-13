@@ -7,11 +7,10 @@ import EyeIcon from "@/components/icons/EyeIcon";
 import MenuIcon from "@/components/icons/MenuIcon";
 import TrashIcon from "@/components/icons/TrashIcon";
 import { get } from "@/config/axiosConfig";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const Services = () => {
-  const [servicesList, setServicesList] = useState([]);
+const Messages = () => {
+  const [messagesList, setMessagesList] = useState([]);
   let serviceListHeaders = [
     {
       Header: "Temple ID",
@@ -109,9 +108,9 @@ const Services = () => {
 
   const getTempleList = () => {
     get({
-      api: "/services/list",
+      api: "/messages",
     }).then((resposne) => {
-      setServicesList(resposne.data.data.services);
+      setMessagesList(resposne.data.data.services);
     });
   };
 
@@ -121,19 +120,19 @@ const Services = () => {
   return (
     <div>
       <h1 className="font-outfit text-xl text-[#666666] font-semibold">
-        Services List
+        Messages
       </h1>
       <DataTable
         columnDef={{
           tableHeaders: serviceListHeaders,
         }}
         className="t-table bordered"
-        tableData={servicesList}
+        tableData={messagesList}
         search={false}
       />
     </div>
   );
 };
 
-Services.getLayout = (page) => <Layout>{page}</Layout>;
-export default Services;
+Messages.getLayout = (page) => <Layout>{page}</Layout>;
+export default Messages;

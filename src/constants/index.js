@@ -47,13 +47,13 @@ export const sideLinks = [
 
   },
   {
-    id: "/admin/message",
+    id: "/admin/messages",
     icon: <MessageIcon/>,
     title: "Messages",
 
   },
   {
-    id: "/admin/rewards",
+    id: "/admin/re",
     icon: <RewardsIcon/>,
     title: "Rewards",
 
