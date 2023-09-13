@@ -41,19 +41,19 @@ export const sideLinks = [
 
   },
   {
-    id: "/home",
+    id: "/admin/services",
     icon: <ServiesIcon/>,
     title: "Servies",
 
   },
   {
-    id: "/home",
+    id: "/admin/message",
     icon: <MessageIcon/>,
     title: "Messages",
 
   },
   {
-    id: "/home",
+    id: "/admin/rewards",
     icon: <RewardsIcon/>,
     title: "Rewards",
 

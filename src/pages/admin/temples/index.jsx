@@ -96,10 +96,10 @@ const Temples = () => {
 
   return (
     <div className="w-full">
-      <div className="w-[800px]">
+      <div className="w-[830px]">
         <DataTable
           columns={colums}
-          className="m-0"
+          className="w-full"
           data={data}
           fixedHeader
           pagination

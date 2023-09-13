@@ -63,7 +63,7 @@ const Summary = () => {
             </div>
           </div>
         </div>
-        <div className="col-span-5 bg-white w-full rounded-[12px] h-[250px] overflow-hidden">
+        <div className="col-span-5 bg-white w-full rounded-[12px] h-[280px] overflow-hidden">
           <div className="border-b-2 border-gray-100 my-2 px-4 pt-4 pb-2">
             <h5 className="font-poppins text-[#666666] text-[15px]">
               Activities
@@ -72,7 +72,7 @@ const Summary = () => {
 
           <div className="h-full overflow-auto">
             <div className="p-3 flex border-b-2 border-[#ffb889] ">
-              <div className="w-[50px] h-[50px] bg-red-500 rounded-[50%] mr-4"></div>
+              <div className="w-[40px] h-[40px] bg-red-500 rounded-[50%] mr-4"></div>
               <div className="flex justify-center flex-col">
                 <h4 className="text-[17px] font-poppins font-semibold">
                   Sofia Paul
@@ -84,7 +84,7 @@ const Summary = () => {
             </div>
 
             <div className="p-3 flex border-b-2 border-[#ffb889] ">
-              <div className="w-[50px] h-[50px] bg-red-500 rounded-[50%] mr-4"></div>
+              <div className="w-[40px] h-[40px] bg-red-500 rounded-[50%] mr-4"></div>
               <div className="flex justify-center flex-col">
                 <h4 className="text-[17px] font-poppins font-semibold">
                   Sofia Paul
@@ -96,7 +96,7 @@ const Summary = () => {
             </div>
 
             <div className="p-3 flex border-b-2 border-[#ffb889] ">
-              <div className="w-[50px] h-[50px] bg-red-500 rounded-[50%] mr-4"></div>
+              <div className="w-[40px] h-[40px] bg-red-500 rounded-[50%] mr-4"></div>
               <div className="flex justify-center flex-col">
                 <h4 className="text-[17px] font-poppins font-semibold">
                   Sofia Paul
@@ -107,7 +107,7 @@ const Summary = () => {
               </div>
             </div>
             <div className="p-3 flex border-b-2 border-[#ffb889] ">
-              <div className="w-[50px] h-[50px] bg-red-500 rounded-[50%] mr-4"></div>
+              <div className="w-[40px] h-[40px] bg-red-500 rounded-[50%] mr-4"></div>
               <div className="flex justify-center flex-col">
                 <h4 className="text-[17px] font-poppins font-semibold">
                   Sofia Paul

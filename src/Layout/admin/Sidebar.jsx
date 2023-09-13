@@ -3,7 +3,7 @@ import Link from "next/link";
 import Styles from '@/Layout/layout.module.scss'
 const Sidebar = () => {
   return (
-    <div className="bg-white text-[grey] h-screen p-6">
+    <div className="bg-white text-[grey] h-screen p-4">
       <h2 className="text-[25px] font-semibold mb-10 text-[#ff6b07]">
         TempleAddres
       </h2>
