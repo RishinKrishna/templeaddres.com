@@ -5,7 +5,7 @@ const Summary = () => {
   return (
     <div className="leading-4 w-full ">
       <h5 className="mb-2 leading-3">Dashboard</h5>
-      <div className="w-full h-[250px] grid grid-cols-12 gap-x-4">
+      <div className="w-full h-[300px] grid grid-cols-12 gap-x-4">
         <div className="col-span-7 bg-white w-full rounded-[12px] p-5 ">
           <div className="border-b-2 border-gray-100 pb-3 ">
             <h4 className="font-poppins text-[#666666] text-[15px]">
@@ -25,9 +25,9 @@ const Summary = () => {
               </div>
             </div>
 
-            <div className="flex bg-[#FF6B07] p-2 rounded-[18px] ">
+            <div className="flex bg-[#FFB907] p-2 rounded-[18px] ">
               <div className="flex justify-center items-center">
-                <div className="p-6 bg-[#FF9A56] rounded-[12px] ">
+                <div className="p-6 bg-[#faf9f83f] rounded-[12px] ">
                   <h1 className="text-white font-extrabold text-2xl"> 264 </h1>
                 </div>
                 <div className="p-3 text-white font-semibold text-xl">
@@ -36,9 +36,9 @@ const Summary = () => {
               </div>
             </div>
 
-            <div className="flex bg-[#FF6B07] p-2 rounded-[18px] ">
+            <div className="flex bg-[#081B60] p-2 rounded-[18px] ">
               <div className="flex justify-center items-center">
-                <div className="p-6 bg-[#FF9A56] rounded-[12px] ">
+                <div className="p-6 bg-[#faf9f83f] rounded-[12px] ">
                   <h1 className="text-white font-extrabold text-2xl"> 264 </h1>
                 </div>
                 <div className="p-3 text-white font-semibold text-xl">
@@ -47,9 +47,9 @@ const Summary = () => {
               </div>
             </div>
 
-            <div className="flex bg-[#FF6B07] p-2 rounded-[18px] ">
+            <div className="flex bg-[#270D0D] p-2 rounded-[18px] ">
               <div className="flex justify-center items-center">
-                <div className="p-6 bg-[#FF9A56] rounded-[12px] ">
+                <div className="p-6 bg-[#faf9f83f] rounded-[12px] ">
                   <h1 className="text-white font-extrabold text-2xl"> 264 </h1>
                 </div>
                 <div className="p-3 text-white font-semibold text-xl">
@@ -63,6 +63,8 @@ const Summary = () => {
           <Activites />
         </div>
       </div>
+      {/* for chart */}
+      <div className="w-full bg-white h-[50vh] mt-8 rounded-[12px]"></div>
     </div>
   );
 };
