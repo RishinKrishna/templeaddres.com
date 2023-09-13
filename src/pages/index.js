@@ -1,11 +1,16 @@
-import { Navbar, Footer } from "@/Layout";
 import styles from "../style";
-import { Search, TempleCards, GalaryRow, Events, Articles } from "@/components";
 import circular_pattern_img from "../assets/circular_pattern_img.png";
 import Image from "next/image";
-
+import Styles from "@/styles/navbar.module.css";
 import React, { useEffect, useState } from "react";
 import { get } from "@/config/axiosConfig";
+import Search from "@/components/Home/Search";
+import TempleCards from "@/components/Home/TempleCards";
+import GalaryRow from "@/components/Home/GalaryRow";
+import Events from "@/components/Home/Events";
+import Articles from "@/components/Home/Articles";
+import Navbar from "@/Layout/Navbar";
+import Footer from "@/Layout/Footer";
 
 const Home = () => {
   const [tempelsServices, setTempelsServices] = useState([]);
@@ -22,13 +27,14 @@ const Home = () => {
   }, []);
   return (
     <main>
-      <Navbar />
+      <Navbar containerClassName="text-white" />
+      <section className={`${Styles["banner"]}`}></section>
       <div className={`flex justify-center items-start sm:px-12 px-6`}>
         <div className={`${styles.boxWidth}`}>
           <Search setTempelsServices={setTempelsServices} />
         </div>
       </div>
-      <div className={`flex justify-center items-start sm:px-12 px-6`}>
+      <div className={`flex justify-center items-start sm:px-12 px-12`}>
         <div className={`${styles.boxWidth}`}>
           <TempleCards serviceCard={tempelsServices} />
         </div>
@@ -37,7 +43,10 @@ const Home = () => {
         className={`bg-[#fff] flex justify-center items-start sm:px-12 px-6`}
       >
         <div className={`${styles.boxWidth}`}>
-          <GalaryRow />
+          <div className="lg:p-10">
+            <h2 className="text-[#ff6b07] font-semibold text-[25px]">GALARY</h2>
+            <GalaryRow />
+          </div>
         </div>
       </div>
       <div className="relative">
@@ -61,13 +70,8 @@ const Home = () => {
           <Articles />
         </div>
       </div>
-      <div
-        className={`bg-[#270d0d] flex justify-center items-start sm:px-12 px-6`}
-      >
-        <div className={`${styles.boxWidth}`}>
-          <Footer />
-        </div>
-      </div>
+
+      <Footer />
     </main>
   );
 };

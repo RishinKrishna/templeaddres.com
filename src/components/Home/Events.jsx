@@ -1,10 +1,10 @@
-import Styles from "../styles/events.module.css";
+import Styles from "@/styles/events.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
-import events_img_01 from "../assets/events_img_01.jpg";
-import events_img_02 from "../assets/events_img_02.jpg";
-import events_img_03 from "../assets/events_img_03.jpg";
+import events_img_01 from "@/assets/events_img_01.jpg";
+import events_img_02 from "@/assets/events_img_02.jpg";
+import events_img_03 from "@/assets/events_img_03.jpg";
 
 const Events = () => {
   return (

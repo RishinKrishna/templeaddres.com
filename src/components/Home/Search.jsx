@@ -1,9 +1,8 @@
-import Styles from "../styles/articles.module.css";
+import Styles from "@/styles/articles.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import { get } from "@/config/axiosConfig";
-import { debounce, useDebounce } from "@/utils/commonFunction";
 import { useAsyncDebounce } from "react-table";
 import "regenerator-runtime/runtime";
 const Search = ({ setTempelsServices }) => {
@@ -74,7 +73,7 @@ const Search = ({ setTempelsServices }) => {
             id="temples"
             value="temples"
             checked={selectedOption === "temples"}
-            onClick={handleRadioChange}
+            onChange={handleRadioChange}
           />
           <label
             htmlFor="temples"
@@ -90,7 +89,7 @@ const Search = ({ setTempelsServices }) => {
             value="service"
             className="ml-5"
             checked={selectedOption === "service"}
-            onClick={handleRadioChange}
+            onChange={handleRadioChange}
           />
           <label
             htmlFor="service"
