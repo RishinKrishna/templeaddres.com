@@ -62,8 +62,8 @@ const DataTable = ({
   // Render the UI for your table
   return (
     <>
-      <div className="mb-4 flex items-center justify-between">
-        <div className="flex overflow-auto">
+      <div className="mb-4 flex items-center justify-end">
+        <div className="flex  overflow-auto">
           <PanelActionButton buttons={columnDef?.panelActionButtons?.items} />
         </div>
         <div className="center ">
