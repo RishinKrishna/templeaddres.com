@@ -42,7 +42,7 @@ const TempleInfo = () => {
               <LandmarkIcon />
               </div>
               <p className="ml-1">Near The Supreme court</p>
-              <div className="mx-auto ">
+              <div className="ml-auto ">
                 <EditIcon />
               </div>
             </div>
