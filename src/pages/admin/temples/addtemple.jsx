@@ -10,7 +10,6 @@ const AddTemple = () => {
     location: "",
     associationPersonNumber: "",
     subTitle: "",
-    deity2: "",
     landmark: "",
     associatedPersonName: "",
     termsConditions: "",
@@ -23,7 +22,6 @@ const AddTemple = () => {
     locationErr: "",
     associationPersonNumberErr: "",
     subTitleErr: "",
-    deity2Err: "",
     landmarkErr: "",
     associatedPersonNameErr: "",
     termsConditionsErr: "",
@@ -48,7 +46,6 @@ const AddTemple = () => {
     let locationErr = "";
     let associationPersonNumberErr = "";
     let subTitleErr = "";
-    let deity2Err = "";
     let landmarkErr = "";
     let associatedPersonNameErr = "";
     let termsConditionsErr = "";
@@ -77,9 +74,7 @@ const AddTemple = () => {
       subTitleErr = "Please enter your sub title";
     }
 
-    if (formData.deity2 === "") {
-      deity2Err = "Please enter your second deity";
-    }
+    
     if (formData.landmark === "") {
       landmarkErr = "Please enter your landmark";
     }
@@ -116,7 +111,6 @@ const AddTemple = () => {
         locationErr,
         associationPersonNumberErr,
         subTitleErr,
-        deity2Err,
         landmarkErr,
         associatedPersonNameErr,
         termsConditionsErr,
@@ -174,6 +168,20 @@ const AddTemple = () => {
             </span>
           </div>
           <div className="mt-3">
+          <label className="mb-2 block ">Deity 2</label>
+          <input
+            type="text"
+            name="deity2"
+            id="deity2"
+            className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px]"
+            placeholder="Enter Your Second Deity"
+            onChange={handleChange}
+          />
+          <span className="text-red-500 text-[13px]">
+            {FormError.deity2Err}
+          </span>
+        </div>
+          <div className="mt-3">
             <label className="mb-2 block ">Address with Pin code</label>
             <input
               type="text"
@@ -201,7 +209,12 @@ const AddTemple = () => {
               {FormError.locationErr}
             </span>
           </div>
-          <div className="mt-3">
+          
+        </div>
+      </div>
+
+      <div className="w-full">
+      <div className="">
             <label className="mb-2 block ">Association Person Number</label>
             <input
               type="number"
@@ -216,11 +229,7 @@ const AddTemple = () => {
               {FormError.associationPersonNumberErr}
             </span>
           </div>
-        </div>
-      </div>
-
-      <div className="w-full">
-        <div className="">
+        <div className="mt-3">
           <label className="mb-2 block ">Sub Title</label>
           <input
             type="text"
@@ -234,20 +243,7 @@ const AddTemple = () => {
             {FormError.subTitleErr}
           </span>
         </div>
-        <div className="mt-3">
-          <label className="mb-2 block ">Deity 2</label>
-          <input
-            type="text"
-            name="deity2"
-            id="deity2"
-            className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px]"
-            placeholder="Enter Your Second Deity"
-            onChange={handleChange}
-          />
-          <span className="text-red-500 text-[13px]">
-            {FormError.deity2Err}
-          </span>
-        </div>
+        
         <div className="mt-3">
           <label className="mb-2 block ">Landmark</label>
           <input
