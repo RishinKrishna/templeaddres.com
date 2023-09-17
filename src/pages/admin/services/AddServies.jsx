@@ -2,7 +2,7 @@ import Layout from "@/Layout/admin";
 import EditIcon from "@/components/icons/EditIcon";
 import React, { useState } from "react";
 
-const AddServies = () => {
+const addservies = () => {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -320,6 +320,6 @@ const AddServies = () => {
   );
 };
 
-AddServies.getLayout = (page) => <Layout>{page}</Layout>;
+addservies.getLayout = (page) => <Layout>{page}</Layout>;
 
-export default AddServies;
+export default addservies;

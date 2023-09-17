@@ -2,7 +2,7 @@ import Layout from "@/Layout/admin";
 import EditIcon from "@/components/icons/EditIcon";
 import { useState } from "react";
 
-const AddTemple = () => {
+const addtemple = () => {
   const [formData, setFormData] = useState({
     name: "",
     deity: "",
@@ -304,5 +304,5 @@ const AddTemple = () => {
     </div>
   );
 };
-AddTemple.getLayout = (page) => <Layout>{page}</Layout>;
-export default AddTemple;
+addtemple.getLayout = (page) => <Layout>{page}</Layout>;
+export default addtemple;
