@@ -1,55 +1,77 @@
-import { Navbar, Footer } from "@/Layout";
 import styles from "../style";
-import { Search, TempleCards, GalaryRow, Events, Articles } from "@/components";
 import circular_pattern_img from "../assets/circular_pattern_img.png";
 import Image from "next/image";
-
-import React from "react";
+import Styles from "@/styles/navbar.module.css";
+import React, { useEffect, useState } from "react";
+import { get } from "@/config/axiosConfig";
+import Search from "@/components/Home/Search";
+import TempleCards from "@/components/Home/TempleCards";
+import GalaryRow from "@/components/Home/GalaryRow";
+import Events from "@/components/Home/Events";
+import Articles from "@/components/Home/Articles";
+import Navbar from "@/Layout/Navbar";
+import Footer from "@/Layout/Footer";
 
 const Home = () => {
+  const [tempelsServices, setTempelsServices] = useState([]);
+  const getTemple = () => {
+    get({
+      api: "/temples/list",
+    }).then((response) => {
+      setTempelsServices(response.data.data);
+    });
+  };
+
+  useEffect(() => {
+    getTemple();
+  }, []);
   return (
     <main>
-      <Navbar />
+      <Navbar containerClassName="text-white" />
+      <section className={`${Styles["banner"]}`}></section>
       <div className={`flex justify-center items-start sm:px-12 px-6`}>
         <div className={`${styles.boxWidth}`}>
-          <Search />
+          <Search setTempelsServices={setTempelsServices} />
         </div>
       </div>
-      <div className={`flex justify-center items-start sm:px-12 px-6`}>
+      <div className={`flex justify-center items-start sm:px-12 px-12`}>
         <div className={`${styles.boxWidth}`}>
-          <TempleCards />
+          <TempleCards serviceCard={tempelsServices} />
         </div>
       </div>
       <div
         className={`bg-[#fff] flex justify-center items-start sm:px-12 px-6`}
       >
         <div className={`${styles.boxWidth}`}>
-          <GalaryRow />
+          <div className="lg:p-10">
+            <h2 className="text-[#ff6b07] font-semibold text-[25px]">GALARY</h2>
+            <GalaryRow />
+          </div>
         </div>
       </div>
       <div className="relative">
-      <div className={`flex justify-center items-start sm:px-12 px-6`}>
-        <div className={`${styles.boxWidth}`}>
-          <Events />
+        <div className={`flex justify-center items-start sm:px-12 px-6`}>
+          <div className={`${styles.boxWidth}`}>
+            <Events />
+          </div>
         </div>
+        <Image
+          alt="sa"
+          src={circular_pattern_img}
+          width={320}
+          height={320}
+          className="left-0 bottom-0 hidden md:block absolute"
+        />
       </div>
-      <Image
-        src={circular_pattern_img}
-        width={320}
-        height={320}
-        className="left-0 bottom-0 hidden md:block absolute"
-      />
-      </div>
-      <div className={`bg-[#fff] flex justify-center items-start sm:px-12 px-6`}>
+      <div
+        className={`bg-[#fff] flex justify-center items-start sm:px-12 px-6`}
+      >
         <div className={`${styles.boxWidth}`}>
           <Articles />
         </div>
       </div>
-      <div className={`bg-[#270d0d] flex justify-center items-start sm:px-12 px-6`}>
-        <div className={`${styles.boxWidth}`}>
-          <Footer />
-        </div>
-      </div>
+
+      <Footer />
     </main>
   );
 };

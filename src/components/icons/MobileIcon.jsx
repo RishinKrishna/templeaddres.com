@@ -3,11 +3,19 @@ import React from "react";
 const MobileIcon = (props) => {
   return (
     <svg
+<<<<<<< HEAD
       width="20"
       height="20"
       viewBox="0 0 25 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+=======
+      xmlns="http://www.w3.org/2000/svg"
+      width="25"
+      height="24"
+      viewBox="0 0 25 24"
+      fill="none"
+>>>>>>> 6258847c7422d5ffea4b9751115d3e0cf728fd6f
       {...props}
     >
       <path

@@ -15,12 +15,12 @@ const handleResponse = (error) => {
   let status = error.response?.status;
   let errorStatusCode = [400, 500, 404, 403];
 };
-const get = ({ api, data, config, toastConfig }) => {
+const get = ({ api, config, toastConfig }) => {
   if (toastConfig && toastConfig.messages) {
     return toast.promise(
       new Promise((resolve, reject) => {
         axiosInstance
-          .get(api, data, config)
+          .get(api, config)
           .then((response) => {
             resolve(response);
           })
@@ -33,7 +33,7 @@ const get = ({ api, data, config, toastConfig }) => {
   }
   return new Promise((resolve, reject) => {
     axiosInstance
-      .get(api, data, config)
+      .get(api, config)
       .then((response) => {
         resolve(response);
       })

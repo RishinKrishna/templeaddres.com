@@ -1,5 +1,6 @@
 import React from "react";
 
+<<<<<<< HEAD
 const LocationIcon = (props) => {
   return (
     <svg
@@ -8,6 +9,16 @@ const LocationIcon = (props) => {
       viewBox="0 0 25 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+=======
+const LocationIcon = ({ props }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="24"
+      viewBox="0 0 18 24"
+      fill="none"
+>>>>>>> 6258847c7422d5ffea4b9751115d3e0cf728fd6f
       {...props}
     >
       <path

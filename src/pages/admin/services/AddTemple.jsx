@@ -1,33 +1,31 @@
 import Layout from "@/Layout/admin";
 import EditIcon from "@/components/icons/EditIcon";
-import React, { useState } from "react";
+import { useState } from "react";
 
-const AddServies = () => {
+const AddTemple = () => {
   const [formData, setFormData] = useState({
     name: "",
-    description: "",
+    deity: "",
     address: "",
-    bookingAvailable: "",
-    email: "",
-    service: "",
     location: "",
-    consultingTime: "",
-    serviceAreas: "",
-    phone: "",
+    associationPersonNumber: "",
+    subTitle: "",
+    deity2: "",
+    landmark: "",
+    associatedPersonName: "",
     termsConditions: "",
   });
 
   const [FormError, setFormError] = useState({
     nameErr: "",
-    descriptionErr: "",
+    deityErr: "",
     addressErr: "",
-    bookingAvailableErr: "",
-    emailErr: "",
-    serviceErr: "",
     locationErr: "",
-    consultingTimeErr: "",
-    serviceAreasErr: "",
-    phoneErr: "",
+    associationPersonNumberErr: "",
+    subTitleErr: "",
+    deity2Err: "",
+    landmarkErr: "",
+    associatedPersonNameErr: "",
     termsConditionsErr: "",
   });
 
@@ -43,86 +41,84 @@ const AddServies = () => {
     });
   };
 
-  const isValidEmail = (email) => {
-    const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
-    return emailRegex.test(email);
-  };
-
   const validateForm = () => {
     let nameErr = "";
-    let descriptionErr = "";
+    let deityErr = "";
     let addressErr = "";
-    let bookingAvailableErr = "";
-    let emailErr = "";
-    let serviceErr = "";
     let locationErr = "";
-    let consultingTimeErr = "";
-    let serviceAreasErr = "";
-    let phoneErr = "";
+    let associationPersonNumberErr = "";
+    let subTitleErr = "";
+    let deity2Err = "";
+    let landmarkErr = "";
+    let associatedPersonNameErr = "";
     let termsConditionsErr = "";
 
-    if (!formData.name || formData.name === "") {
+    if (!formData.name || formData.name == "") {
       nameErr = "Please enter your name ";
     }
-    if (formData.description === "") {
-      descriptionErr = "Please enter your description";
+    if (formData.deity === "") {
+      deityErr = "Please enter your deity";
     }
     if (formData.address === "") {
-      addressErr = "Please enter your Address";
-    }
-    if (formData.bookingAvailable === "") {
-      bookingAvailableErr = "Please enter your Booking Available";
-    }
-    if (!isValidEmail(formData.email)) {
-      emailErr = "Please enter a valid email address";
-    }
-    if (formData.service === "") {
-      serviceErr = "Please enter your service";
+      addressErr = "Please enter your sddress with pin code";
     }
     if (formData.location === "") {
       locationErr = "Please enter your location";
     }
-    if (formData.consultingTime === "") {
-      consultingTimeErr = "Please enter your consulting Time";
-    }
-    if (formData.serviceAreas === "") {
-      serviceAreasErr = "Please enter your service Areas ";
+
+    if (formData.associationPersonNumber === "") {
+      associationPersonNumberErr =
+        "Please enter your association person number";
+    } else if (formData.associationPersonNumber.length !== 10) {
+      associationPersonNumberErr = "Phone should have 10 digits";
     }
 
-    if (formData.phone === "") {
-      phoneErr = "Please enter your phone number";
-    } else if (formData.phone.length !== 10) {
-      phoneErr = "Phone should have 10 digits";
+    if (formData.subTitle === "") {
+      subTitleErr = "Please enter your sub title";
+    }
+
+    if (formData.deity2 === "") {
+      deity2Err = "Please enter your second deity";
+    }
+    if (formData.landmark === "") {
+      landmarkErr = "Please enter your landmark";
+    }
+
+    if (
+      !formData.associatedPersonName ||
+      formData.associatedPersonName === ""
+    ) {
+      associatedPersonNameErr = "Please enter your associated person name";
     }
     if (!formData.termsConditions) {
       termsConditionsErr = "Please agree to the Terms & Conditions";
     }
 
+   
+
     if (
       nameErr !== "" ||
-      descriptionErr !== "" ||
+      deityErr !== "" ||
       addressErr !== "" ||
-      bookingAvailableErr !== "" ||
-      emailErr !== "" ||
-      serviceErr !== "" ||
       locationErr !== "" ||
-      consultingTimeErr !== "" ||
-      serviceAreasErr !== "" ||
-      phoneErr !== "" ||
+      associationPersonNumberErr !== "" ||
+      subTitleErr !== "" ||
+      deity2Err !== "" ||
+      landmarkErr !== "" ||
+      associatedPersonNameErr !== "" || 
       termsConditionsErr !== ""
     ) {
       setFormError({
         ...FormError,
         nameErr,
-        descriptionErr,
+        deityErr,
         addressErr,
-        bookingAvailableErr,
-        emailErr,
-        serviceErr,
         locationErr,
-        consultingTimeErr,
-        serviceAreasErr,
-        phoneErr,
+        associationPersonNumberErr,
+        subTitleErr,
+        deity2Err,
+        landmarkErr,
+        associatedPersonNameErr,
         termsConditionsErr,
       });
       return false;
@@ -148,7 +144,7 @@ const AddServies = () => {
           </div>
         </div>
 
-        <form action="" className="">
+        <div action="" className="">
           <div className="mt-3">
             <label className="mb-2 block ">Name</label>
             <input
@@ -164,27 +160,27 @@ const AddServies = () => {
             </span>
           </div>
           <div className="mt-3">
-            <label className="mb-2 block ">Description</label>
+            <label className="mb-2 block ">Deity</label>
             <input
               type="text"
-              name="description"
-              id="description"
+              name="deity"
+              id="deity"
               className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px]"
-              placeholder="Enter Your Description"
+              placeholder="Enter Your Deity"
               onChange={handleChange}
             />
             <span className="text-red-500 text-[13px]">
-              {FormError.descriptionErr}
+              {FormError.deityErr}
             </span>
           </div>
           <div className="mt-3">
-            <label className="mb-2 block ">Address</label>
+            <label className="mb-2 block ">Address with Pin code</label>
             <input
               type="text"
               name="address"
               id="address"
               className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px]"
-              placeholder="Enter Your Address"
+              placeholder="Enter Your Address with Pin code"
               onChange={handleChange}
             />
             <span className="text-red-500 text-[13px]">
@@ -192,104 +188,93 @@ const AddServies = () => {
             </span>
           </div>
           <div className="mt-3">
-            <label className="mb-2 block ">Booking Available</label>
+            <label className="mb-2 block ">Location</label>
             <input
               type="text"
-              name="bookingAvailable"
-              id="bookingAvailable"
+              name="location"
+              id="location"
               className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px]"
-              placeholder="Enter Your Booking Available"
+              placeholder="Enter Your Location"
               onChange={handleChange}
             />
             <span className="text-red-500 text-[13px]">
-              {FormError.bookingAvailableErr}
+              {FormError.locationErr}
             </span>
           </div>
           <div className="mt-3">
-            <label className="mb-2 block ">Email</label>
+            <label className="mb-2 block ">Association Person Number</label>
             <input
-              type="email"
-              name="email"
-              id="email"
+              type="number"
+              name="associationPersonNumber"
+              id="associationPersonNumber"
               className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px]"
-              placeholder="Enter Your Email"
+              placeholder="Enter Your Association Person Number"
               onChange={handleChange}
             />
+
             <span className="text-red-500 text-[13px]">
-              {FormError.emailErr}
+              {FormError.associationPersonNumberErr}
             </span>
           </div>
-        </form>
+        </div>
       </div>
 
       <div className="w-full">
         <div className="">
-          <label className="mb-2 block ">Service</label>
+          <label className="mb-2 block ">Sub Title</label>
           <input
             type="text"
-            name="service"
-            id="service"
+            name="subTitle"
+            id="subTitle"
             className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px]"
-            placeholder="Enter Your Service"
+            placeholder="Enter Your Sub Title"
             onChange={handleChange}
           />
           <span className="text-red-500 text-[13px]">
-            {FormError.serviceErr}
+            {FormError.subTitleErr}
           </span>
         </div>
         <div className="mt-3">
-          <label className="mb-2 block ">Location</label>
+          <label className="mb-2 block ">Deity 2</label>
           <input
             type="text"
-            name="location"
-            id="location"
+            name="deity2"
+            id="deity2"
             className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px]"
-            placeholder="Enter Your Location"
+            placeholder="Enter Your Second Deity"
             onChange={handleChange}
           />
           <span className="text-red-500 text-[13px]">
-            {FormError.locationErr}
+            {FormError.deity2Err}
           </span>
         </div>
         <div className="mt-3">
-          <label className="mb-2 block ">Consulting Time</label>
+          <label className="mb-2 block ">Landmark</label>
           <input
             type="text"
-            name="consultingTime"
-            id="consultingTime"
+            name="landmark"
+            id="landmark"
             className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px]"
-            placeholder="Enter Your Consulting Time"
+            placeholder="Enter Your Landmark"
             onChange={handleChange}
           />
           <span className="text-red-500 text-[13px]">
-            {FormError.consultingTimeErr}
+            {FormError.landmarkErr}
           </span>
         </div>
         <div className="mt-3">
-          <label className="mb-2 block ">Service Areas</label>
+          <label className="mb-2 block ">Associated Person Name</label>
           <input
             type="text"
-            name="serviceAreas"
-            id="serviceAreas"
+            name="associatedPersonName"
+            id="associatedPersonName"
             className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px]"
-            placeholder="Enter Your Name"
+            placeholder="Enter Your Associated Person Name"
             onChange={handleChange}
           />
           <span className="text-red-500 text-[13px]">
-            {FormError.serviceAreasErr}
+            {FormError.associatedPersonNameErr}
           </span>
-        </div>
-        <div className="mt-3">
-          <label className="mb-2 block ">Contact Number</label>
-          <input
-            type="number"
-            name="phone"
-            id="phone"
-            className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px]"
-            placeholder="Enter Your Name"
-            onChange={handleChange}
-          />
-          <span className="text-red-500 text-[13px]">{FormError.phoneErr}</span>
         </div>
         <div className="mt-2 text-[14px]">
           <label htmlFor="terms-conditions">
@@ -319,7 +304,5 @@ const AddServies = () => {
     </div>
   );
 };
-
-AddServies.getLayout = (page) => <Layout>{page}</Layout>;
-
-export default AddServies;
+AddTemple.getLayout = (page) => <Layout>{page}</Layout>;
+export default AddTemple;
