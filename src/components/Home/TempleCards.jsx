@@ -62,7 +62,7 @@ const TempleCards = ({ serviceCard }) => {
         {serviceCard && serviceCard.length > 0 && (
           <div className="w-full text-center my-4">
             <Link
-              href=""
+              href="/searchfilter"
               className="bg-primary text-white px-5 py-3 rounded-[10px] font-poppins font-semibold"
             >
               View Full Result
