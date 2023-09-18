@@ -1,21 +1,28 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect, useRef } from "react";
-
-const Header = () => {
+import { CustomDropdown } from "@/components/CustomDropdown";
+import UserIcon from "@/components/icons/UserIcon";
+import EditIcon from "@/components/icons/EditIcon";
+import ExportIcon from "@/components/icons/ExportIcon";
+import TemplesIcon from "@/components/icons/TemplesIcon";
+import ServiesIcon from "@/components/icons/ServiesIcon";
+import router from "next/router";
+import menu from "@/assets/menu.svg";
+import close from "@/assets/close.svg";
+import Image from "next/image";
+const Header = ({ sidebarIsopen, setSidebarIsOpen }) => {
   const profileMenus = ["My Profile", "Update Password", "Sign Out"];
   const [open, setOpen] = useState(false);
 
   const dropdownRef = useRef(null);
 
   useEffect(() => {
-
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setOpen(false);
       }
     }
-
 
     if (open) {
       document.addEventListener("mousedown", handleClickOutside);
@@ -28,59 +35,86 @@ const Header = () => {
     };
   }, [open]);
 
+  const handleRoutes = (path) => {
+    router.push(path);
+  };
   return (
-    <div className="flex justify-end items-center w-full h-[65px] bg-white left-0 relative">
+    <div className="flex justify-end items-center w-full h-[65px] bg-white left-0 relative px-12">
       <div className="flex justify-center items-center">
-        <FontAwesomeIcon icon={faAdd} className="text-[24px] text-[#ff6b07] mr-4" />
-        <div className="">
-          
-        </div>
-        <div className="w-[30px] h-[30px] bg-gray-300 border-2 border-red-400 rounded-full mr-4" />
-        <h4
-          className="text-[15px] font-semibold mr-4 cursor-pointer"
-          onClick={() => setOpen(!open)}
-        >
-          Administrator
-        </h4>
+        <CustomDropdown
+          button={{
+            render: () => (
+              <FontAwesomeIcon
+                icon={faAdd}
+                className="text-[24px] text-[#ff6b07] mr-4"
+              />
+            ),
+          }}
+          optionsContainerClassName="bg-white w-[230px] top-[55px] right-0  py-2 shadow-lg"
+          optionsList={[
+            {
+              icon: <TemplesIcon height={20} className="mr-4" />,
+              name: "Temple",
+              className:
+                "py-3 flex font-poppins items-center w-full text-sm text-[#A9A9A9] border-b-2 border-gray-100 ",
+              onClick: () => handleRoutes("/admin/temples/addtemple"),
+            },
+            {
+              icon: <ServiesIcon height={20} className="mr-4" />,
+              name: "Service",
+              className:
+                "py-3 flex font-poppins items-center w-full text-sm text-[#A9A9A9] ",
+              onClick: () => handleRoutes("/admin/services/addservice"),
+            },
+          ]}
+        />
+        <CustomDropdown
+          button={{
+            render: () => (
+              <div className="flex  items-center">
+                <div className="w-[30px] h-[30px] bg-gray-300 border-2 border-red-400 rounded-full mr-4" />
+                Admin
+              </div>
+            ),
+          }}
+          optionsContainerClassName="bg-white w-[230px] top-[55px] right-0  py-2 shadow-lg"
+          optionsList={[
+            {
+              render: () => (
+                <div className=" border-b-2 border-gray-100  py-3">
+                  <div className="flex justify-start px-3 ">
+                    <div className="w-[30px] h-[30px] bg-gray-300 border-2 border-red-400 rounded-full mr-4" />
+                    <div>
+                      <h5 className=" leading-none font-poppins">Sajith</h5>
+                      <p className="text-xs font-poppins text-secondary-gray">
+                        sajithpj@gmail.com
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ),
+            },
+            {
+              icon: <UserIcon height={20} className="mr-4" />,
+              name: "My Profile",
+              className:
+                "py-3 flex font-poppins items-center w-full text-sm text-[#A9A9A9] border-b-2 border-gray-100 ",
+            },
+            {
+              icon: <EditIcon height={20} className="mr-4" />,
+              name: "Update Password",
+              className:
+                "py-3 flex font-poppins items-center w-full text-sm text-[#A9A9A9] border-b-2 border-gray-100",
+            },
+            {
+              icon: <ExportIcon height={20} className="mr-4" />,
+              name: "Sign Out",
+              className:
+                "py-3 flex font-poppins items-center w-full text-sm text-[#A9A9A9]  ",
+            },
+          ]}
+        />
       </div>
-      {open && (
-        <div
-          ref={dropdownRef}
-          className="bg-white py-2 shadow-xl absolute right-4 top-[60px] rounded-lg z-20"
-        >
-          <div className=" flex border-b-2 border-[#ffb889] px-3 pb-2">
-            <div className="w-[30px] h-[30px] bg-gray-300 border-2 border-red-400 rounded-full mr-2"></div>
-            <div className="flex justify-center flex-col">
-              <h4 className="text-[14px] font-poppins font-semibold">Sajith.k.s</h4>
-              <p className="text-[#666666] text-[12px]">sajithpjoffialme@gmail.com</p>
-            </div>
-          </div>
-          <ul className="px-3 pt-2 text-[14px] text-[#666666] font-poppins">
-            {profileMenus.map((menu) => (
-              <li
-                onClick={() => setOpen(false)}
-                className="py-1 pl-2 hover:bg-[#ff6b07] rounded-md hover:text-white cursor-pointer"
-                key={menu}
-              >
-                {menu}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-      {/* <div className="absolute top-16 right-[175px] bg-white rounded-lg shadow-lg">
-      <ul className="px-3 pt-2 text-[14px] text-[#666666] font-poppins">
-            {profileMenus.map((menu) => (
-              <li
-                onClick={() => setOpen(false)}
-                className="py-1 pl-2 hover:bg-[#ff6b07] rounded-md hover:text-white cursor-pointer"
-                key={menu}
-              >
-                {menu}
-              </li>
-            ))}
-          </ul>
-      </div> */}
     </div>
   );
 };

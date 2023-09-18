@@ -13,7 +13,7 @@ export const CustomDropdown = ({
       <div className="relative">
         <button
           type="button"
-          className={classNames("flex items-center", button.buttonClassName)}
+          className={classNames("flex items-center", button?.buttonClassName)}
           onClick={() => setIsOpen(true)}
         >
           {button.render()}
@@ -30,20 +30,28 @@ export const CustomDropdown = ({
                 optionsContainerClassName
               )}
             >
-              {optionsList.map((option, index) => (
-                <button
-                  type="button"
-                  key={index}
-                  className={classNames(
-                    "pointer  px-4 py-2 hover:bg-[#ffffff74]",
-                    option?.className
-                  )}
-                  value={option?.value}
-                  onClick={option.onClick}
-                >
-                  {option?.icon} {option?.name}
-                </button>
-              ))}
+              {optionsList.map((option, index) => {
+                if (option.render) {
+                  return option.render();
+                }
+                return (
+                  <button
+                    type="button"
+                    key={index}
+                    className={classNames(
+                      "pointer  px-4 py-2 hover:bg-[#ffffff74]",
+                      option?.className
+                    )}
+                    value={option?.value}
+                    onClick={() => {
+                      option.onClick();
+                      setIsOpen(false);
+                    }}
+                  >
+                    {option?.icon} {option?.name}
+                  </button>
+                );
+              })}
             </div>
           </>
         )}
