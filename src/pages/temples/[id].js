@@ -96,14 +96,7 @@ const TempleViewPage = () => {
       },
     },
   ];
-  //   let panelActionButtons = {
-  //     items: [
-  //       {
-  //         displayText: "Add Pooja",
-  //         className: "px-4 py-2 text-white bg-primary rounded-[10px]",
-  //       },
-  //     ],
-  //   };
+
   const fetchTempleId = () => {
     get({ api: `/temples/view/${id}` }).then((response) => {
       setTemple(response.data.data);

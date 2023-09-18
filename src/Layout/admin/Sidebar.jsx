@@ -27,10 +27,7 @@ const Sidebar = () => {
       </div>
 
       <div className="md:hidden flex flex-1 right-0 z-10">
-        <button
-          onClick={() => setToggle((prev) => !prev)}
-          className=""
-        >
+        <button onClick={() => setToggle((prev) => !prev)} className="">
           <Image
             src={toggle ? close : menu}
             alt="menu"
