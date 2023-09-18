@@ -1,16 +1,6 @@
 import Layout from "@/Layout/admin";
 import TempleView from "@/components/Temples/View";
-import TampleDescription from "@/components/admin/TampleDescription";
-import TempleContactDetails from "@/components/admin/TempleContactDetails";
-import TempleDeity from "@/components/admin/TempleDeity";
-import TempleGallery from "@/components/admin/TempleGallery";
-import TempleHistory from "@/components/admin/TempleHistory";
-import EditIcon from "@/components/icons/EditIcon";
-import LandmarkIcon from "@/components/icons/LandmarkIcon";
-import LocationIcon from "@/components/icons/LocationIcon";
-import TimerIcon from "@/components/icons/TimerIcon";
 import { get } from "@/config/axiosConfig";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -18,20 +8,35 @@ const TempleInfo = () => {
   const router = useRouter();
   const id = router.query.id;
   const [temple, setTemple] = useState({});
+  const [gallery, setGallery] = useState([]);
   const [poojaList, setTempleList] = useState([]);
 
   const fetchTempleId = () => {
     get({ api: `/temples/view/${id}` }).then((response) => {
-      setTemple(response.data.data);
+      setTemple({ ...temple, ...response.data.data });
     });
   };
+
+  const getGallary = () => {
+    get({ api: `/temples/gallery-view/${id}` }).then((response) => {
+      let galleryObj = response.data.data;
+      const galleryArr = Object.keys(galleryObj)
+        .filter((imgObj) => !imgObj.includes("gallery"))
+        .map((imgKey) => galleryObj[imgKey]);
+      setGallery(galleryArr);
+    });
+  };
+
   useEffect(() => {
-    if (id) fetchTempleId();
+    if (id) {
+      fetchTempleId();
+      getGallary();
+    }
   }, [id]);
 
   return (
     <>
-      <TempleView {...temple} />
+      <TempleView {...temple} gallery={gallery} admin={true}/>
     </>
   );
 };

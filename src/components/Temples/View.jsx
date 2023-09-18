@@ -25,7 +25,9 @@ const TempleView = ({
   pin_code,
   deity,
   deity_2,
+  gallery,
   address,
+  admin,
 }) => {
   const [poojaList, setTempleList] = useState([]);
   const poojaTableHeaders = [
@@ -133,9 +135,11 @@ const TempleView = ({
                 <div className="p-3">
                   <p className="text-secondary-gray">{landmark}</p>
                 </div>
-                <div className="flex items-center ml-auto">
-                  <EditIcon/>
-                </div>
+                {admin && (
+                  <div className="flex items-center ml-auto">
+                    <EditIcon />
+                  </div>
+                )}
               </div>
             </div>
 
@@ -154,7 +158,7 @@ const TempleView = ({
           <div className="my-4">
             <div className="flex justify-between">
               <h1 className="text-xl font-[500]">Description</h1>
-              <EditIcon/>
+              <EditIcon />
             </div>
             <div>
               <p className="text-secondary-gray mt-2  text-[13px]">
@@ -166,7 +170,7 @@ const TempleView = ({
           <div className="mb-6">
             <div className="flex justify-between">
               <h1 className="text-xl font-[500]">Deity</h1>
-              <EditIcon/>
+              <EditIcon />
             </div>
             <div className="flex gap-x-4 mt-2">
               <div className="bg-[#E4E4E4] px-4 py-2 rounded-[7px] text-[13px]">
@@ -187,9 +191,8 @@ const TempleView = ({
           <div className="mb-4">
             <div className="flex justify-between">
               <h1 className="text-xl font-[500]">Contact Details</h1>
-              <EditIcon/>
+              <EditIcon />
             </div>
-
 
             <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-6 mt-3">
               <div className="flex items-center">
@@ -201,8 +204,8 @@ const TempleView = ({
                 <MailIcon />
                 <span className="ml-3">sreepathma@gmail.com</span>
               </div>
-              </div>
-              <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-6 mt-4">
+            </div>
+            <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-6 mt-4">
               <div className="flex items-center">
                 <PhoneIcon />
                 <span className="ml-3">0001-43548</span>
@@ -212,11 +215,7 @@ const TempleView = ({
                 <GlobeIcon />
                 <span className="ml-3">9048262454</span>
               </div>
-              </div>
-              
-            
-
-
+            </div>
 
             {/* <div className="grid grid-cols-2  gap-6 mt-2">
               <div className="flex items-center">
@@ -246,7 +245,7 @@ const TempleView = ({
       <div className="py-5">
         <div className="flex justify-between">
           <h1 className="text-2xl font-semibold">History</h1>
-          <EditIcon/>
+          <EditIcon />
         </div>
         <div className="mt-4 grid lg:grid-cols-2 sm:grid-1 gap-8">
           <div className="">
@@ -275,7 +274,7 @@ const TempleView = ({
 
       <div className="py-5">
         <h2 className=" font-semibold text-[25px]">Gallery</h2>
-        <GalaryRow />
+        <GalaryRow gallery={gallery} />
       </div>
 
       <div className="py-5">

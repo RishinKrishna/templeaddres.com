@@ -7,7 +7,7 @@ const TempleGallery = () => {
   const [galleryData, setGalleryData] = useState({});
 
   const fetchGalleryData = () => {
-    get({ api: `/temples/gallery-view/1 ${id}` }).then((response) => {
+    get({ api: `/temples/gallery-view/1/${id}` }).then((response) => {
       if (response.data.success) {
         setGalleryData(response.data.data);
       }
