@@ -56,7 +56,7 @@ const Home = () => {
           </div>
         </div>
         <Image
-          alt="sa"
+          alt=""
           src={circular_pattern_img}
           width={320}
           height={320}

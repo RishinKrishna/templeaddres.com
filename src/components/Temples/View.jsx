@@ -158,7 +158,11 @@ const TempleView = ({
           <div className="my-4">
             <div className="flex justify-between">
               <h1 className="text-xl font-[500]">Description</h1>
-              <EditIcon />
+              {admin && (
+                <div className="flex items-center ml-auto">
+                  <EditIcon />
+                </div>
+              )}
             </div>
             <div>
               <p className="text-secondary-gray mt-2  text-[13px]">
@@ -170,7 +174,11 @@ const TempleView = ({
           <div className="mb-6">
             <div className="flex justify-between">
               <h1 className="text-xl font-[500]">Deity</h1>
-              <EditIcon />
+              {admin && (
+                <div className="flex items-center ml-auto">
+                  <EditIcon />
+                </div>
+              )}
             </div>
             <div className="flex gap-x-4 mt-2">
               <div className="bg-[#E4E4E4] px-4 py-2 rounded-[7px] text-[13px]">
@@ -191,7 +199,11 @@ const TempleView = ({
           <div className="mb-4">
             <div className="flex justify-between">
               <h1 className="text-xl font-[500]">Contact Details</h1>
-              <EditIcon />
+              {admin && (
+                <div className="flex items-center ml-auto">
+                  <EditIcon />
+                </div>
+              )}
             </div>
 
             <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-6 mt-3">
@@ -216,28 +228,6 @@ const TempleView = ({
                 <span className="ml-3">9048262454</span>
               </div>
             </div>
-
-            {/* <div className="grid grid-cols-2  gap-6 mt-2">
-              <div className="flex items-center">
-                <MobileIcon />
-                <span className="ml-3">9048262454</span>
-              </div>
-
-              <div className="flex items-center">
-                <MailIcon />
-                <span className="ml-3">sreepathma@gmail.com</span>
-              </div>
-
-              <div className="flex items-center">
-                <PhoneIcon />
-                <span className="ml-3">0001-43548</span>
-              </div>
-
-              <div className="flex items-center">
-                <GlobeIcon />
-                <span className="ml-3">9048262454</span>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>
@@ -245,7 +235,11 @@ const TempleView = ({
       <div className="py-5">
         <div className="flex justify-between">
           <h1 className="text-2xl font-semibold">History</h1>
-          <EditIcon />
+          {admin && (
+            <div className="flex items-center ml-auto">
+              <EditIcon />
+            </div>
+          )}
         </div>
         <div className="mt-4 grid lg:grid-cols-2 sm:grid-1 gap-8">
           <div className="">
