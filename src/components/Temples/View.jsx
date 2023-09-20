@@ -15,6 +15,7 @@ import DisableIcon from "../icons/DisableIcon";
 import TrashIcon from "../icons/TrashIcon";
 import { CustomDropdown } from "../CustomDropdown";
 import EyeIcon from "../icons/EyeIcon";
+import TemplesIcon from "../icons/TemplesIcon";
 
 const TempleView = ({
   thumbnail,
@@ -106,13 +107,21 @@ const TempleView = ({
     <div className="font-poppins  bg-white rounded-[16px] shadow-md px-5 pt-5">
       <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-x-8 pb-10  border-b-2">
         <div>
-          <Image
-            src={thumbnail}
-            width={500}
-            height={500}
-            className="w-full h-full rounded-[10px] object-cover shadow-md"
-            alt="temple"
-          />
+          {thumbnail ? (
+            thumbnail != "" && (
+              <Image
+                src={thumbnail}
+                width={500}
+                height={500}
+                className="w-full h-full rounded-[10px] object-cover shadow-md"
+                alt="temple"
+              />
+            )
+          ) : (
+            <div className="w-full h-[230px] flex justify-center items-center  rounded-[20px] border">
+              <TemplesIcon width="200" height="150" className="opacity-50" />
+            </div>
+          )}
         </div>
         <div>
           {/* <h1 className="font-poppins text-2xl">{temple.name}</h1> */}
@@ -244,13 +253,21 @@ const TempleView = ({
         </div>
         <div className="mt-4 grid lg:grid-cols-2 sm:grid-1 gap-8">
           <div className="">
-            <Image
-              src={thumbnail}
-              width={300}
-              height={300}
-              alt="temple"
-              className="w-full max-h-[350px] object-cover rounded-[10px]"
-            />
+            {thumbnail ? (
+              thumbnail != "" && (
+                <Image
+                  src={thumbnail}
+                  width={300}
+                  height={300}
+                  alt="temple"
+                  className="w-full max-h-[350px] object-cover rounded-[10px]"
+                />
+              )
+            ) : (
+              <div className="w-full h-[230px] flex justify-center items-center  rounded-[20px] border">
+                <TemplesIcon width="200" height="150" className="opacity-50" />
+              </div>
+            )}
           </div>
           <div className="">
             <p className=" text-secondary-gray ">
@@ -287,52 +304,58 @@ const TempleView = ({
         </div>
       </div>
       <div className="flex justify-between mt-5">
-          <h1 className="text-2xl font-semibold">Payment, Donation</h1>
-          {admin && (
-            <div className="flex items-center ml-auto">
-              <EditIcon />
-            </div>
-          )}
-        </div>
+        <h1 className="text-2xl font-semibold">Payment, Donation</h1>
+        {admin && (
+          <div className="flex items-center ml-auto">
+            <EditIcon />
+          </div>
+        )}
+      </div>
       <div className="mt-4 grid lg:grid-cols-2 sm:grid-1 gap-8 pb-6">
-
-      <div className="">
-        <div className="border bottom-1 rounded-lg p-2 mt-3">
+        <div className="">
+          <div className="border bottom-1 rounded-lg p-2 mt-3">
             <h5 className=" text-secondary-gray text-[15px] font-semibold ">
               Accoount nunber :
             </h5>
-            <p className=" text-secondary-gray text-[15px] tracking-wider ">184808971963187</p>
-            </div>
-        <div className="border bottom-1 rounded-lg p-2 mt-3">
+            <p className=" text-secondary-gray text-[15px] tracking-wider ">
+              184808971963187
+            </p>
+          </div>
+          <div className="border bottom-1 rounded-lg p-2 mt-3">
             <h5 className=" text-secondary-gray text-[15px] font-semibold ">
               IFSC code :
             </h5>
-            <p className=" text-secondary-gray text-[15px] tracking-wider">SBIN73489573</p>
-            </div>
-        <div className="border bottom-1 rounded-lg p-2 mt-3">
+            <p className=" text-secondary-gray text-[15px] tracking-wider">
+              SBIN73489573
+            </p>
+          </div>
+          <div className="border bottom-1 rounded-lg p-2 mt-3">
             <h5 className=" text-secondary-gray text-[15px] font-semibold ">
               Accoount name :
             </h5>
-            <p className=" text-secondary-gray text-[15px] tracking-wider">User Name</p>
-            </div>
-        <div className="border bottom-1 rounded-lg p-2 mt-3">
+            <p className=" text-secondary-gray text-[15px] tracking-wider">
+              User Name
+            </p>
+          </div>
+          <div className="border bottom-1 rounded-lg p-2 mt-3">
             <h5 className=" text-secondary-gray text-[15px] font-semibold ">
               UPI ID :
             </h5>
-            <p className=" text-secondary-gray text-[15px] tracking-wider">user123@oksbi</p>
-            </div>
+            <p className=" text-secondary-gray text-[15px] tracking-wider">
+              user123@oksbi
+            </p>
           </div>
-          <div className="">
-            <Image
-              src={thumbnail}
-              width={300}
-              height={300}
-              alt="temple"
-              className="w-full max-h-[350px] object-cover rounded-[10px]"
-            />
-          </div>
-          
         </div>
+        <div className="">
+          <Image
+            src={thumbnail}
+            width={300}
+            height={300}
+            alt="temple"
+            className="w-full max-h-[350px] object-cover rounded-[10px]"
+          />
+        </div>
+      </div>
     </div>
   );
 };
