@@ -24,6 +24,7 @@ const TempleViewPage = () => {
   const router = useRouter();
   const id = router.query.id;
   const [temple, setTemple] = useState({});
+  const [gallery, setGallery] = useState([]);
   const [poojaList, setTempleList] = useState([]);
   const poojaTableHeaders = [
     {
@@ -96,24 +97,30 @@ const TempleViewPage = () => {
       },
     },
   ];
-  //   let panelActionButtons = {
-  //     items: [
-  //       {
-  //         displayText: "Add Pooja",
-  //         className: "px-4 py-2 text-white bg-primary rounded-[10px]",
-  //       },
-  //     ],
-  //   };
-  const fetchTempleId = () => {
-    get({ api: `/temples/view/${id}` }).then((response) => {
-      setTemple(response.data.data);
-    });
-  };
+
   useEffect(() => {
-    if (id) fetchTempleId();
+    const fetchTempleId = () => {
+      get({ api: `/temples/view/${id}` }).then((response) => {
+        setTemple(response.data.data);
+      });
+    };
+
+    const getGallary = () => {
+      get({ api: `/temples/gallery-view/${id}` }).then((response) => {
+        let galleryObj = response.data.data;
+        const galleryArr = Object.keys(galleryObj)
+          .filter((imgObj) => !imgObj.includes("gallery"))
+          .map((imgKey) => galleryObj[imgKey]);
+        setGallery(galleryArr);
+      });
+    };
+    if (id) {
+      fetchTempleId();
+      getGallary();
+    }
   }, [id]);
 
-  return <TempleView {...temple} />;
+  return <TempleView {...temple} gallery={gallery} />;
 };
 
 TempleViewPage.getLayout = (page) => (

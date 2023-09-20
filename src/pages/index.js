@@ -45,7 +45,7 @@ const Home = () => {
         <div className={`${styles.boxWidth}`}>
           <div className="lg:p-10">
             <h2 className="text-[#ff6b07] font-semibold text-[25px]">GALARY</h2>
-            <GalaryRow />
+            <GalaryRow gallery={[]} />
           </div>
         </div>
       </div>
@@ -56,7 +56,7 @@ const Home = () => {
           </div>
         </div>
         <Image
-          alt="sa"
+          alt=""
           src={circular_pattern_img}
           width={320}
           height={320}

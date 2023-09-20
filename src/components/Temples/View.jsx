@@ -15,6 +15,7 @@ import DisableIcon from "../icons/DisableIcon";
 import TrashIcon from "../icons/TrashIcon";
 import { CustomDropdown } from "../CustomDropdown";
 import EyeIcon from "../icons/EyeIcon";
+import TemplesIcon from "../icons/TemplesIcon";
 
 const TempleView = ({
   thumbnail,
@@ -25,7 +26,10 @@ const TempleView = ({
   pin_code,
   deity,
   deity_2,
+  gallery,
   address,
+  admin,
+  upi_image,
 }) => {
   const [poojaList, setTempleList] = useState([]);
   const poojaTableHeaders = [
@@ -101,15 +105,23 @@ const TempleView = ({
   ];
   return (
     <div className="font-poppins  bg-white rounded-[16px] shadow-md px-5 pt-5">
-      <div className="grid grid-cols-2 gap-x-8 pb-10  border-b-2">
+      <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-x-8 pb-10  border-b-2">
         <div>
-          <Image
-            src={thumbnail}
-            width={500}
-            height={500}
-            className="w-full h-full rounded-[10px] shadow-md"
-            alt="temple"
-          />
+          {thumbnail ? (
+            thumbnail != "" && (
+              <Image
+                src={thumbnail}
+                width={500}
+                height={500}
+                className="w-full h-full rounded-[10px] object-cover shadow-md"
+                alt="temple"
+              />
+            )
+          ) : (
+            <div className="w-full h-[230px] flex justify-center items-center  rounded-[20px] border">
+              <TemplesIcon width="200" height="150" className="opacity-50" />
+            </div>
+          )}
         </div>
         <div>
           {/* <h1 className="font-poppins text-2xl">{temple.name}</h1> */}
@@ -133,6 +145,11 @@ const TempleView = ({
                 <div className="p-3">
                   <p className="text-secondary-gray">{landmark}</p>
                 </div>
+                {admin && (
+                  <div className="flex items-center ml-auto">
+                    <EditIcon />
+                  </div>
+                )}
               </div>
             </div>
 
@@ -141,9 +158,9 @@ const TempleView = ({
                 <ClockIcon />
               </div>
               <div className="py-1 px-3 flex gap-x-6">
-                <p className="text-secondary-gray text-sm">4AM- 8AM</p>
-                <p className="text-secondary-gray text-sm">4AM- 8AM</p>
-                <p className="text-secondary-gray text-sm">4AM- 8AM</p>
+                <p className="text-secondary-gray text-md">4AM- 8AM</p>
+                <p className="text-secondary-gray text-md">4AM- 8AM</p>
+                <p className="text-secondary-gray text-md">4AM- 8AM</p>
               </div>
             </div>
           </div>
@@ -151,6 +168,11 @@ const TempleView = ({
           <div className="my-4">
             <div className="flex justify-between">
               <h1 className="text-xl font-[500]">Description</h1>
+              {admin && (
+                <div className="flex items-center ml-auto">
+                  <EditIcon />
+                </div>
+              )}
             </div>
             <div>
               <p className="text-secondary-gray mt-2  text-[13px]">
@@ -162,8 +184,13 @@ const TempleView = ({
           <div className="mb-6">
             <div className="flex justify-between">
               <h1 className="text-xl font-[500]">Deity</h1>
+              {admin && (
+                <div className="flex items-center ml-auto">
+                  <EditIcon />
+                </div>
+              )}
             </div>
-            <div className="flex gap-x-6 mt-2">
+            <div className="flex gap-x-4 mt-2">
               <div className="bg-[#E4E4E4] px-4 py-2 rounded-[7px] text-[13px]">
                 <span>Lord Vishnu</span>
               </div>
@@ -182,8 +209,14 @@ const TempleView = ({
           <div className="mb-4">
             <div className="flex justify-between">
               <h1 className="text-xl font-[500]">Contact Details</h1>
+              {admin && (
+                <div className="flex items-center ml-auto">
+                  <EditIcon />
+                </div>
+              )}
             </div>
-            <div className="grid grid-cols-2 gap-6 mt-2">
+
+            <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-6 mt-3">
               <div className="flex items-center">
                 <MobileIcon />
                 <span className="ml-3">9048262454</span>
@@ -193,7 +226,8 @@ const TempleView = ({
                 <MailIcon />
                 <span className="ml-3">sreepathma@gmail.com</span>
               </div>
-
+            </div>
+            <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-6 mt-4">
               <div className="flex items-center">
                 <PhoneIcon />
                 <span className="ml-3">0001-43548</span>
@@ -209,20 +243,33 @@ const TempleView = ({
       </div>
 
       <div className="py-5">
-        <div>
+        <div className="flex justify-between">
           <h1 className="text-2xl font-semibold">History</h1>
+          {admin && (
+            <div className="flex items-center ml-auto">
+              <EditIcon />
+            </div>
+          )}
         </div>
-        <div className="mt-4 grid grid-cols-12 gap-x-6">
-          <div className="col-span-3">
-            <Image
-              src={thumbnail}
-              width={300}
-              height={300}
-              alt="temple"
-              className="w-full rounded-[10px]"
-            />
+        <div className="mt-4 grid lg:grid-cols-2 sm:grid-1 gap-8">
+          <div className="">
+            {thumbnail ? (
+              thumbnail != "" && (
+                <Image
+                  src={thumbnail}
+                  width={300}
+                  height={300}
+                  alt="temple"
+                  className="w-full max-h-[350px] object-cover rounded-[10px]"
+                />
+              )
+            ) : (
+              <div className="w-full h-[230px] flex justify-center items-center  rounded-[20px] border">
+                <TemplesIcon width="200" height="150" className="opacity-50" />
+              </div>
+            )}
           </div>
-          <div className="col-span-8">
+          <div className="">
             <p className=" text-secondary-gray ">
               The s exact age is debated, but it is believed to have been
               constructed over 1,000 years ago. Some historical accounts suggest
@@ -239,7 +286,7 @@ const TempleView = ({
 
       <div className="py-5">
         <h2 className=" font-semibold text-[25px]">Gallery</h2>
-        <GalaryRow />
+        <GalaryRow gallery={gallery} />
       </div>
 
       <div className="py-5">
@@ -253,6 +300,59 @@ const TempleView = ({
             tableData={poojaList}
             className="t-table bordered "
             search={false}
+          />
+        </div>
+      </div>
+      <div className="flex justify-between mt-5">
+        <h1 className="text-2xl font-semibold">Payment, Donation</h1>
+        {admin && (
+          <div className="flex items-center ml-auto">
+            <EditIcon />
+          </div>
+        )}
+      </div>
+      <div className="mt-4 grid lg:grid-cols-2 sm:grid-1 gap-8 pb-6">
+        <div className="">
+          <div className="border bottom-1 rounded-lg p-2 mt-3">
+            <h5 className=" text-secondary-gray text-[15px] font-semibold ">
+              Accoount nunber :
+            </h5>
+            <p className=" text-secondary-gray text-[15px] tracking-wider ">
+              184808971963187
+            </p>
+          </div>
+          <div className="border bottom-1 rounded-lg p-2 mt-3">
+            <h5 className=" text-secondary-gray text-[15px] font-semibold ">
+              IFSC code :
+            </h5>
+            <p className=" text-secondary-gray text-[15px] tracking-wider">
+              SBIN73489573
+            </p>
+          </div>
+          <div className="border bottom-1 rounded-lg p-2 mt-3">
+            <h5 className=" text-secondary-gray text-[15px] font-semibold ">
+              Accoount name :
+            </h5>
+            <p className=" text-secondary-gray text-[15px] tracking-wider">
+              User Name
+            </p>
+          </div>
+          <div className="border bottom-1 rounded-lg p-2 mt-3">
+            <h5 className=" text-secondary-gray text-[15px] font-semibold ">
+              UPI ID :
+            </h5>
+            <p className=" text-secondary-gray text-[15px] tracking-wider">
+              user123@oksbi
+            </p>
+          </div>
+        </div>
+        <div className="">
+          <Image
+            src={thumbnail}
+            width={300}
+            height={300}
+            alt="temple"
+            className="w-full max-h-[350px] object-cover rounded-[10px]"
           />
         </div>
       </div>

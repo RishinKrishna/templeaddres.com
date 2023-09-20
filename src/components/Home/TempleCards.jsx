@@ -4,6 +4,7 @@ import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import Link from "next/link";
 import NoDataIcon from "@/components/icons/NoDataIcon";
+import TemplesIcon from "../icons/TemplesIcon";
 
 const TempleCards = ({ serviceCard }) => {
   if (serviceCard && serviceCard.length > 0) {
@@ -22,13 +23,25 @@ const TempleCards = ({ serviceCard }) => {
                     key={index}
                     className={`${Styles["services_card"]}  flex flex-col justify-start items-center mb-6`}
                   >
-                    <Image
-                      width={2000}
-                      height={2000}
-                      src={thumbnail}
-                      alt=""
-                      className="w-full items-center h-[230px] object-cover rounded-[20px]"
-                    />
+                    {thumbnail ? (
+                      thumbnail != "" && (
+                        <Image
+                          width={2000}
+                          height={2000}
+                          src={thumbnail}
+                          alt={name}
+                          className="w-full items-center h-[230px] object-cover rounded-[20px]"
+                        />
+                      )
+                    ) : (
+                      <div className="w-full h-[230px] flex justify-center items-center  rounded-[20px] border">
+                        <TemplesIcon
+                          width="200"
+                          height="150"
+                          className="opacity-50"
+                        />
+                      </div>
+                    )}
                     <h3
                       className={`${Styles["services_title"]} text-[22px] mt-4 font-semibold text-[#141824] `}
                     >
@@ -46,13 +59,14 @@ const TempleCards = ({ serviceCard }) => {
                     <p className="services_description text-[15px] mt-3 ">
                       {description}
                     </p>
-
-                    <Link
-                      href={`/temples/${temple_id}`}
-                      className={`text-[#ff6b07] font-semibold text-[16px] mt-5`}
-                    >
-                      View Details
-                    </Link>
+                    <div className="w-full py-2 border-t-2 border-primary border-opacity-10 mt-5 ">
+                      <Link
+                        href={`/temples/${temple_id}`}
+                        className={`block w-full py-2 text-[#ff6b07] font-semibold text-[16px]  hover:bg-primary hover:bg-opacity-10 rounded-[10px]`}
+                      >
+                        View Details
+                      </Link>
+                    </div>
                   </div>
                 );
               }
@@ -62,7 +76,7 @@ const TempleCards = ({ serviceCard }) => {
         {serviceCard && serviceCard.length > 0 && (
           <div className="w-full text-center my-4">
             <Link
-              href=""
+              href="/searchfilter"
               className="bg-primary text-white px-5 py-3 rounded-[10px] font-poppins font-semibold"
             >
               View Full Result

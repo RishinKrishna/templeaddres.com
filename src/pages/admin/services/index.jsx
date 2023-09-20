@@ -6,34 +6,42 @@ import EditIcon from "@/components/icons/EditIcon";
 import EyeIcon from "@/components/icons/EyeIcon";
 import MenuIcon from "@/components/icons/MenuIcon";
 import TrashIcon from "@/components/icons/TrashIcon";
+import UserIcon from "@/components/icons/UserIcon";
 import { get } from "@/config/axiosConfig";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
+import router from "next/router";
 const Services = () => {
   const [servicesList, setServicesList] = useState([]);
   let serviceListHeaders = [
     {
       Header: "Temple ID",
-      accessor: "temple_id",
+      accessor: "Service Id",
     },
-    // {
-    //   Header: "Image",
-    //   className: "text-white",
-    //   accessor: "thumbnail",
-    //   Cell: (data) => {
-    //     let thumbnail = data.row.original.thumbnail;
-    //     return (
-    //       <Image
-    //         src={thumbnail}
-    //         alt="thumbnail"
-    //         className="rounded-[4px]"
-    //         width={100}
-    //         height={100}
-    //       />
-    //     );
-    //   },
-    // },
+    {
+      Header: "Image",
+      className: "text-white",
+      accessor: "thumbnail",
+      Cell: (data) => {
+        let profileImage = data.row.original.profile_image;
+        if (profileImage !== null) {
+          return (
+            <Image
+              src={profileImage}
+              alt="thumbnail"
+              className="rounded-[4px]"
+              width={100}
+              height={100}
+            />
+          );
+        }
+        return (
+          <div className="w-[70px] h-[70px] rounded-[10px] bg-secondary-gray bg-opacity-40 flex justify-center items-center">
+            <UserIcon fill="white" width={30} height={40} />
+          </div>
+        );
+      },
+    },
     {
       Header: "Description",
       accessor: "description",
@@ -63,9 +71,14 @@ const Services = () => {
     {
       Header: "  ",
       accessor: "",
-      Cell: () => {
+      Cell: (data) => {
+        const id = data.row.original.service_id;
         return (
-          <button type="button" className="bg-primary px-4 py-3 rounded-lg">
+          <button
+            type="button"
+            className="bg-primary px-4 py-3 rounded-lg"
+            onClick={() => router.push(`/admin/services/${id}`)}
+          >
             <EyeIcon />
           </button>
         );

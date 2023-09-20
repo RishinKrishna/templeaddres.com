@@ -22,7 +22,6 @@ const Login = () => {
       ...loginForm,
       [e.target.name]: e.target.value,
     });
-    console.log(e.target.value);
 
     let errorKey = `${[e.target.name]}`;
     setLoginError({
@@ -74,7 +73,7 @@ const Login = () => {
       },
     }).then((response) => {
       if (response.data.success) {
-        router.push("/");
+        router.push("/admin");
       }
     });
   };
@@ -103,7 +102,7 @@ const Login = () => {
             <h2 className="text-[30px] font-bold text-[#000] mb-4 ">Login</h2>
           </div>
           <form action="" className="px-5">
-            <div className="mb-5 font-semibold">
+            <div className="mb-5">
               <span>Email</span>
               <input
                 type="email"
@@ -118,7 +117,7 @@ const Login = () => {
                 {loginError.emailErr}
               </span>
             </div>
-            <div className="font-semibold">
+            <div className="">
               <span>Password</span>
               <input
                 type="password"
@@ -133,7 +132,7 @@ const Login = () => {
                 {loginError.passwordErr}
               </span>
             </div>
-            <div className="mt-1 font-semibold">
+            <div className="mt-1 ">
               <label htmlFor="remember-me">
                 <input type="checkbox" id="remember-me" name="rememberMe" />{" "}
                 Remember me
@@ -149,7 +148,7 @@ const Login = () => {
                 Login
               </button>
             </div>
-            <div className="mt-2 text-center text-blue-500 font-semibold underline">
+            <div className="mt-2 text-center text-blue-500 underline">
               <Link href="/signup">Create an Account?</Link>
             </div>
           </form>

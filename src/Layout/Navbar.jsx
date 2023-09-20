@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Navbar = ({ containerClassName }) => {
-  console.log(containerClassName);
   const [toggle, setToggle] = useState(false);
 
   useEffect(() => {

@@ -53,7 +53,7 @@ export const sideLinks = [
 
   },
   {
-    id: "/admin/re",
+    id: "/admin/rewards",
     icon: <RewardsIcon/>,
     title: "Rewards",
 

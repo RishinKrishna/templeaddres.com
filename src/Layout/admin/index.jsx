@@ -11,7 +11,7 @@ const Layout = ({
       {sidebar.state && <Sidebar />}
       <div className="w-full h-full overflow-hidden">
         {header.state && <Header />}
-        <div className=" p-5 pb-52 w-full h-full overflow-auto">{children}</div>
+        <div className="lg:p-6 lg:pb-52 w-full h-full overflow-auto">{children}</div>
       </div>
     </div>
   );

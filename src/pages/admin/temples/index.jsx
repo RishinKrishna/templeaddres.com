@@ -9,7 +9,8 @@ import TrashIcon from "@/components/icons/TrashIcon";
 import { get } from "@/config/axiosConfig";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
+import router from "next/router";
+import TemplesIcon from "@/components/icons/TemplesIcon";
 const Temples = () => {
   const [templeList, setTempleList] = useState([]);
   let templeListHeaders = [
@@ -23,14 +24,21 @@ const Temples = () => {
       accessor: "thumbnail",
       Cell: (data) => {
         let thumbnail = data.row.original.thumbnail;
+        if (thumbnail !== null) {
+          return (
+            <Image
+              src={thumbnail}
+              alt="thumbnail"
+              className="rounded-[4px]"
+              width={100}
+              height={100}
+            />
+          );
+        }
         return (
-          <Image
-            src={thumbnail}
-            alt="thumbnail"
-            className="rounded-[4px]"
-            width={100}
-            height={100}
-          />
+          <div className="w-[70px] h-[70px] rounded-[10px] bg-secondary-gray bg-opacity-40 flex justify-center items-center">
+            <TemplesIcon fill="white" width={30} height={40} />
+          </div>
         );
       },
     },
@@ -66,9 +74,14 @@ const Temples = () => {
     {
       Header: "  ",
       accessor: "",
-      Cell: () => {
+      Cell: (data) => {
+        const id = data.row.original.temple_id;
         return (
-          <button type="button" className="bg-primary px-4 py-3 rounded-lg">
+          <button
+            type="button"
+            className="bg-primary px-4 py-3 rounded-lg"
+            onClick={() => router.push(`/admin/temples/${id}`)}
+          >
             <EyeIcon />
           </button>
         );

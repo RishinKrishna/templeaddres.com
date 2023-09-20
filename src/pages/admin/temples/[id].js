@@ -1,0 +1,45 @@
+import Layout from "@/Layout/admin";
+import TempleView from "@/components/Temples/View";
+import { get } from "@/config/axiosConfig";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+
+const TempleInfo = () => {
+  const router = useRouter();
+  const id = router.query.id;
+  const [temple, setTemple] = useState({});
+  const [gallery, setGallery] = useState([]);
+  const [poojaList, setTempleList] = useState([]);
+
+  useEffect(() => {
+    const fetchTempleId = () => {
+      get({ api: `/temples/view/${id}` }).then((response) => {
+        setTemple({ ...temple, ...response.data.data });
+      });
+    };
+
+    const getGallary = () => {
+      get({ api: `/temples/gallery-view/${id}` }).then((response) => {
+        let galleryObj = response.data.data;
+        const galleryArr = Object.keys(galleryObj)
+          .filter((imgObj) => !imgObj.includes("gallery"))
+          .map((imgKey) => galleryObj[imgKey]);
+        setGallery(galleryArr);
+      });
+    };
+    if (id && Object.keys(temple).length === 0) {
+      fetchTempleId();
+      getGallary();
+    }
+  }, [id, temple]);
+
+  return (
+    <>
+      <TempleView {...temple} gallery={gallery} admin={true} />
+    </>
+  );
+};
+
+TempleInfo.getLayout = (page) => <Layout>{page}</Layout>;
+
+export default TempleInfo;

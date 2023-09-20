@@ -23,6 +23,12 @@ const Signup = () => {
     confirmpasswordErr: "",
   });
 
+  const [isTermsChecked, setIsTermsChecked] = useState(false);
+
+  const handleTermsChange = (e) => {
+    setIsTermsChecked(e.target.checked);
+  };
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -33,6 +39,11 @@ const Signup = () => {
       ...FormError,
       [errorKey]: "",
     });
+  };
+
+  const isValidEmail = (email) => {
+    const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+    return emailRegex.test(email);
   };
 
   const validateForm = () => {
@@ -46,8 +57,8 @@ const Signup = () => {
       nameErr = "Please enter your name ";
     }
 
-    if (!formData.email && formData.email == "") {
-      emailErr = "Please enter your email ";
+    if (!isValidEmail(formData.email)) {
+      emailErr = "Please enter a valid email address";
     }
 
     if (formData.phone == "") {
@@ -71,7 +82,8 @@ const Signup = () => {
       emailErr !== "" ||
       phoneErr !== "" ||
       passwordErr !== "" ||
-      confirmpasswordErr !== ""
+      confirmpasswordErr !== "" ||
+      !isTermsChecked
     ) {
       setFormError({
         ...FormError,
@@ -112,7 +124,7 @@ const Signup = () => {
   };
 
   return (
-    <section className="flex relative w-full h-[100vh] ">
+    <section className="flex relative w-full h-[100vh] bg-white">
       <div className="relative w-full h-[20%] md:h-[100vh] hidden md:block">
         <Image
           src={signup_img}
@@ -208,12 +220,14 @@ const Signup = () => {
               placeholder="Enter Your Refferal ID"
             />
           </div>
-          <div className="font-semibold text-[14px]">
+          <div className="mt-2 text-[14px]">
             <label htmlFor="terms-conditions">
               <input
                 type="checkbox"
                 id="terms-conditions"
                 name="terms-conditions"
+                checked={isTermsChecked}
+                onChange={handleTermsChange}
               />{" "}
               I have read and agree to the Terms & Conditions
             </label>
