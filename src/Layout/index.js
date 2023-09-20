@@ -3,7 +3,6 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 
 const NonAdminLayout = ({ navbar = { containerClassName: "" }, children }) => {
-  console.log(navbar);
   return (
     <div>
       <Navbar containerClassName={navbar.containerClassName} />

@@ -22,7 +22,6 @@ const Login = () => {
       ...loginForm,
       [e.target.name]: e.target.value,
     });
-    console.log(e.target.value);
 
     let errorKey = `${[e.target.name]}`;
     setLoginError({

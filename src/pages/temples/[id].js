@@ -98,22 +98,22 @@ const TempleViewPage = () => {
     },
   ];
 
-  const fetchTempleId = () => {
-    get({ api: `/temples/view/${id}` }).then((response) => {
-      setTemple(response.data.data);
-    });
-  };
-
-  const getGallary = () => {
-    get({ api: `/temples/gallery-view/${id}` }).then((response) => {
-      let galleryObj = response.data.data;
-      const galleryArr = Object.keys(galleryObj)
-        .filter((imgObj) => !imgObj.includes("gallery"))
-        .map((imgKey) => galleryObj[imgKey]);
-      setGallery(galleryArr);
-    });
-  };
   useEffect(() => {
+    const fetchTempleId = () => {
+      get({ api: `/temples/view/${id}` }).then((response) => {
+        setTemple(response.data.data);
+      });
+    };
+
+    const getGallary = () => {
+      get({ api: `/temples/gallery-view/${id}` }).then((response) => {
+        let galleryObj = response.data.data;
+        const galleryArr = Object.keys(galleryObj)
+          .filter((imgObj) => !imgObj.includes("gallery"))
+          .map((imgKey) => galleryObj[imgKey]);
+        setGallery(galleryArr);
+      });
+    };
     if (id) {
       fetchTempleId();
       getGallary();
