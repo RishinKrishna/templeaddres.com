@@ -28,6 +28,7 @@ const TempleView = ({
   gallery,
   address,
   admin,
+  upi_image,
 }) => {
   const [poojaList, setTempleList] = useState([]);
   const poojaTableHeaders = [
@@ -283,6 +284,40 @@ const TempleView = ({
             className="t-table bordered "
             search={false}
           />
+        </div>
+      </div>
+
+      <div className="py-5">
+        <div className="flex justify-between">
+          <h1 className="text-2xl font-semibold">History</h1>
+          {admin && (
+            <div className="flex items-center ml-auto">
+              <EditIcon />
+            </div>
+          )}
+        </div>
+        <div className="mt-4 grid lg:grid-cols-2 sm:grid-1 gap-8">
+          <div className="">
+            <Image
+              src={upi_image | ""}
+              width={300}
+              height={300}
+              alt="temple"
+              className="w-full max-h-[350px] object-cover rounded-[10px]"
+            />
+          </div>
+          <div className="">
+            <p className=" text-secondary-gray ">
+              The s exact age is debated, but it is believed to have been
+              constructed over 1,000 years ago. Some historical accounts suggest
+              that the temple dates back to the 8th century CE. It has undergone
+              several renovations and expansions over the centuries The temples
+              exact age is debated, but it is believed to have been constructed
+              over 1,000 years ago. Some historical accounts suggest that the
+              temple dates back to the 8th century CE. It has undergone several
+              renovations and expansions over the centuries
+            </p>
+          </div>
         </div>
       </div>
     </div>

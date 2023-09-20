@@ -6,6 +6,7 @@ import EditIcon from "@/components/icons/EditIcon";
 import EyeIcon from "@/components/icons/EyeIcon";
 import MenuIcon from "@/components/icons/MenuIcon";
 import TrashIcon from "@/components/icons/TrashIcon";
+import UserIcon from "@/components/icons/UserIcon";
 import { get } from "@/config/axiosConfig";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -15,25 +16,32 @@ const Services = () => {
   let serviceListHeaders = [
     {
       Header: "Temple ID",
-      accessor: "temple_id",
+      accessor: "Service Id",
     },
-    // {
-    //   Header: "Image",
-    //   className: "text-white",
-    //   accessor: "thumbnail",
-    //   Cell: (data) => {
-    //     let thumbnail = data.row.original.thumbnail;
-    //     return (
-    //       <Image
-    //         src={thumbnail}
-    //         alt="thumbnail"
-    //         className="rounded-[4px]"
-    //         width={100}
-    //         height={100}
-    //       />
-    //     );
-    //   },
-    // },
+    {
+      Header: "Image",
+      className: "text-white",
+      accessor: "thumbnail",
+      Cell: (data) => {
+        let profileImage = data.row.original.profile_image;
+        if (profileImage !== null) {
+          return (
+            <Image
+              src={profileImage}
+              alt="thumbnail"
+              className="rounded-[4px]"
+              width={100}
+              height={100}
+            />
+          );
+        }
+        return (
+          <div className="w-[70px] h-[70px] rounded-[10px] bg-secondary-gray bg-opacity-40 flex justify-center items-center">
+            <UserIcon fill="white" width={30} height={40} />
+          </div>
+        );
+      },
+    },
     {
       Header: "Description",
       accessor: "description",
