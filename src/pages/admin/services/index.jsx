@@ -10,7 +10,7 @@ import UserIcon from "@/components/icons/UserIcon";
 import { get } from "@/config/axiosConfig";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
+import router from "next/router";
 const Services = () => {
   const [servicesList, setServicesList] = useState([]);
   let serviceListHeaders = [
@@ -71,9 +71,14 @@ const Services = () => {
     {
       Header: "  ",
       accessor: "",
-      Cell: () => {
+      Cell: (data) => {
+        const id = data.row.original.service_id;
         return (
-          <button type="button" className="bg-primary px-4 py-3 rounded-lg">
+          <button
+            type="button"
+            className="bg-primary px-4 py-3 rounded-lg"
+            onClick={() => router.push(`/admin/services/${id}`)}
+          >
             <EyeIcon />
           </button>
         );

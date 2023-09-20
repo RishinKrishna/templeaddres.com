@@ -286,40 +286,53 @@ const TempleView = ({
           />
         </div>
       </div>
-
-      <div className="py-5">
-        <div className="flex justify-between">
-          <h1 className="text-2xl font-semibold">History</h1>
+      <div className="flex justify-between mt-5">
+          <h1 className="text-2xl font-semibold">Payment, Donation</h1>
           {admin && (
             <div className="flex items-center ml-auto">
               <EditIcon />
             </div>
           )}
         </div>
-        <div className="mt-4 grid lg:grid-cols-2 sm:grid-1 gap-8">
+      <div className="mt-4 grid lg:grid-cols-2 sm:grid-1 gap-8 pb-6">
+
+      <div className="">
+        <div className="border bottom-1 rounded-lg p-2 mt-3">
+            <h5 className=" text-secondary-gray text-[15px] font-semibold ">
+              Accoount nunber :
+            </h5>
+            <p className=" text-secondary-gray text-[15px] tracking-wider ">184808971963187</p>
+            </div>
+        <div className="border bottom-1 rounded-lg p-2 mt-3">
+            <h5 className=" text-secondary-gray text-[15px] font-semibold ">
+              IFSC code :
+            </h5>
+            <p className=" text-secondary-gray text-[15px] tracking-wider">SBIN73489573</p>
+            </div>
+        <div className="border bottom-1 rounded-lg p-2 mt-3">
+            <h5 className=" text-secondary-gray text-[15px] font-semibold ">
+              Accoount name :
+            </h5>
+            <p className=" text-secondary-gray text-[15px] tracking-wider">User Name</p>
+            </div>
+        <div className="border bottom-1 rounded-lg p-2 mt-3">
+            <h5 className=" text-secondary-gray text-[15px] font-semibold ">
+              UPI ID :
+            </h5>
+            <p className=" text-secondary-gray text-[15px] tracking-wider">user123@oksbi</p>
+            </div>
+          </div>
           <div className="">
             <Image
-              src={upi_image | ""}
+              src={thumbnail}
               width={300}
               height={300}
               alt="temple"
               className="w-full max-h-[350px] object-cover rounded-[10px]"
             />
           </div>
-          <div className="">
-            <p className=" text-secondary-gray ">
-              The s exact age is debated, but it is believed to have been
-              constructed over 1,000 years ago. Some historical accounts suggest
-              that the temple dates back to the 8th century CE. It has undergone
-              several renovations and expansions over the centuries The temples
-              exact age is debated, but it is believed to have been constructed
-              over 1,000 years ago. Some historical accounts suggest that the
-              temple dates back to the 8th century CE. It has undergone several
-              renovations and expansions over the centuries
-            </p>
-          </div>
+          
         </div>
-      </div>
     </div>
   );
 };
