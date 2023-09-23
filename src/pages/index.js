@@ -11,9 +11,12 @@ import Events from "@/components/Home/Events";
 import Articles from "@/components/Home/Articles";
 import Navbar from "@/Layout/Navbar";
 import Footer from "@/Layout/Footer";
+import { modal } from "@/components/Modal";
 
 const Home = () => {
   const [tempelsServices, setTempelsServices] = useState([]);
+  const [selectedOption, setSelectedOption] = useState("temples");
+
   const getTemple = () => {
     get({
       api: "/temples/list",
@@ -24,6 +27,15 @@ const Home = () => {
 
   useEffect(() => {
     getTemple();
+
+    modal({
+      show: true,
+      containerClassName: "bg-secondory-black max-w-[500px]",
+      header: {
+        heading: "Add New Input",
+      },
+      component: () => <div>asdas</div>, // <ComponentName/>
+    });
   }, []);
   return (
     <main>
@@ -31,12 +43,19 @@ const Home = () => {
       <section className={`${Styles["banner"]}`}></section>
       <div className={`flex justify-center items-start sm:px-12 px-6`}>
         <div className={`${styles.boxWidth}`}>
-          <Search setTempelsServices={setTempelsServices} />
+          <Search
+            setTempelsServices={setTempelsServices}
+            selectedOption={selectedOption}
+            setSelectedOption={setSelectedOption}
+          />
         </div>
       </div>
       <div className={`flex justify-center items-start sm:px-12 px-12`}>
         <div className={`${styles.boxWidth}`}>
-          <TempleCards serviceCard={tempelsServices} />
+          <TempleCards
+            serviceCard={tempelsServices}
+            selectedOption={selectedOption}
+          />
         </div>
       </div>
       <div

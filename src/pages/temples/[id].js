@@ -25,7 +25,7 @@ const TempleViewPage = () => {
   const id = router.query.id;
   const [temple, setTemple] = useState({});
   const [gallery, setGallery] = useState([]);
-  const [poojaList, setTempleList] = useState([]);
+  const [poojaList, setPoojaList] = useState([]);
   const poojaTableHeaders = [
     {
       Header: "ID",
@@ -114,13 +114,20 @@ const TempleViewPage = () => {
         setGallery(galleryArr);
       });
     };
+    const getPoojaList = () => {
+      get({ api: `/temples/pooja-list/${id}` }).then((response) => {
+        setPoojaList(response.data.data);
+      });
+    };
+
     if (id) {
       fetchTempleId();
       getGallary();
+      getPoojaList();
     }
   }, [id]);
 
-  return <TempleView {...temple} gallery={gallery} />;
+  return <TempleView {...temple} gallery={gallery} poojaList={poojaList} />;
 };
 
 TempleViewPage.getLayout = (page) => (

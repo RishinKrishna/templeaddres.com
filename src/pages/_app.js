@@ -20,13 +20,13 @@ export default function App({ Component, pageProps }) {
   let getPage = Component.getLayout
     ? () =>
         Component.getLayout(
-          <div className={`${outfit.className} ${poppins.className}`}>
+          <div className={`${outfit.className} ${poppins.className}`} id="root">
             <Component {...pageProps} />
             <ToastContainer />
           </div>
         )
     : () => (
-        <div className={outfit.className}>
+        <div className={outfit.className} id="root">
           <Component {...pageProps} />
           <ToastContainer />
         </div>
