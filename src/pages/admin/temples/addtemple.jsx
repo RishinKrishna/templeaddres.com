@@ -316,8 +316,8 @@ const Addtemple = () => {
                 name="termsConditions"
                 checked={isTermsChecked}
                 onChange={handleChange}
-              />{" "}
-              I Agree With Terms & Conditions of Service
+              />
+               I Agree With Terms & Conditions of Service
             </label>
             <br />
             <span className="text-red-500 text-[13px]">

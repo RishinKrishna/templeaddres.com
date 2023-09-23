@@ -2,12 +2,14 @@ import Image from "next/image";
 import TampleDescription from "../TampleDescription";
 import TempleDeity from "../TempleDeity";
 import TempleContactDetails from "../TempleContactDetails";
-
+import  Image  from "next/image";
 const TempleInfo = () => {
   return (
     <div className="w-full flex">
       <div className="w-[50%]">
-        <img
+        <Image
+        width={500}
+        height={500}
           src="http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FtempleCard_01.7b351b63.jpg&w=2048&q=75"
           alt="Temple"
           className="object-cover"

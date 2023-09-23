@@ -1,6 +1,6 @@
 import EditIcon from "@/components/icons/EditIcon";
 import React from "react";
-
+import Image from "next/image";
 const TempleHistory = () => {
   return (
     <div>
@@ -10,7 +10,9 @@ const TempleHistory = () => {
       </div>
       <div className="w-full grid lg:grid-cols-2 md:grig-cols-1 gap-4">
         <div className="">
-          <img
+          <Image
+          width={500}
+          height={500}
             src="http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgallary_img_03.1624abef.jpg&w=2048&q=75"
             alt="Temple"
             className="w-full h-auto max-h-[380px] object-cover mr-4"
