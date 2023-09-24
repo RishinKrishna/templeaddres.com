@@ -1,0 +1,36 @@
+.layout-container {
+  width: 90%;
+  min-height: 300px;
+  max-height: 95%;
+  overflow: auto;
+  z-index: 51;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  border: 1px solid #fff;
+  color: #fff;
+
+  .modal-header-container {
+    width: 100%;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .heading {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .sub-heading {
+      font-size: 14px;
+      font-weight: 300;
+    }
+  }
+  .modal-body {
+    padding: 25px;
+   
+  }
+}

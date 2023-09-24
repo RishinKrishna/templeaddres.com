@@ -5,8 +5,7 @@ import React, { useState } from "react";
 import { get } from "@/config/axiosConfig";
 import { useAsyncDebounce } from "react-table";
 import "regenerator-runtime/runtime";
-const Search = ({ setTempelsServices }) => {
-  const [selectedOption, setSelectedOption] = useState("temples");
+const Search = ({ setTempelsServices, setSelectedOption, selectedOption }) => {
   const [query, setQuery] = useState("");
   const fetchTemples = useAsyncDebounce((value = "") => {
     get({
@@ -44,7 +43,7 @@ const Search = ({ setTempelsServices }) => {
 
     if (e.target.value == "temples") {
       fetchTemples();
-    } else if (e.target.value == "service") {
+    } else if (e.target.value == "services") {
       fetchServices();
     }
   };
@@ -86,9 +85,9 @@ const Search = ({ setTempelsServices }) => {
           <input
             type="radio"
             id="service"
-            value="service"
+            value="services"
             className="ml-5"
-            checked={selectedOption === "service"}
+            checked={selectedOption === "services"}
             onChange={handleRadioChange}
           />
           <label
