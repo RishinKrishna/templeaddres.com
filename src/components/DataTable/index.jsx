@@ -98,37 +98,41 @@ const DataTable = ({
         <Table {...tableProps} />
         {pagination && page.length > 0 && (
           <div className="paginations px-4  border-t-2 border-[#ff6b07]">
-            <Dropdowns
-              buttonClassName="px-4 py-0 rounded-[10px] bg-[#F9F9F9]"
-              optionsContainerClassName="top-[40px] left-0 bg-white flex flex-col w-full"
-              optionsList={[
-                {
-                  name: "10",
-                  value: 10,
-                },
-                {
-                  name: "20",
-                  value: 20,
-                },
-                {
-                  name: "30",
-                  value: 30,
-                },
-              ]}
-              onClick={({ value }) => {
-                setPageSize(Number(value));
-              }}
-            />
+            {pageIndex !== 0 && (
+              <>
+                <Dropdowns
+                  buttonClassName="px-4 py-0 rounded-[10px] bg-[#F9F9F9]"
+                  optionsContainerClassName="top-[40px] left-0 bg-white flex flex-col w-full"
+                  optionsList={[
+                    {
+                      name: "10",
+                      value: 10,
+                    },
+                    {
+                      name: "20",
+                      value: 20,
+                    },
+                    {
+                      name: "30",
+                      value: 30,
+                    },
+                  ]}
+                  onClick={({ value }) => {
+                    setPageSize(Number(value));
+                  }}
+                />
 
-            <DataTablePagination
-              pageCount={pageCount}
-              pageIndex={pageIndex}
-              canPreviousPage={canPreviousPage}
-              canNextPage={canNextPage}
-              nextPage={nextPage}
-              previousPage={previousPage}
-              gotoPage={gotoPage}
-            />
+                <DataTablePagination
+                  pageCount={pageCount}
+                  pageIndex={pageIndex}
+                  canPreviousPage={canPreviousPage}
+                  canNextPage={canNextPage}
+                  nextPage={nextPage}
+                  previousPage={previousPage}
+                  gotoPage={gotoPage}
+                />
+              </>
+            )}
           </div>
         )}
       </div>

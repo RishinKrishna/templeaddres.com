@@ -95,7 +95,7 @@ const Header = ({ sidebarIsopen, setSidebarIsOpen }) => {
               ),
             },
             {
-              icon: <UserIcon height={20} className="mr-4" />,
+              icon: <UserIcon height={20} className="mr-4"fill="#A9A9A9" />,
               name: "My Profile",
               className:
                 "py-3 flex font-poppins items-center w-full text-sm text-[#A9A9A9] border-b-2 border-gray-100 ",

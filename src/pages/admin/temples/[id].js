@@ -11,32 +11,31 @@ const TempleInfo = () => {
   const [gallery, setGallery] = useState([]);
   const [poojaList, setTempleList] = useState([]);
 
-  const fetchTempleId = () => {
-    get({ api: `/temples/view/${id}` }).then((response) => {
-      setTemple({ ...temple, ...response.data.data });
-    });
-  };
-
-  const getGallary = () => {
-    get({ api: `/temples/gallery-view/${id}` }).then((response) => {
-      let galleryObj = response.data.data;
-      const galleryArr = Object.keys(galleryObj)
-        .filter((imgObj) => !imgObj.includes("gallery"))
-        .map((imgKey) => galleryObj[imgKey]);
-      setGallery(galleryArr);
-    });
-  };
-
   useEffect(() => {
-    if (id) {
+    const fetchTempleId = () => {
+      get({ api: `/temples/view/${id}` }).then((response) => {
+        setTemple({ ...temple, ...response.data.data });
+      });
+    };
+
+    const getGallary = () => {
+      get({ api: `/temples/gallery-view/${id}` }).then((response) => {
+        let galleryObj = response.data.data;
+        const galleryArr = Object.keys(galleryObj)
+          .filter((imgObj) => !imgObj.includes("gallery"))
+          .map((imgKey) => galleryObj[imgKey]);
+        setGallery(galleryArr);
+      });
+    };
+    if (id && Object.keys(temple).length === 0) {
       fetchTempleId();
       getGallary();
     }
-  }, [id]);
+  }, [id, temple]);
 
   return (
     <>
-      <TempleView {...temple} gallery={gallery} admin={true}/>
+      <TempleView {...temple} gallery={gallery} admin={true} />
     </>
   );
 };

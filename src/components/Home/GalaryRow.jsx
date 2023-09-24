@@ -1,10 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Styles from "@/styles/galaryRow.module.css";
 import Image from "next/image";
-import gallary_img_01 from "@/assets/gallary_img_01.jpg";
-import gallary_img_02 from "@/assets/gallary_img_02.jpg";
-import gallary_img_03 from "@/assets/gallary_img_03.jpg";
-import gallary_img_04 from "@/assets/gallary_img_04.jpg";
 
 const GalaryRow = ({ gallery = [] }) => {
   const containerRef = useRef(null);

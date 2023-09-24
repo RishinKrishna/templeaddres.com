@@ -7,32 +7,64 @@ import MobileIcon from "@/components/icons/MobileIcon";
 import UserAddressIcon from "@/components/icons/UserAddressIcon";
 import Image from "next/image";
 import service_circular_pattern_img from "@/assets/service_circular_pattern_img.png";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import UserIcon from "@/components/icons/UserIcon";
+import { get } from "@/config/axiosConfig";
 
-const servicesInfo = () => {
+const ServicesInfo = () => {
+  const { query } = useRouter();
+  const id = query.id;
+  const [service, setService] = useState({});
+
+  useEffect(() => {
+    const getService = () => {
+      get({ api: `/services/view/${id}` }).then((response) => {
+        setService(response.data.data);
+      });
+    };
+
+    if (id) {
+      getService();
+    }
+  }, [id]);
   return (
     <div className="bg-white grid lg:grid-cols-2 sm:grid-cols-1 gap-x-8 pb-10 p-5 rounded-[16px] relative">
       <div>
-        <Image
-          src=""
-          width={500}
-          height={500}
-          className="w-full h-full rounded-[10px] object-cover shadow-md"
-          alt=""
-        />
+        {service.profile_image ? (
+          service.profile_image != "" && (
+            <Image
+              src={service.profile_image}
+              width={500}
+              height={500}
+              className="w-full h-full rounded-[10px] object-cover shadow-md"
+              alt="temple"
+            />
+          )
+        ) : (
+          <div className="w-full h-full flex justify-center items-center  rounded-[20px] border">
+            <UserIcon
+              width="200"
+              height="150"
+              className="opacity-50"
+              fill="#A9A9A9"
+            />
+          </div>
+        )}
       </div>
       <div>
         <div className="py-2">
-          <h1 className="font-poppins text-3xl font-semibold">Hari Kumar VS</h1>
+          <h1 className="font-poppins text-3xl font-semibold">
+            {service.name}
+          </h1>
 
-          <div className="grid grid-cols-2 font-poppins text-sm mt-2">
+          <div className="grid grid-cols-2 gap-x-4 font-poppins text-sm mt-2">
             <div className="flex">
               <div className="mr-3">
                 <UserAddressIcon />
               </div>
               <div className="">
-                <p className="text-secondary-gray ">
-                  Vayapputarh illam, Kakkor, Kozhikodu
-                </p>
+                <p className="text-secondary-gray ">{service.address}</p>
               </div>
             </div>
 
@@ -67,12 +99,7 @@ const servicesInfo = () => {
               </div>
               <div className="border-b-2 border-opacity-20 border-b-secondary-gray pb-4">
                 <p className="text-secondary-gray mt-2  text-[13px]">
-                  Description: Harikumar VS, hailing from Vayappurath Illam, is
-                  the sole proprietor of Amrutham Catering Services. He provides
-                  a range of food delivery services, including those for
-                  marriage functions, house warmings, and temple-related events.
-                  In addition to this, he is also a priest, offering a variety
-                  of poojas and related services
+                  {service.description}
                 </p>
               </div>
             </div>
@@ -84,21 +111,21 @@ const servicesInfo = () => {
               <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-6 mt-3">
                 <div className="flex items-center">
                   <MobileIcon />
-                  <span className="ml-3">9048262454</span>
+                  <span className="ml-3">{service.contact_number}</span>
                 </div>
 
                 <div className="flex items-center">
                   <MailIcon />
-                  <span className="ml-3">sreepathma@gmail.com</span>
+                  <span className="ml-3">{service.email_address}</span>
                 </div>
               </div>
               <div className="mt-3">
                 <h1 className="text-xl font-[500]">Aditional Details</h1>
                 <p className="text-secondary-gray mt-2  text-[13px]">
-                  Service Areas: Kozhikode
+                  Service Areas: {service.service_areas}
                 </p>
                 <p className="text-secondary-gray mt-2  text-[13px]">
-                  Booking Available: Yes
+                  Booking Available: {service.booking_available ? "Yes" : "No"}
                 </p>
               </div>
             </div>
@@ -116,5 +143,5 @@ const servicesInfo = () => {
     </div>
   );
 };
-servicesInfo.getLayout = (page) => <Layout>{page}</Layout>;
-export default servicesInfo;
+ServicesInfo.getLayout = (page) => <Layout>{page}</Layout>;
+export default ServicesInfo;
