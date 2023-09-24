@@ -1,20 +1,16 @@
-import Layout from "@/Layout/admin";
-import ClockIcon from "@/components/icons/ClockIcon";
-import EditIcon from "@/components/icons/EditIcon";
-import LandmarkIcon from "@/components/icons/LandmarkIcon";
-import MailIcon from "@/components/icons/MailIcon";
-import MobileIcon from "@/components/icons/MobileIcon";
-import UserAddressIcon from "@/components/icons/UserAddressIcon";
 import Image from "next/image";
-import service_circular_pattern_img from "@/assets/service_circular_pattern_img.png";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import UserIcon from "@/components/icons/UserIcon";
+import React, { useEffect, useState } from "react";
+import MobileIcon from "../icons/MobileIcon";
+import MailIcon from "../icons/MailIcon";
+import ClockIcon from "../icons/ClockIcon";
+import EditIcon from "../icons/EditIcon";
+import LandmarkIcon from "../icons/LandmarkIcon";
+import UserAddressIcon from "../icons/UserAddressIcon";
+import UserIcon from "../icons/UserIcon";
 import { get } from "@/config/axiosConfig";
+import service_circular_pattern_img from "@/assets/service_circular_pattern_img.png";
 
-const ServicesInfo = () => {
-  const { query } = useRouter();
-  const id = query.id;
+const ServiceView = ({ id }) => {
   const [service, setService] = useState({});
 
   useEffect(() => {
@@ -28,6 +24,7 @@ const ServicesInfo = () => {
       getService();
     }
   }, [id]);
+
   return (
     <div className="bg-white grid lg:grid-cols-2 sm:grid-cols-1 gap-x-8 pb-10 p-5 rounded-[16px] relative">
       <div>
@@ -143,5 +140,5 @@ const ServicesInfo = () => {
     </div>
   );
 };
-ServicesInfo.getLayout = (page) => <Layout>{page}</Layout>;
-export default ServicesInfo;
+
+export default ServiceView;

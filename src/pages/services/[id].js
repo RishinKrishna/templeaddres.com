@@ -1,22 +1,17 @@
 import NonAdminLayout from "@/Layout";
-import Search from "@/components/Home/Search";
+import ServiceView from "@/components/services/View";
 import { useRouter } from "next/router";
 import React from "react";
 
-const SearchFilter = () => {
+const ServiceViewPage = () => {
   const { query } = useRouter();
-  const { id } = query;
-
-
-  return (
-    <div>
-      <Search />
-    </div>
-  );
+  const id = query.id;
+  return <ServiceView id={id} />;
 };
-SearchFilter.getLayout = (page) => (
+
+ServiceViewPage.getLayout = (page) => (
   <NonAdminLayout navbar={{ containerClassName: "bg-white text-[#666666]" }}>
     {page}
   </NonAdminLayout>
 );
-export default SearchFilter;
+export default ServiceViewPage;

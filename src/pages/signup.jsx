@@ -228,8 +228,8 @@ const Signup = () => {
                 name="terms-conditions"
                 checked={isTermsChecked}
                 onChange={handleTermsChange}
-              />{" "}
-              I have read and agree to the Terms & Conditions
+              />
+               I have read and agree to the Terms & Conditions
             </label>
           </div>
 
@@ -243,9 +243,9 @@ const Signup = () => {
             </button>
           </div>
           <div className="mt-2 text-center ">
-            Already a member?{" "}
+            Already a member?
             <Link href="/login" className="underline text-blue-500">
-              {" "}
+              
               Login
             </Link>
           </div>

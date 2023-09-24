@@ -15,7 +15,7 @@ const PanelActionButton = ({ buttons = [] }) => {
           type="button"
           key={index}
         >
-          {" "}
+          
           {button?.displayText}
         </button>
       ))}

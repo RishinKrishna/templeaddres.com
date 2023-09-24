@@ -30,12 +30,12 @@ const Dropdowns = ({
           onClick={() => setIsOpen(true)}
         >
           <span>
-            {" "}
+            
             {selected?.name !== ""
               ? selected?.name
               : placeholder !== ""
               ? placeholder
-              : optionsList[0]?.name}{" "}
+              : optionsList[0]?.name}
           </span>
           <span className="ml-4">
             <ChevronDown />

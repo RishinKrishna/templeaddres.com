@@ -16,7 +16,7 @@ import TrashIcon from "../icons/TrashIcon";
 import { CustomDropdown } from "../CustomDropdown";
 import EyeIcon from "../icons/EyeIcon";
 import TemplesIcon from "../icons/TemplesIcon";
-
+import QrAlt from "../../assets/qr.png";
 const TempleView = ({
   thumbnail,
   name,
@@ -30,20 +30,24 @@ const TempleView = ({
   address,
   admin,
   upi_image,
+  poojaList,
 }) => {
-  const [poojaList, setTempleList] = useState([]);
   const poojaTableHeaders = [
     {
       Header: "ID",
-      accessor: "pooja_id",
+      accessor: "id",
+      Cell: (data) => {
+        let index = data.row.index + 1;
+        return <span>{index}</span>;
+      },
     },
     {
       Header: "Pooja Name",
-      accessor: "name",
+      accessor: "pooja_name",
     },
     {
       Header: "Code",
-      accessor: "cdoe",
+      accessor: "pooja_code",
     },
     {
       Header: "Price",
@@ -53,55 +57,51 @@ const TempleView = ({
       Header: "Remarks",
       accessor: "remarks",
     },
-    {
-      Header: "Status",
-      accessor: "status",
-    },
-    {
-      Header: "  ",
-      accessor: "",
-      Cell: () => {
-        return (
-          <button type="button" className="bg-primary px-4 py-3 rounded-lg">
-            <EyeIcon />
-          </button>
-        );
-      },
-    },
-    {
-      Header: " ",
-      accessor: "",
-      Cell: () => {
-        return (
-          <CustomDropdown
-            button={{
-              render: () => <MenuIcon />,
-            }}
-            optionsContainerClassName="bg-white w-[150px] top-o right-0  py-2 shadow-lg"
-            optionsList={[
-              {
-                icon: <EditIcon height={15} className="mr-4" />,
-                name: "Edit",
-                className:
-                  "flex  items-center w-full text-[16px] text-[#A9A9A9] border-b-2 border-[#A9A9A9] ",
-              },
-              {
-                icon: <DisableIcon height={15} className="mr-4" />,
-                name: "Disable",
-                className:
-                  "flex  items-center w-full text-[16px] text-[#A9A9A9] border-b-2 border-[#A9A9A9] ",
-              },
-              {
-                icon: <TrashIcon height={15} className="mr-4" />,
-                name: "Delete",
-                className:
-                  "flex  items-center w-full text-[16px] text-[#A9A9A9]  ",
-              },
-            ]}
-          />
-        );
-      },
-    },
+    // {
+    //   Header: "  ",
+    //   accessor: "",
+    //   Cell: () => {
+    //     return (
+    //       <button type="button" className="bg-primary px-4 py-3 rounded-lg">
+    //         <EyeIcon />
+    //       </button>
+    //     );
+    //   },
+    // },
+    // {
+    //   Header: " ",
+    //   accessor: "",
+    //   Cell: () => {
+    //     return (
+    //       <CustomDropdown
+    //         button={{
+    //           render: () => <MenuIcon />,
+    //         }}
+    //         optionsContainerClassName="bg-white w-[150px] top-o right-0  py-2 shadow-lg"
+    //         optionsList={[
+    //           {
+    //             icon: <EditIcon height={15} className="mr-4" />,
+    //             name: "Edit",
+    //             className:
+    //               "flex  items-center w-full text-[16px] text-[#A9A9A9] border-b-2 border-[#A9A9A9] ",
+    //           },
+    //           {
+    //             icon: <DisableIcon height={15} className="mr-4" />,
+    //             name: "Disable",
+    //             className:
+    //               "flex  items-center w-full text-[16px] text-[#A9A9A9] border-b-2 border-[#A9A9A9] ",
+    //           },
+    //           {
+    //             icon: <TrashIcon height={15} className="mr-4" />,
+    //             name: "Delete",
+    //             className:
+    //               "flex  items-center w-full text-[16px] text-[#A9A9A9]  ",
+    //           },
+    //         ]}
+    //       />
+    //     );
+    //   },
+    // },
   ];
   return (
     <div className="font-poppins  bg-white rounded-[16px] shadow-md px-5 pt-5">
@@ -347,13 +347,26 @@ const TempleView = ({
           </div>
         </div>
         <div className="">
-          <Image
-            src={thumbnail}
-            width={300}
-            height={300}
-            alt="temple"
-            className="w-full max-h-[350px] object-cover rounded-[10px]"
-          />
+          {upi_image !== null ? (
+            <Image
+              src={upi_image}
+              width={300}
+              height={300}
+              alt="temple"
+              className="w-full max-h-[350px] object-cover rounded-[10px]"
+            />
+          ) : (
+            <div className="flex justify-center items-center flex-col">
+              <Image
+                src={QrAlt}
+                alt="qr"
+                className="opacity-20"
+                width={250}
+                height={250}
+              />
+              <p className="text-secondary-gray">No QR Available</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

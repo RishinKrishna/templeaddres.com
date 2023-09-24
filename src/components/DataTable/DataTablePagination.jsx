@@ -12,7 +12,9 @@ const DataTablePagination = ({
   const getButtons = () => {
     if (pageCount > 5 && pageIndex > pageCount - 5) {
       return [pageCount - 3, pageCount - 2, pageCount - 1, pageCount];
-    } else return [pageIndex + 1, pageIndex + 2, pageIndex + 3, pageIndex + 4];
+    } else if (pageIndex !== 0)
+      return [pageIndex + 1, pageIndex + 2, pageIndex + 3, pageIndex + 4];
+
   };
   return (
     <div className="flex justify-center items-center py-3 ">

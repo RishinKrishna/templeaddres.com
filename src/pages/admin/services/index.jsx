@@ -72,7 +72,7 @@ const Services = () => {
       Header: "  ",
       accessor: "",
       Cell: (data) => {
-        const id = data.row.original.service_id;
+        const id = data.row.original["Service Id"];
         return (
           <button
             type="button"

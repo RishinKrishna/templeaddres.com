@@ -134,8 +134,8 @@ const Login = () => {
             </div>
             <div className="mt-1 ">
               <label htmlFor="remember-me">
-                <input type="checkbox" id="remember-me" name="rememberMe" />{" "}
-                Remember me
+                <input type="checkbox" id="remember-me" name="rememberMe" />
+                 Remember me
               </label>
             </div>
 

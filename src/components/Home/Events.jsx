@@ -16,7 +16,7 @@ const Events = () => {
         <p className="max-w-[750px] lg:mb-6">
           Dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
           aspernaturaut odit aut fugit, sed quia consequuntur. Dicta sunt
-          explicabo. Nemo enim ipsam voluptatem quia voluptas{" "}
+          explicabo. Nemo enim ipsam voluptatem quia voluptas
         </p>
         <div className="flex flex-col md:flex-row">
           <div className="flex flex-col justify-center items-center md:items-start md:w-1/4 lg:mb-0 mb-6">
