@@ -5,8 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import NoDataIcon from "@/components/icons/NoDataIcon";
 import TemplesIcon from "../icons/TemplesIcon";
+import { useRouter } from "next/router";
 
-const TempleCards = ({ serviceCard, selectedOption }) => {
+const TempleCards = ({ serviceCard, selectedOption, query }) => {
+  let pathname = useRouter().pathname;
   if (serviceCard && serviceCard.length > 0) {
     return (
       <div className="lg:py-10 md:py-6 mt-10 font-poppins">
@@ -68,10 +70,13 @@ const TempleCards = ({ serviceCard, selectedOption }) => {
             })}
         </div>
 
-        {serviceCard && serviceCard.length > 0 && (
+        {pathname == "/" && serviceCard && serviceCard.length > 6 && (
           <div className="w-full text-center my-4">
             <Link
-              href="/searchfilter"
+              href={{
+                pathname: `/searchfilter`,
+                query: { option: selectedOption, searchQuery: query },
+              }}
               className="bg-primary text-white px-5 py-3 rounded-[10px] font-poppins font-semibold"
             >
               View Full Result
