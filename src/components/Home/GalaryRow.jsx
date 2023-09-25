@@ -29,7 +29,7 @@ const GalaryRow = ({ gallery = [] }) => {
   return (
     <div
       ref={containerRef}
-      className={`${Styles["galary-row"]} flex pr-5 overflow-x-scroll lg-mt-12 mt-6`}
+      className={`${Styles["galary-row"]} flex pr-5 overflow-x-scroll lg-mt-12 mt-6 h-[50vh]`}
     >
       {gallery.map((src, index) => (
         <Image
@@ -38,7 +38,7 @@ const GalaryRow = ({ gallery = [] }) => {
           height={2000}
           src={src}
           alt="Galary"
-          className="h-[250px] mr-7"
+          className="h-auto mr-7"
         />
       ))}
     </div>

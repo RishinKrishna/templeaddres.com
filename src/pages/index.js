@@ -16,6 +16,7 @@ import { modal } from "@/components/Modal";
 const Home = () => {
   const [tempelsServices, setTempelsServices] = useState([]);
   const [selectedOption, setSelectedOption] = useState("temples");
+  const [gallery, setGallery] = useState([]);
 
   const getTemple = () => {
     get({
@@ -25,17 +26,16 @@ const Home = () => {
     });
   };
 
+  const getGallery = () => {
+    get({
+      api: "/gallery-list",
+    }).then((response) => {
+      setGallery(response.data.data);
+    });
+  };
   useEffect(() => {
     getTemple();
-
-    modal({
-      show: true,
-      containerClassName: "bg-secondory-black max-w-[500px]",
-      header: {
-        heading: "Add New Input",
-      },
-      component: () => <div>asdas</div>, // <ComponentName/>
-    });
+    getGallery();
   }, []);
   return (
     <main>
@@ -64,7 +64,7 @@ const Home = () => {
         <div className={`${styles.boxWidth}`}>
           <div className="lg:p-10">
             <h2 className="text-[#ff6b07] font-semibold text-[25px]">GALARY</h2>
-            <GalaryRow gallery={[]} />
+            <GalaryRow gallery={gallery} />
           </div>
         </div>
       </div>
