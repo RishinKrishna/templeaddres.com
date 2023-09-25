@@ -5,8 +5,8 @@ import React, { useState } from "react";
 import { get } from "@/config/axiosConfig";
 import { useAsyncDebounce } from "react-table";
 import "regenerator-runtime/runtime";
-const Search = ({ setTempelsServices, setSelectedOption, selectedOption }) => {
-  const [query, setQuery] = useState("");
+const Search = ({ setTempelsServices, setSelectedOption, selectedOption, query, setQuery }) => {
+
   const fetchTemples = useAsyncDebounce((value = "") => {
     get({
       api: "/temples/list",

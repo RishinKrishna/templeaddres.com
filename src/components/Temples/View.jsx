@@ -40,6 +40,7 @@ const TempleView = ({
   wh_2,
   wh_3,
 }) => {
+
   const poojaTableHeaders = [
     {
       Header: "ID",
@@ -111,6 +112,7 @@ const TempleView = ({
     //   },
     // },
   ];
+  
   let deities = [deity, deity_2, deity_3, deity_4, deity_5, deity_6, deity_7];
 
   return (
@@ -209,7 +211,7 @@ const TempleView = ({
                       className="bg-[#E4E4E4] px-4 py-2 rounded-[7px] text-[13px]"
                     >
                       <span>{deity}</span>
-                    </div>
+                    </div>  
                   );
                 }
               })}

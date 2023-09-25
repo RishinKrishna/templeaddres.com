@@ -14,6 +14,7 @@ import Footer from "@/Layout/Footer";
 import { modal } from "@/components/Modal";
 
 const Home = () => {
+  const [query, setQuery] = useState("");
   const [tempelsServices, setTempelsServices] = useState([]);
   const [selectedOption, setSelectedOption] = useState("temples");
   const [gallery, setGallery] = useState([]);
@@ -47,6 +48,8 @@ const Home = () => {
             setTempelsServices={setTempelsServices}
             selectedOption={selectedOption}
             setSelectedOption={setSelectedOption}
+            query={query}
+            setQuery={setQuery}
           />
         </div>
       </div>
@@ -55,6 +58,8 @@ const Home = () => {
           <TempleCards
             serviceCard={tempelsServices}
             selectedOption={selectedOption}
+            query={query}
+            // setQuery={setQuery}
           />
         </div>
       </div>

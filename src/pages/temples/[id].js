@@ -1,22 +1,12 @@
 import NonAdminLayout from "@/Layout";
 import { CustomDropdown } from "@/components/CustomDropdown";
-import DataTable from "@/components/DataTable";
-import GalaryRow from "@/components/Home/GalaryRow";
 import TempleView from "@/components/Temples/View";
-import ClockIcon from "@/components/icons/ClockIcon";
 import DisableIcon from "@/components/icons/DisableIcon";
 import EditIcon from "@/components/icons/EditIcon";
 import EyeIcon from "@/components/icons/EyeIcon";
-import GlobeIcon from "@/components/icons/GlobeIcon";
-import LandmarkIcon from "@/components/icons/LandmarkIcon";
-import LocationIcon from "@/components/icons/LocationIcon";
-import MailIcon from "@/components/icons/MailIcon";
 import MenuIcon from "@/components/icons/MenuIcon";
-import MobileIcon from "@/components/icons/MobileIcon";
-import PhoneIcon from "@/components/icons/PhoneIcon";
 import TrashIcon from "@/components/icons/TrashIcon";
 import { get } from "@/config/axiosConfig";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
