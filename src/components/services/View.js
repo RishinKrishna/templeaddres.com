@@ -10,7 +10,7 @@ import UserIcon from "../icons/UserIcon";
 import { get } from "@/config/axiosConfig";
 import service_circular_pattern_img from "@/assets/service_circular_pattern_img.png";
 
-const ServiceView = ({ id }) => {
+const ServiceView = ({ id, admin }) => {
   const [service, setService] = useState({});
 
   useEffect(() => {
@@ -70,12 +70,14 @@ const ServiceView = ({ id }) => {
                 <LandmarkIcon />
               </div>
               <div className="">
-                <p className="text-secondary-gray ">Kakkor</p>
+                <p className="text-secondary-gray ">{service.location}</p>
               </div>
 
-              <div className=" ml-auto">
-                <EditIcon />
-              </div>
+              {admin && (
+                <div className=" ml-auto">
+                  <EditIcon />
+                </div>
+              )}
             </div>
           </div>
 
@@ -84,9 +86,9 @@ const ServiceView = ({ id }) => {
               <ClockIcon />
             </div>
             <div className="flex gap-x-6">
-              <p className="text-secondary-gray text-md ">
-                09:30 AM to 5:00 PM
-              </p>
+              <p className="text-secondary-gray text-md ">{service.wh_1}</p>
+              <p className="text-secondary-gray text-md ">{service.wh_2}</p>
+              <p className="text-secondary-gray text-md ">{service.wh_3}</p>
             </div>
           </div>
           <div>

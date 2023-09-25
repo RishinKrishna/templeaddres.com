@@ -26,11 +26,19 @@ const TempleView = ({
   pin_code,
   deity,
   deity_2,
+  deity_3,
+  deity_4,
+  deity_5,
+  deity_6,
+  deity_7,
   gallery,
   address,
   admin,
   upi_image,
   poojaList,
+  wh_1,
+  wh_2,
+  wh_3,
 }) => {
   const poojaTableHeaders = [
     {
@@ -103,6 +111,8 @@ const TempleView = ({
     //   },
     // },
   ];
+  let deities = [deity, deity_2, deity_3, deity_4, deity_5, deity_6, deity_7];
+
   return (
     <div className="font-poppins  bg-white rounded-[16px] shadow-md px-5 pt-5">
       <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-x-8 pb-10  border-b-2">
@@ -154,13 +164,13 @@ const TempleView = ({
             </div>
 
             <div className="flex items-center ">
-              <div className="py-1 px-3">
-                <ClockIcon />
+              <div className=" p-3">
+                <ClockIcon width={15} />
               </div>
               <div className="py-1 px-3 flex gap-x-6">
-                <p className="text-secondary-gray text-md">4AM- 8AM</p>
-                <p className="text-secondary-gray text-md">4AM- 8AM</p>
-                <p className="text-secondary-gray text-md">4AM- 8AM</p>
+                <p className="text-secondary-gray text-md">{wh_1}</p>
+                <p className="text-secondary-gray text-md">{wh_2}</p>
+                <p className="text-secondary-gray text-md">{wh_3}</p>
               </div>
             </div>
           </div>
@@ -191,18 +201,18 @@ const TempleView = ({
               )}
             </div>
             <div className="flex gap-x-4 mt-2">
-              <div className="bg-[#E4E4E4] px-4 py-2 rounded-[7px] text-[13px]">
-                <span>Lord Vishnu</span>
-              </div>
-              <div className="bg-[#E4E4E4] px-4 py-2 rounded-[7px] text-[13px]">
-                <span>Lord Vishnu</span>
-              </div>
-              <div className="bg-[#E4E4E4] px-4 py-2 rounded-[7px] text-[13px]">
-                <span>Lord Vishnu</span>
-              </div>
-              <div className="bg-[#E4E4E4] px-4 py-2 rounded-[7px] text-[13px]">
-                <span>Lord Vishnu</span>
-              </div>
+              {deities.map((deity, index) => {
+                if (deity && deity !== "") {
+                  return (
+                    <div
+                      key={index}
+                      className="bg-[#E4E4E4] px-4 py-2 rounded-[7px] text-[13px]"
+                    >
+                      <span>{deity}</span>
+                    </div>
+                  );
+                }
+              })}
             </div>
           </div>
 
