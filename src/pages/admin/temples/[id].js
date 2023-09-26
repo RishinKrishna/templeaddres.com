@@ -9,7 +9,7 @@ const TempleInfo = () => {
   const id = router.query.id;
   const [temple, setTemple] = useState({});
   const [gallery, setGallery] = useState([]);
-  const [poojaList, setTempleList] = useState([]);
+  const [poojaList, setPoojaList] = useState([]);
 
   useEffect(() => {
     const fetchTempleId = () => {
@@ -27,15 +27,26 @@ const TempleInfo = () => {
         setGallery(galleryArr);
       });
     };
+    const getPoojaList = () => {
+      get({ api: `/temples/pooja-list/${id}` }).then((response) => {
+        setPoojaList(response.data.data);
+      });
+    };
     if (id && Object.keys(temple).length === 0) {
       fetchTempleId();
       getGallary();
+      getPoojaList();
     }
-  }, [id, temple]);
+  }, [id]);
 
   return (
     <>
-      <TempleView {...temple} gallery={gallery} admin={true} />
+      <TempleView
+        {...temple}
+        gallery={gallery}
+        admin={true}
+        poojaList={poojaList}
+      />
     </>
   );
 };

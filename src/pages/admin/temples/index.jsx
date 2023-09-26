@@ -75,7 +75,7 @@ const Temples = () => {
       Header: "  ",
       accessor: "",
       Cell: (data) => {
-        const id = data.row.original.temple_id;
+        const id = data.row.original.id;
         return (
           <button
             type="button"
