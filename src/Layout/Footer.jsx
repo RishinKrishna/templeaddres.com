@@ -19,7 +19,7 @@ const Footer = () => (
           className={` flex justify-center items-start md:flex-row flex-col mb-8 w-full`}
         >
           <div className="flex-1 flex flex-col justify-start mr-10">
-            <h2 className="text-[#ff6b07] font-semibold text-[25px] font-Montserrat">
+            <h2 className="text-[#ff6b07] font-semibold text-[25px] text-center font-Montserrat">
               TEMPLE ADDRESS
             </h2>
             {/* <Image
@@ -28,7 +28,7 @@ const Footer = () => (
           className="w-[266px] h-[72px] object-contain"
         /> */}
 
-            <div className="flex gap-3 text-[#ffff] ">
+            {/* <div className="flex gap-3 text-[#ffff] ">
               <Link href="#" className="flex mt-6">
                 <FontAwesomeIcon
                   icon={faFacebook}
@@ -55,10 +55,10 @@ const Footer = () => (
                   className="social_icons_footer py-2 px-2  rounded-[5px] hover:text-[#ff6b07] text-[20px]"
                 />
               </Link>
-            </div>
+            </div> */}
           </div>
 
-          <div className="flex-[2.5] w-full flex flex-row justify-between flex-wrap md:mt-0 mt-10">
+          {/* <div className="flex-[2.5] w-full flex flex-row justify-between flex-wrap md:mt-0 mt-10">
             {footerLinks.map((footerLinks, index) => (
               <div
                 key={index}
@@ -81,7 +81,7 @@ const Footer = () => (
                 </ul>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
         <div className="w-full flex justify-center md:flex-row flex-col text-center pt-6 border-t-[1px] border-t-[#3f3e45]">
           <p className="font-poppins font-normal text-center text-[16px] leading-[27px] text-[#ccc]">
