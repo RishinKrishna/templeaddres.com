@@ -73,7 +73,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="relative">
+      {/* <div className="relative">
         <div className={`flex justify-center items-start sm:px-12 px-6`}>
           <div className={`${styles.boxWidth}`}>
             <Events />
@@ -86,14 +86,14 @@ const Home = () => {
           height={320}
           className="left-0 bottom-0 hidden md:block absolute"
         />
-      </div>
-      <div
+      </div> */}
+      {/* <div
         className={`bg-[#fff] flex justify-center items-start sm:px-12 px-6`}
       >
         <div className={`${styles.boxWidth}`}>
           <Articles />
         </div>
-      </div>
+      </div> */}
 
       <Footer />
     </main>

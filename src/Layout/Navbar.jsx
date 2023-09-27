@@ -37,9 +37,9 @@ const Navbar = ({ containerClassName }) => {
               <Link href="/">Home</Link>
             </li>
             <li>
-              <Link href="/dashboard">Dashboard</Link>
+              <Link href="/login">Dashboard</Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/about">About</Link>
             </li>
             <li>
@@ -47,7 +47,7 @@ const Navbar = ({ containerClassName }) => {
             </li>
             <li>
               <Link href="/galary">Gallery</Link>
-            </li>
+            </li> */}
           </ul>
           <Link
             href="/login"
@@ -90,11 +90,11 @@ const Navbar = ({ containerClassName }) => {
                 </Link>
               </li>
               <li className="mt-2">
-                <Link className="text-black" href="/dashboard">
+                <Link className="text-black" href="/login">
                   Dashboard
                 </Link>
               </li>
-              <li className="mt-2">
+              {/* <li className="mt-2">
                 <Link className="text-black" href="/about">
                   About
                 </Link>
@@ -108,7 +108,7 @@ const Navbar = ({ containerClassName }) => {
                 <Link className="text-black" href="/galary">
                   Gallery
                 </Link>
-              </li>
+              </li> */}
               <div className="mt-5 ">
                 <Link
                   href="/login"
