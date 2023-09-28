@@ -25,6 +25,9 @@ import EditHistory from "../admin/Modals/EditHistory";
 import EditTemple from "../admin/Modals/EditTemple";
 import EditPayment from "../admin/Modals/EditPayment";
 import EditPoojaList from "../admin/Modals/EditPoojaList";
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import GoogleMaps from "../admin/GoogleMap";
+
 const TempleView = ({
   id,
   thumbnail,
@@ -370,24 +373,24 @@ const TempleView = ({
               )}
             </div>
 
-            <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-6 mt-3">
-              <div className="flex items-center">
+            <div className="lg:flex grid sm:grid-cols-1 mt-3 gap-10">
+              <div className="flex items-center text-[14px] text-secondary-gray">
                 <MobileIcon />
                 <span className="ml-3">{temple_mobile}</span>
               </div>
 
-              <div className="flex items-center">
+              <div className="flex items-center text-[14px] text-secondary-gray">
                 <MailIcon />
                 <span className="ml-3">{email}</span>
               </div>
             </div>
-            <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-6 mt-4">
-              <div className="flex items-center">
+            <div className="lg:flex grid sm:grid-cols-1 mt-4 gap-10">
+              <div className="flex items-center text-[14px] text-secondary-gray">
                 <PhoneIcon />
                 <span className="ml-3">{temple_phone}</span>
               </div>
 
-              <div className="flex items-center">
+              <div className="flex items-center text-[14px] text-secondary-gray">
                 <GlobeIcon />
                 <span className="ml-3">{url}</span>
               </div>
@@ -455,6 +458,12 @@ const TempleView = ({
           />
         </div>
       </div>
+
+      
+
+      <GoogleMaps />
+
+
       <div className="flex justify-between mt-5">
         <h1 className="text-2xl font-semibold">Payment, Donation</h1>
         {admin && (
@@ -498,7 +507,7 @@ const TempleView = ({
             </p>
           </div>
         </div>
-        <div className="">
+        <div className="px-12">
           {upi_image !== null ? (
             <Image
               src={upi_image}
