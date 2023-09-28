@@ -25,7 +25,7 @@ import EditHistory from "../admin/Modals/EditHistory";
 import EditTemple from "../admin/Modals/EditTemple";
 import EditPayment from "../admin/Modals/EditPayment";
 import EditPoojaList from "../admin/Modals/EditPoojaList";
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import GoogleMaps from "../admin/GoogleMap";
 
 const TempleView = ({
@@ -137,11 +137,20 @@ const TempleView = ({
   let deities = [deity, deity_2, deity_3, deity_4, deity_5, deity_6, deity_7];
   let editTempleProps = { id, name, landmark, location };
 
-  let EditContactDetailsProps = {  id, temple_phone, temple_mobile,  email, url }
+  let EditContactDetailsProps = { id, temple_phone, temple_mobile, email, url };
 
-  let EditPaymentProps = { account_number, ifsc_code, bank_name, upi_id }
+  let EditPaymentProps = { account_number, ifsc_code, bank_name, upi_id, id };
 
-  let EditDeitysProps = { id, deity, deity_2, deity_3, deity_4, deity_5, deity_6, deity_7 }
+  let EditDeitysProps = {
+    id,
+    deity,
+    deity_2,
+    deity_3,
+    deity_4,
+    deity_5,
+    deity_6,
+    deity_7,
+  };
 
   const onEditTemple = (event) => {
     modal({
@@ -168,7 +177,7 @@ const TempleView = ({
       },
       component: (
         <div>
-          <EditContactDetails {...EditContactDetailsProps}  />
+          <EditContactDetails {...EditContactDetailsProps} />
         </div>
       ),
       modalBodyClassName: "",
@@ -239,7 +248,6 @@ const TempleView = ({
     });
   };
 
-
   const onEditPoojaList = (event) => {
     modal({
       show: true,
@@ -249,7 +257,7 @@ const TempleView = ({
       },
       component: (
         <div>
-          <EditPoojaList/>
+          <EditPoojaList />
         </div>
       ),
       modalBodyClassName: "",
@@ -438,7 +446,7 @@ const TempleView = ({
       </div>
 
       <div className="py-5">
-      <div className="flex justify-between">
+        <div className="flex justify-between">
           <h1 className="text-2xl font-semibold">Pooja List</h1>
           {admin && (
             <button type="button" onClick={onEditPoojaList}>
@@ -459,10 +467,7 @@ const TempleView = ({
         </div>
       </div>
 
-      
-
       <GoogleMaps />
-
 
       <div className="flex justify-between mt-5">
         <h1 className="text-2xl font-semibold">Payment, Donation</h1>
@@ -509,13 +514,15 @@ const TempleView = ({
         </div>
         <div className="px-12">
           {upi_image !== null ? (
-            <Image
-              src={upi_image}
-              width={300}
-              height={300}
-              alt="temple"
-              className="w-full max-h-[350px] object-cover rounded-[10px]"
-            />
+            <div className="p-6 flex justify-center items-center">
+              <Image
+                src={upi_image}
+                width={300}
+                height={300}
+                alt="temple"
+                className="w-[250px] h-[250px] object-cover rounded-[10px]"
+              />
+            </div>
           ) : (
             <div className="flex justify-center items-center flex-col">
               <Image
