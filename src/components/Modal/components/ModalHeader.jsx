@@ -20,7 +20,7 @@ const ModalHeader = ({
         <h1 className={classNames(Styles["heading"])}>{heading} </h1>
         <span className={classNames(Styles["sub-heading"])}>{subHeading}</span>
       </div>
-      <button type="button" onClick={closeModal}>
+      <button type="button" className="text-[#ff6b07] text-2xl" onClick={closeModal}>
        X
       </button>
     </div>

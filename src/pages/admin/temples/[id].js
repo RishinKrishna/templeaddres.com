@@ -43,6 +43,7 @@ const TempleInfo = () => {
     <>
       <TempleView
         {...temple}
+        id={id}
         gallery={gallery}
         admin={true}
         poojaList={poojaList}

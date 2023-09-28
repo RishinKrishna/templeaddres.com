@@ -6,7 +6,7 @@ const NonAdminLayout = ({ navbar = { containerClassName: "" }, children }) => {
   return (
     <div>
       <Navbar containerClassName={navbar.containerClassName} />
-      <div className="my-[100px] px-12">{children}</div>
+      <div className="lg:my-[100px] lg:px-12">{children}</div>
       <Footer />
     </div>
   );

@@ -18,7 +18,15 @@ import EyeIcon from "../icons/EyeIcon";
 import TemplesIcon from "../icons/TemplesIcon";
 import QrAlt from "../../assets/qr.png";
 import { modal } from "../Modal";
+import EditContactDetails from "../admin/Modals/EditContactDetails";
+import EditDescription from "../admin/Modals/EditDescription";
+import EditDeity from "../admin/Modals/EditDeity";
+import EditHistory from "../admin/Modals/EditHistory";
+import EditTemple from "../admin/Modals/EditTemple";
+import EditPayment from "../admin/Modals/EditPayment";
+import EditPoojaList from "../admin/Modals/EditPoojaList";
 const TempleView = ({
+  id,
   thumbnail,
   name,
   landmark,
@@ -32,14 +40,24 @@ const TempleView = ({
   deity_5,
   deity_6,
   deity_7,
+  temple_mobile,
+  temple_phone,
   gallery,
   address,
   admin,
   upi_image,
   poojaList,
+  history_details,
+  email,
+  url,
   wh_1,
   wh_2,
   wh_3,
+  account_name,
+  bank_name,
+  account_number,
+  ifsc_code,
+  upi_id,
 }) => {
   const poojaTableHeaders = [
     {
@@ -114,20 +132,129 @@ const TempleView = ({
   ];
 
   let deities = [deity, deity_2, deity_3, deity_4, deity_5, deity_6, deity_7];
+  let editTempleProps = { id, name, landmark, location };
+
+  let EditContactDetailsProps = {  id, temple_phone, temple_mobile,  email, url }
+
+  let EditPaymentProps = { account_number, ifsc_code, bank_name, upi_id }
+
+  let EditDeitysProps = { id, deity, deity_2, deity_3, deity_4, deity_5, deity_6, deity_7 }
 
   const onEditTemple = (event) => {
     modal({
       show: true,
       containerClassName: "r-bg-tertiary-dark max-w-[500px]",
       header: {
-        heading: "Add Deposit Address",
+        heading: "Edit Contact Details",
       },
-      component: <div></div>,
+      component: (
+        <div>
+          <EditTemple {...editTempleProps} />
+        </div>
+      ),
       modalBodyClassName: "",
     });
   };
+
+  const onEditContactDetails = (event) => {
+    modal({
+      show: true,
+      containerClassName: "r-bg-tertiary-dark max-w-[500px]",
+      header: {
+        heading: "Edit Contact Details",
+      },
+      component: (
+        <div>
+          <EditContactDetails {...EditContactDetailsProps}  />
+        </div>
+      ),
+      modalBodyClassName: "",
+    });
+  };
+
+  const onEditDescription = (event) => {
+    modal({
+      show: true,
+      containerClassName: "r-bg-tertiary-dark max-w-[500px]",
+      header: {
+        heading: "Edit Description",
+      },
+      component: (
+        <div>
+          <EditDescription />
+        </div>
+      ),
+      modalBodyClassName: "",
+    });
+  };
+
+  const onEditDeity = (event) => {
+    modal({
+      show: true,
+      containerClassName: "r-bg-tertiary-dark max-w-[500px]",
+      header: {
+        heading: "Edit Deity",
+      },
+      component: (
+        <div>
+          <EditDeity {...EditDeitysProps} />
+        </div>
+      ),
+      modalBodyClassName: "",
+    });
+  };
+
+  const onEditHistory = (event) => {
+    modal({
+      show: true,
+      containerClassName: "r-bg-tertiary-dark max-w-[500px]",
+      header: {
+        heading: "Edit Deity",
+      },
+      component: (
+        <div>
+          <EditHistory />
+        </div>
+      ),
+      modalBodyClassName: "",
+    });
+  };
+
+  const onEditPayment = (event) => {
+    modal({
+      show: true,
+      containerClassName: "r-bg-tertiary-dark max-w-[500px]",
+      header: {
+        heading: "Edit Payment",
+      },
+      component: (
+        <div>
+          <EditPayment {...EditPaymentProps} />
+        </div>
+      ),
+      modalBodyClassName: "",
+    });
+  };
+
+
+  const onEditPoojaList = (event) => {
+    modal({
+      show: true,
+      containerClassName: "r-bg-tertiary-dark max-w-[500px]",
+      header: {
+        heading: "Edit Payment",
+      },
+      component: (
+        <div>
+          <EditPoojaList/>
+        </div>
+      ),
+      modalBodyClassName: "",
+    });
+  };
+
   return (
-    <div className="font-poppins  bg-white rounded-[16px] shadow-md px-5 pt-5">
+    <div className="font-poppins  bg-white rounded-[16px] shadow-md lg:px-5 lg:pt-5 px-3">
       <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-x-8 pb-10  border-b-2">
         <div>
           {thumbnail ? (
@@ -194,9 +321,9 @@ const TempleView = ({
             <div className="flex justify-between">
               <h1 className="text-xl font-[500]">Description</h1>
               {admin && (
-                <div className="flex items-center ml-auto">
+                <button type="button" onClick={onEditDescription}>
                   <EditIcon />
-                </div>
+                </button>
               )}
             </div>
             <div>
@@ -211,7 +338,9 @@ const TempleView = ({
               <h1 className="text-xl font-[500]">Deity</h1>
               {admin && (
                 <div className="flex items-center ml-auto">
-                  <EditIcon />
+                  <button type="button" onClick={onEditDeity}>
+                    <EditIcon />
+                  </button>
                 </div>
               )}
             </div>
@@ -235,32 +364,32 @@ const TempleView = ({
             <div className="flex justify-between">
               <h1 className="text-xl font-[500]">Contact Details</h1>
               {admin && (
-                <div className="flex items-center ml-auto">
+                <button type="button" onClick={onEditContactDetails}>
                   <EditIcon />
-                </div>
+                </button>
               )}
             </div>
 
             <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-6 mt-3">
               <div className="flex items-center">
                 <MobileIcon />
-                <span className="ml-3">9048262454</span>
+                <span className="ml-3">{temple_mobile}</span>
               </div>
 
               <div className="flex items-center">
                 <MailIcon />
-                <span className="ml-3">sreepathma@gmail.com</span>
+                <span className="ml-3">{email}</span>
               </div>
             </div>
             <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-6 mt-4">
               <div className="flex items-center">
                 <PhoneIcon />
-                <span className="ml-3">0001-43548</span>
+                <span className="ml-3">{temple_phone}</span>
               </div>
 
               <div className="flex items-center">
                 <GlobeIcon />
-                <span className="ml-3">9048262454</span>
+                <span className="ml-3">{url}</span>
               </div>
             </div>
           </div>
@@ -271,9 +400,9 @@ const TempleView = ({
         <div className="flex justify-between">
           <h1 className="text-2xl font-semibold">History</h1>
           {admin && (
-            <div className="flex items-center ml-auto">
+            <button type="button" onClick={onEditHistory}>
               <EditIcon />
-            </div>
+            </button>
           )}
         </div>
         <div className="mt-4 grid lg:grid-cols-2 sm:grid-1 gap-8">
@@ -295,16 +424,7 @@ const TempleView = ({
             )}
           </div>
           <div className="">
-            <p className=" text-secondary-gray ">
-              The s exact age is debated, but it is believed to have been
-              constructed over 1,000 years ago. Some historical accounts suggest
-              that the temple dates back to the 8th century CE. It has undergone
-              several renovations and expansions over the centuries The temples
-              exact age is debated, but it is believed to have been constructed
-              over 1,000 years ago. Some historical accounts suggest that the
-              temple dates back to the 8th century CE. It has undergone several
-              renovations and expansions over the centuries
-            </p>
+            <p className="text-secondary-gray ">{history_details}</p>
           </div>
         </div>
       </div>
@@ -315,7 +435,14 @@ const TempleView = ({
       </div>
 
       <div className="py-5">
-        <h1 className=" font-semibold text-[25px]">Pooja List</h1>
+      <div className="flex justify-between">
+          <h1 className="text-2xl font-semibold">Pooja List</h1>
+          {admin && (
+            <button type="button" onClick={onEditPoojaList}>
+              <EditIcon />
+            </button>
+          )}
+        </div>
         <div className="shadow-lg border py-4 mt-4">
           <DataTable
             columnDef={{
@@ -331,19 +458,19 @@ const TempleView = ({
       <div className="flex justify-between mt-5">
         <h1 className="text-2xl font-semibold">Payment, Donation</h1>
         {admin && (
-          <div className="flex items-center ml-auto">
+          <button type="button" onClick={onEditPayment}>
             <EditIcon />
-          </div>
+          </button>
         )}
       </div>
       <div className="mt-4 grid lg:grid-cols-2 sm:grid-1 gap-8 pb-6">
         <div className="">
           <div className="border bottom-1 rounded-lg p-2 mt-3">
             <h5 className=" text-secondary-gray text-[15px] font-semibold ">
-              Accoount nunber :
+              Accoount number :
             </h5>
             <p className=" text-secondary-gray text-[15px] tracking-wider ">
-              184808971963187
+              {account_number}
             </p>
           </div>
           <div className="border bottom-1 rounded-lg p-2 mt-3">
@@ -351,7 +478,7 @@ const TempleView = ({
               IFSC code :
             </h5>
             <p className=" text-secondary-gray text-[15px] tracking-wider">
-              SBIN73489573
+              {ifsc_code}
             </p>
           </div>
           <div className="border bottom-1 rounded-lg p-2 mt-3">
@@ -359,7 +486,7 @@ const TempleView = ({
               Accoount name :
             </h5>
             <p className=" text-secondary-gray text-[15px] tracking-wider">
-              User Name
+              {bank_name}
             </p>
           </div>
           <div className="border bottom-1 rounded-lg p-2 mt-3">
@@ -367,7 +494,7 @@ const TempleView = ({
               UPI ID :
             </h5>
             <p className=" text-secondary-gray text-[15px] tracking-wider">
-              user123@oksbi
+              {upi_id}
             </p>
           </div>
         </div>
