@@ -2,7 +2,7 @@ import { createRoot } from "react-dom/client";
 import Modal from "./components/Modal";
 import { createPortal } from "react-dom";
 
-const modal = (props) => {
+const modal = (props) => {;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const portalNode = document.querySelector("#modal");
   if (!portalNode) {

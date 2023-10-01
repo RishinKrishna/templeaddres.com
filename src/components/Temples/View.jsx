@@ -69,6 +69,7 @@ const TempleView = ({
   state,
   country,
   other_image,
+  onCloseModal,
 }) => {
   const poojaTableHeaders = [
     {
@@ -210,6 +211,7 @@ const TempleView = ({
         </div>
       ),
       modalBodyClassName: "",
+      onClose: () => onCloseModal(),
     });
   };
 
@@ -274,6 +276,7 @@ const TempleView = ({
         </div>
       ),
       modalBodyClassName: "",
+      onClose: () => onCloseModal(),
     });
   };
 
@@ -292,7 +295,6 @@ const TempleView = ({
       modalBodyClassName: "",
     });
   };
-
 
   const addPoojaList = (event) => {
     modal({

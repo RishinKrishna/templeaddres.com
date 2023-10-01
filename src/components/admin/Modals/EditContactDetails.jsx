@@ -3,7 +3,7 @@ import { put } from "@/config/axiosConfig";
 
 const EditContactDetails = ({
   id,
-  temple_phone,
+  temple_phone = "",
   temple_mobile,
   email,
   url,
@@ -15,12 +15,13 @@ const EditContactDetails = ({
     urlError: "",
   });
 
-  console.log("working");
+  console.log("working", temple_phone);
 
   const [inputTemplePhone, setInputTemplePhone] = useState(temple_phone);
   const [inputTempleMobile, setInputTempleMobile] = useState(temple_mobile);
   const [inputEmail, setInputEmail] = useState(email);
   const [inputUrl, setInputUrl] = useState(url);
+  // const
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -97,7 +98,7 @@ const EditContactDetails = ({
         <div className="mb-3">
           <label className="mb-2 block">Phone</label>
           <input
-            type="number"
+            type="text"
             name="temple_phone"
             value={inputTemplePhone}
             onChange={handleChange}
@@ -110,7 +111,7 @@ const EditContactDetails = ({
         <div className="mb-3">
           <label className="mb-2 block">Mobile</label>
           <input
-            type="number"
+            type="text"
             name="temple_mobile"
             value={inputTempleMobile}
             onChange={handleChange}

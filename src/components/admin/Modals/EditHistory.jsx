@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { put } from "@/config/axiosConfig";
+import Image from "next/image";
 
 const convertToFormData = (data) => {
   const formData = new FormData();
@@ -9,10 +10,14 @@ const convertToFormData = (data) => {
   return formData;
 };
 
-const EditHistory = ({ id, other_image, history_details }) => {
+const EditHistory = ({ id, other_image = "", history_details }) => {
   const [imageError, setImageError] = useState("");
   const [history, setHistory] = useState(history_details || "");
   const [historyError, setHistoryError] = useState("");
+  const [selectedImage, setSelectedImage] = useState({
+    preview: other_image,
+    image: null,
+  });
 
   const validateForm = () => {
     let isValid = true;
@@ -29,12 +34,12 @@ const EditHistory = ({ id, other_image, history_details }) => {
     e.preventDefault();
 
     const isHistoryValid = validateHistory();
-    const isImageValid = selectedImage !== null;
+    const isImageValid = selectedImage.preview !== null;
 
     if (isHistoryValid && isImageValid) {
       const formDataToSend = convertToFormData({
         history: history,
-        other_image: other_image,
+        other_image: selectedImage.image,
       });
 
       put({
@@ -73,28 +78,33 @@ const EditHistory = ({ id, other_image, history_details }) => {
     return !!history.trim();
   };
 
-  const [selectedImage, setSelectedImage] = useState(null);
-
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setSelectedImage(reader.result);
+        setSelectedImage({
+          ...selectedImage,
+          preview: reader.result,
+          image: file,
+        });
       };
       reader.readAsDataURL(file);
     }
   };
+  console.log(selectedImage.preview);
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <div className="rounded-md shadow-md text-center">
-          {selectedImage && (
+          {selectedImage.preview !== "" && selectedImage.preview !== null && (
             <div className="mt-6">
-              <img
-                src={selectedImage}
+              <Image
+                src={selectedImage.preview}
                 alt="Preview"
+                width={200}
+                height={200}
                 className="w-full rounded-md"
               />
             </div>
@@ -103,7 +113,7 @@ const EditHistory = ({ id, other_image, history_details }) => {
           <input
             type="file"
             id="file"
-            name=""
+            name="other_image"
             className="hidden"
             accept="image/*"
             onChange={handleImageChange}
