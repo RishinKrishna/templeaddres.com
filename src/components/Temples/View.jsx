@@ -52,7 +52,7 @@ const TempleView = ({
   admin,
   upi_image,
   poojaList,
-  history_details,
+  story,
   email,
   url,
   wh_1,
@@ -70,6 +70,8 @@ const TempleView = ({
   country,
   other_image,
   onCloseModal,
+  longitude,
+  latitude,
 }) => {
   const poojaTableHeaders = [
     {
@@ -181,11 +183,12 @@ const TempleView = ({
     deity_6,
     deity_7,
   };
-  let EditHistoryProps = { id, other_image, history_details };
+  let EditHistoryProps = { id, other_image, story };
   const onEditTemple = (event) => {
     modal({
       show: true,
-      containerClassName: "r-bg-tertiary-dark max-w-[500px]",
+      containerClassName: "w-full max-w-[800px]",
+      maxWidth: 800,
       header: {
         heading: "Edit Address",
       },
@@ -201,7 +204,7 @@ const TempleView = ({
   const onEditContactDetails = (event) => {
     modal({
       show: true,
-      containerClassName: "r-bg-tertiary-dark max-w-[500px]",
+      containerClassName: " max-w-[500px]",
       header: {
         heading: "Edit Contact Details",
       },
@@ -218,7 +221,7 @@ const TempleView = ({
   const onEditDescription = (event) => {
     modal({
       show: true,
-      containerClassName: "r-bg-tertiary-dark max-w-[500px]",
+      containerClassName: " max-w-[500px]",
       header: {
         heading: "Edit Description",
       },
@@ -234,7 +237,7 @@ const TempleView = ({
   const onEditDeity = (event) => {
     modal({
       show: true,
-      containerClassName: "r-bg-tertiary-dark max-w-[500px]",
+      containerClassName: " max-w-[500px]",
       header: {
         heading: "Edit Deity",
       },
@@ -250,7 +253,7 @@ const TempleView = ({
   const onEditHistory = (event) => {
     modal({
       show: true,
-      containerClassName: "r-bg-tertiary-dark max-w-[500px]",
+      containerClassName: " max-w-[500px]",
       header: {
         heading: "Edit History",
       },
@@ -266,7 +269,7 @@ const TempleView = ({
   const onEditPayment = (event) => {
     modal({
       show: true,
-      containerClassName: "r-bg-tertiary-dark max-w-[500px]",
+      containerClassName: " max-w-[500px]",
       header: {
         heading: "Edit Payment",
       },
@@ -283,7 +286,7 @@ const TempleView = ({
   const onEditPoojaList = (event) => {
     modal({
       show: true,
-      containerClassName: "r-bg-tertiary-dark max-w-[500px]",
+      containerClassName: " max-w-[500px]",
       header: {
         heading: "Edit Pooja List",
       },
@@ -299,7 +302,7 @@ const TempleView = ({
   const addPoojaList = (event) => {
     modal({
       show: true,
-      containerClassName: "r-bg-tertiary-dark max-w-[500px]",
+      containerClassName: " max-w-[500px]",
       header: {
         heading: "Add Pooja List",
       },
@@ -483,7 +486,7 @@ const TempleView = ({
             )}
           </div>
           <div className="">
-            <p className="text-secondary-gray ">{history_details}</p>
+            <p className="text-secondary-gray ">{story}</p>
           </div>
         </div>
       </div>
@@ -519,7 +522,7 @@ const TempleView = ({
         </div>
       </div>
 
-      <GoogleMaps />
+      <GoogleMaps center={{ lat: Number(latitude), lng: Number(longitude) }} />
 
       <div className="flex justify-between mt-5">
         <h1 className="text-2xl font-semibold">Payment, Donation</h1>

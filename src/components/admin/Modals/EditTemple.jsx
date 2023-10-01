@@ -130,11 +130,11 @@ const EditTemple = ({
     e.preventDefault();
     const isValid = validateForm();
     if (!isValid) return;
-    if (formData.imageRequired && !selectedImage) {
+    // if (formData.imageRequired && !selectedImage) {
       
-      alert("Please select an image");
-      return;
-    }
+    //   alert("Please select an image");
+    //   return;
+    // }
     const formDataToSend = convertToFormData(formData);
 
     put({

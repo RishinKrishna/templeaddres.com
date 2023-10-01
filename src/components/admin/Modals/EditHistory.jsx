@@ -38,7 +38,7 @@ const EditHistory = ({ id, other_image = "", history_details }) => {
 
     if (isHistoryValid && isImageValid) {
       const formDataToSend = convertToFormData({
-        history: history,
+        story: history,
         other_image: selectedImage.image,
       });
 
@@ -92,7 +92,6 @@ const EditHistory = ({ id, other_image = "", history_details }) => {
       reader.readAsDataURL(file);
     }
   };
-  console.log(selectedImage.preview);
 
   return (
     <div>

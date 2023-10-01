@@ -74,14 +74,15 @@ const EditContactDetails = ({
     const isValid = validateForm();
     if (!isValid) return;
 
+    let formData = new FormData();
+
+    formData.append("temple_phone", inputTemplePhone);
+    formData.append("temple_mobile", inputTempleMobile);
+    formData.append("email", inputEmail);
+    formData.append("url", inputUrl);
     put({
-      api: `/contact/edit/${id}`,
-      data: {
-        temple_phone: inputTemplePhone,
-        temple_mobile: inputTempleMobile,
-        email: inputEmail,
-        url: inputUrl,
-      },
+      api: `/temples/edit/${id}`,
+      data: formData,
       toastConfig: {
         messages: {
           pending: "Please wait",
