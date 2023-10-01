@@ -39,12 +39,14 @@ export const CustomDropdown = ({
                     type="button"
                     key={index}
                     className={classNames(
-                      "pointer  px-4 py-2 hover:bg-[#ffffff74]",
+                      "pointer px-4 py-2 hover:bg-[#ffffff74]",
                       option?.className
                     )}
                     value={option?.value}
                     onClick={() => {
-                      option.onClick();
+                      if (typeof option.onClick === "function") {
+                        option.onClick();
+                      }
                       setIsOpen(false);
                     }}
                   >

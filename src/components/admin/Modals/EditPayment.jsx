@@ -1,6 +1,17 @@
 import { put } from "@/config/axiosConfig";
 import React, { useState } from "react";
 
+
+
+const convertToFormData = (data) => {
+  const formData = new FormData();
+  for (const key in data) {
+    formData.append(key, data[key]);
+  }
+  return formData;
+};
+
+
 const EditPayment = ({ id,  account_number, ifsc_code, bank_name, upi_id }) => {
   const [formData, setFormData] = useState({
     account_number: account_number || "",
@@ -64,19 +75,22 @@ const EditPayment = ({ id,  account_number, ifsc_code, bank_name, upi_id }) => {
     const isValid = validateForm();
     if (!isValid) return;
 
-    put({
-      api: `/temples/edit/${id}`,
-      data: formData,
-      toastConfig: {
-        messages: {
-          pending: 'Please wait',
-          success: 'Payment details updated successfully',
-          error: 'Something went wrong',
-        },
-      },
-    })
-    .then((response) => {
       
+      const formDataToSend = convertToFormData(formData);
+
+      put({
+        api: `/temples/edit/${id}`,
+        data: formDataToSend,
+        toastConfig: {
+          messages: {
+            pending: "Please wait",
+            success: "Payment details updated successfully",
+            error: "Something went wrong",
+          },
+        },
+      })
+    .then((response) => {
+      console.log(response)
     })
     .catch((error) => {
       console.error('PUT request error:', error);

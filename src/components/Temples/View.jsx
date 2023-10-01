@@ -27,6 +27,8 @@ import EditPayment from "../admin/Modals/EditPayment";
 import EditPoojaList from "../admin/Modals/EditPoojaList";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import GoogleMaps from "../admin/GoogleMap";
+import router from "next/router";
+import AddPoojaList from "../admin/Modals/AddPoojaList";
 
 const TempleView = ({
   id,
@@ -61,6 +63,12 @@ const TempleView = ({
   account_number,
   ifsc_code,
   upi_id,
+  local_place,
+  town,
+  district,
+  state,
+  country,
+  other_image,
 }) => {
   const poojaTableHeaders = [
     {
@@ -87,57 +95,78 @@ const TempleView = ({
       Header: "Remarks",
       accessor: "remarks",
     },
-    // {
-    //   Header: "  ",
-    //   accessor: "",
-    //   Cell: () => {
-    //     return (
-    //       <button type="button" className="bg-primary px-4 py-3 rounded-lg">
-    //         <EyeIcon />
-    //       </button>
-    //     );
-    //   },
-    // },
-    // {
-    //   Header: " ",
-    //   accessor: "",
-    //   Cell: () => {
-    //     return (
-    //       <CustomDropdown
-    //         button={{
-    //           render: () => <MenuIcon />,
-    //         }}
-    //         optionsContainerClassName="bg-white w-[150px] top-o right-0  py-2 shadow-lg"
-    //         optionsList={[
-    //           {
-    //             icon: <EditIcon height={15} className="mr-4" />,
-    //             name: "Edit",
-    //             className:
-    //               "flex  items-center w-full text-[16px] text-[#A9A9A9] border-b-2 border-[#A9A9A9] ",
-    //           },
-    //           {
-    //             icon: <DisableIcon height={15} className="mr-4" />,
-    //             name: "Disable",
-    //             className:
-    //               "flex  items-center w-full text-[16px] text-[#A9A9A9] border-b-2 border-[#A9A9A9] ",
-    //           },
-    //           {
-    //             icon: <TrashIcon height={15} className="mr-4" />,
-    //             name: "Delete",
-    //             className:
-    //               "flex  items-center w-full text-[16px] text-[#A9A9A9]  ",
-    //           },
-    //         ]}
-    //       />
-    //     );
-    //   },
-    // },
+    {
+      Header: "  ",
+      accessor: "",
+      Cell: () => {
+        return (
+          <button
+            type="button"
+            className="bg-primary px-4 py-3 rounded-lg"
+            onClick={() => router.push(`/admin/services/${id}`)}
+          >
+            <EyeIcon />
+          </button>
+        );
+      },
+    },
+    {
+      Header: " ",
+      accessor: "",
+      Cell: () => {
+        return (
+          <CustomDropdown
+            button={{
+              render: () => <MenuIcon />,
+            }}
+            optionsContainerClassName="bg-white w-[150px] top-o right-0  py-2 shadow-lg"
+            optionsList={[
+              {
+                icon: <EditIcon height={15} className="mr-4" />,
+                name: "Edit",
+                className:
+                  "flex items-center w-full text-[16px] text-[#A9A9A9] border-b-2 border-[#A9A9A9]",
+                onClick: onEditPoojaList,
+              },
+              {
+                icon: <DisableIcon height={15} className="mr-4" />,
+                name: "Disable",
+                className:
+                  "flex  items-center w-full text-[16px] text-[#A9A9A9] border-b-2 border-[#A9A9A9] ",
+              },
+              {
+                icon: <TrashIcon height={15} className="mr-4" />,
+                name: "Delete",
+                className:
+                  "flex  items-center w-full text-[16px] text-[#A9A9A9]  ",
+              },
+            ]}
+          />
+        );
+      },
+    },
   ];
 
   let deities = [deity, deity_2, deity_3, deity_4, deity_5, deity_6, deity_7];
-  let editTempleProps = { id, name, landmark, location };
+  let editTempleProps = {
+    id,
+    thumbnail,
+    name,
+    landmark,
+    location,
+    wh_1,
+    wh_2,
+    wh_3,
+    local_place,
+    town,
+    district,
+    state,
+    country,
+  };
 
   let EditContactDetailsProps = { id, temple_phone, temple_mobile, email, url };
+
+  // console.log(temple_phone)
 
   let EditPaymentProps = { account_number, ifsc_code, bank_name, upi_id, id };
 
@@ -151,13 +180,13 @@ const TempleView = ({
     deity_6,
     deity_7,
   };
-
+  let EditHistoryProps = { id, other_image, history_details };
   const onEditTemple = (event) => {
     modal({
       show: true,
       containerClassName: "r-bg-tertiary-dark max-w-[500px]",
       header: {
-        heading: "Edit Contact Details",
+        heading: "Edit Address",
       },
       component: (
         <div>
@@ -193,7 +222,7 @@ const TempleView = ({
       },
       component: (
         <div>
-          <EditDescription />
+          <EditDescription description={description} />
         </div>
       ),
       modalBodyClassName: "",
@@ -221,11 +250,11 @@ const TempleView = ({
       show: true,
       containerClassName: "r-bg-tertiary-dark max-w-[500px]",
       header: {
-        heading: "Edit Deity",
+        heading: "Edit History",
       },
       component: (
         <div>
-          <EditHistory />
+          <EditHistory {...EditHistoryProps} />
         </div>
       ),
       modalBodyClassName: "",
@@ -253,11 +282,28 @@ const TempleView = ({
       show: true,
       containerClassName: "r-bg-tertiary-dark max-w-[500px]",
       header: {
-        heading: "Edit Payment",
+        heading: "Edit Pooja List",
       },
       component: (
         <div>
           <EditPoojaList />
+        </div>
+      ),
+      modalBodyClassName: "",
+    });
+  };
+
+
+  const addPoojaList = (event) => {
+    modal({
+      show: true,
+      containerClassName: "r-bg-tertiary-dark max-w-[500px]",
+      header: {
+        heading: "Add Pooja List",
+      },
+      component: (
+        <div>
+          <AddPoojaList id={id} />
         </div>
       ),
       modalBodyClassName: "",
@@ -418,10 +464,10 @@ const TempleView = ({
         </div>
         <div className="mt-4 grid lg:grid-cols-2 sm:grid-1 gap-8">
           <div className="">
-            {thumbnail ? (
-              thumbnail != "" && (
+            {other_image ? (
+              other_image != "" && (
                 <Image
-                  src={thumbnail}
+                  src={other_image}
                   width={300}
                   height={300}
                   alt="temple"
@@ -449,8 +495,12 @@ const TempleView = ({
         <div className="flex justify-between">
           <h1 className="text-2xl font-semibold">Pooja List</h1>
           {admin && (
-            <button type="button" onClick={onEditPoojaList}>
-              <EditIcon />
+            <button
+              type="button"
+              className="py-[8px] text-[14px] font-semibold text-[#fff] px-[40px] bg-[#ff6b07] rounded-[10px]"
+              onClick={addPoojaList}
+            >
+              Add Pooja
             </button>
           )}
         </div>

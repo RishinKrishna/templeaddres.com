@@ -89,7 +89,7 @@ const Services = () => {
       accessor: "",
       Cell: () => {
         return (
-          <CustomDropdown
+          <CustomDropdown 
             button={{
               render: () => <MenuIcon />,
             }}

@@ -39,6 +39,11 @@ const Navbar = ({ containerClassName }) => {
             <li>
               <Link href="/login">Dashboard</Link>
             </li>
+            <li>
+                <Link  href="/temples/addtemple">
+                  Add Temple
+                </Link>
+              </li>
             {/* <li>
               <Link href="/about">About</Link>
             </li>
@@ -92,6 +97,11 @@ const Navbar = ({ containerClassName }) => {
               <li className="mt-2">
                 <Link className="text-black" href="/login">
                   Dashboard
+                </Link>
+              </li>
+              <li className="mt-2">
+                <Link className="text-black" href="/temples/addtemple">
+                  Add Temple
                 </Link>
               </li>
               {/* <li className="mt-2">
