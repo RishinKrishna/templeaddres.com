@@ -1,24 +1,44 @@
 import React, { useState } from 'react';
-import { put } from '@/config/axiosConfig';
+import { post } from '@/config/axiosConfig';
 
-const EditPoojaList = () => {
+
+
+
+
+
+
+const EditPoojaList = ({ id, pooja_name, pooja_uuid, pooja_code, pooja_desc, price, remarks, types }) => {
+
+  
+  
   const [formData, setFormData] = useState({
-    poojaCode: '',
-    poojaName: '',
-    poojaDescription: '',
-    price: '',
-    remark: '',
-    type: '',
+    pooja_name: pooja_name || '',
+    pooja_code: pooja_code || '',
+    pooja_desc: pooja_desc || '',
+    price: price || '',
+    remarks: remarks || '',
+    types: types || '',
   });
 
   const [formErrors, setFormErrors] = useState({
-    poojaCodeError: '',
     poojaNameError: '',
+    poojaCodeError: '',
     poojaDescriptionError: '',
     priceError: '',
     remarkError: '',
     typeError: '',
   });
+  
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+
+    setFormErrors({
+      ...formErrors,
+      [`${name}Error`]: '',
+    });
+  };
 
   const validateForm = () => {
     let isValid = true;
@@ -31,17 +51,17 @@ const EditPoojaList = () => {
       typeError: '',
     };
 
-    if (!formData.poojaCode || formData.poojaCode.trim() === '') {
+    if (!formData.pooja_code || formData.pooja_code.trim() === '') {
       errors.poojaCodeError = 'Please enter Pooja Code';
       isValid = false;
     }
 
-    if (!formData.poojaName || formData.poojaName.trim() === '') {
+    if (!formData.pooja_name || formData.pooja_name.trim() === '') {
       errors.poojaNameError = 'Please enter Pooja Name';
       isValid = false;
     }
 
-    if (!formData.poojaDescription || formData.poojaDescription.trim() === '') {
+    if (!formData.pooja_desc || formData.pooja_desc.trim() === '') {
       errors.poojaDescriptionError = 'Please enter Pooja Description';
       isValid = false;
     }
@@ -51,12 +71,12 @@ const EditPoojaList = () => {
       isValid = false;
     }
 
-    if (!formData.remark || formData.remark.trim() === '') {
+    if (!formData.remarks || formData.remarks.trim() === '') {
       errors.remarkError = 'Please enter Remark';
       isValid = false;
     }
 
-    if (!formData.type || formData.type.trim() === '') {
+    if (!formData.types || formData.types.trim() === '') {
       errors.typeError = 'Please enter Type';
       isValid = false;
     }
@@ -70,53 +90,63 @@ const EditPoojaList = () => {
     const isValid = validateForm();
     if (!isValid) return;
 
+    post({
+      api: `/temple/${id}/pooja/${pooja_uuid}/edit`,
+      data: {
+        pooja_name: formData.pooja_name,
+        pooja_code: formData.pooja_code,
+        pooja_desc: formData.pooja_desc,
+        price: formData.price,
+        remarks: formData.remarks,
+        types: formData.types
 
-
-
-
-
-    
+      },
+      toastConfig: {
+        messages: {
+          pending: 'Please wait',
+          success: 'Pooja List updated successfully',
+          error: 'Something went wrong',
+        },
+      },
+    });
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="mb-2 block">Pooja Code</label>
-          <input
-            type="number"
-            name="poojaCode"
-            id="poojaCode"
-            className="w-full py-2 pl-3 outline-none border border-[#00000052] text-secondary-gray bg-white bg-opacity-10 rounded-[6px]"
-            placeholder="Enter Pooja Code"
-            value={formData.poojaCode}
-            onChange={(e) => setFormData({ ...formData, poojaCode: e.target.value })}
-          />
-          <span className="text-red-500 text-[13px]">{formErrors.poojaCodeError}</span>
-        </div>
+       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="mb-2 block">Pooja Name</label>
           <input
             type="text"
-            name="poojaName"
-            id="poojaName"
+            name="pooja_name"
+            value={formData.pooja_name}
+            onChange={handleChange}
             className="w-full py-2 pl-3 outline-none border border-[#00000052] text-secondary-gray bg-white bg-opacity-10 rounded-[6px]"
             placeholder="Enter Pooja Name"
-            value={formData.poojaName}
-            onChange={(e) => setFormData({ ...formData, poojaName: e.target.value })}
           />
           <span className="text-red-500 text-[13px]">{formErrors.poojaNameError}</span>
         </div>
         <div className="mb-3">
-          <label className="mb-2 block">Pooja Description</label>
+          <label className="mb-2 block">Pooja Code</label>
           <input
             type="text"
-            name="poojaDescription"
-            id="poojaDescription"
+            name="pooja_code"
+            value={formData.pooja_code}
+            onChange={handleChange}
+            className="w-full py-2 pl-3 outline-none border border-[#00000052] text-secondary-gray bg-white bg-opacity-10 rounded-[6px]"
+            placeholder="Enter Pooja Code"
+          />
+          <span className="text-red-500 text-[13px]">{formErrors.poojaCodeError}</span>
+        </div>
+        <div className="mb-3">
+          <label className="mb-2 block">Pooja Description</label>
+          <textarea
+            name="pooja_desc"
+            rows="4"
+            value={formData.pooja_desc}
+            onChange={handleChange}
             className="w-full py-2 pl-3 outline-none border border-[#00000052] text-secondary-gray bg-white bg-opacity-10 rounded-[6px]"
             placeholder="Enter Pooja Description"
-            value={formData.poojaDescription}
-            onChange={(e) => setFormData({ ...formData, poojaDescription: e.target.value })}
           />
           <span className="text-red-500 text-[13px]">{formErrors.poojaDescriptionError}</span>
         </div>
@@ -125,24 +155,22 @@ const EditPoojaList = () => {
           <input
             type="number"
             name="price"
-            id="price"
+            value={formData.price}
+            onChange={handleChange}
             className="w-full py-2 pl-3 outline-none border border-[#00000052] text-secondary-gray bg-white bg-opacity-10 rounded-[6px]"
             placeholder="Enter Price"
-            value={formData.price}
-            onChange={(e) => setFormData({ ...formData, price: e.target.value })}
           />
           <span className="text-red-500 text-[13px]">{formErrors.priceError}</span>
         </div>
         <div className="mb-3">
-          <label className="mb-2 block">Remark</label>
+          <label className="mb-2 block">Remarks</label>
           <input
             type="text"
-            name="remark"
-            id="remark"
+            name="remarks"
+            value={formData.remarks}
+            onChange={handleChange}
             className="w-full py-2 pl-3 outline-none border border-[#00000052] text-secondary-gray bg-white bg-opacity-10 rounded-[6px]"
-            placeholder="Enter Remark"
-            value={formData.remark}
-            onChange={(e) => setFormData({ ...formData, remark: e.target.value })}
+            placeholder="Enter Remarks"
           />
           <span className="text-red-500 text-[13px]">{formErrors.remarkError}</span>
         </div>
@@ -150,12 +178,11 @@ const EditPoojaList = () => {
           <label className="mb-2 block">Type</label>
           <input
             type="text"
-            name="type"
-            id="type"
+            name="types"
+            value={formData.types}
+            onChange={handleChange}
             className="w-full py-2 pl-3 outline-none border border-[#00000052] text-secondary-gray bg-white bg-opacity-10 rounded-[6px]"
             placeholder="Enter Type"
-            value={formData.type}
-            onChange={(e) => setFormData({ ...formData, type: e.target.value })}
           />
           <span className="text-red-500 text-[13px]">{formErrors.typeError}</span>
         </div>

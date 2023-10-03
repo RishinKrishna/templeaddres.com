@@ -3,6 +3,7 @@ import EditIcon from "@/components/icons/EditIcon";
 import { useState } from "react";
 import { post } from "@/config/axiosConfig";
 
+
 const Addtemple = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [isTermsChecked, setIsTermsChecked] = useState(false);
@@ -159,7 +160,7 @@ const Addtemple = () => {
     }
     return true;
   };
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validateForm();

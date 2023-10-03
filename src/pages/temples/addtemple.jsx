@@ -196,7 +196,7 @@ const Addtemple = () => {
         Add New Temple
       </h3>
       <div className="border-b-2 border-gray-100 " />
-      <div className="w-full grid lg:grid-cols-2 md:grig-cols-1 gap-6 mt-3 p-6">
+      <div className="w-full grid lg:grid-cols-2 md:grid-cols-1 gap-6 mt-3 p-6">
         <div className="w-full">
           <div className="text-center">
             {/* <label className="mb-2 block text-center">Temple Image</label> */}

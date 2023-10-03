@@ -29,9 +29,11 @@ import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import GoogleMaps from "../admin/GoogleMap";
 import router from "next/router";
 import AddPoojaList from "../admin/Modals/AddPoojaList";
+import AddToGallery from "../admin/Modals/AddToGallery";
 
 const TempleView = ({
   id,
+  pooja_uuid,
   thumbnail,
   name,
   landmark,
@@ -72,6 +74,12 @@ const TempleView = ({
   onCloseModal,
   longitude,
   latitude,
+  pooja_name,
+  pooja_code,
+  pooja_desc,
+  price,
+  remarks,
+  types,
 }) => {
   const poojaTableHeaders = [
     {
@@ -91,6 +99,10 @@ const TempleView = ({
       accessor: "pooja_code",
     },
     {
+      Header: "Description",
+      accessor: "description",
+    },
+    {
       Header: "Price",
       accessor: "price",
     },
@@ -101,22 +113,24 @@ const TempleView = ({
     {
       Header: "  ",
       accessor: "",
-      Cell: () => {
-        return (
-          <button
-            type="button"
-            className="bg-primary px-4 py-3 rounded-lg"
-            onClick={() => router.push(`/admin/services/${id}`)}
-          >
-            <EyeIcon />
-          </button>
-        );
-      },
+      // Cell: () => {
+      //   return (
+      //     <button
+      //       type="button"
+      //       className="bg-primary px-4 py-3 rounded-lg"
+      //       onClick={() => router.push(`/admin/services/${id}`)}
+      //     >
+      //       <EyeIcon />
+      //     </button>
+      //   );
+      // },
     },
     {
       Header: " ",
       accessor: "",
-      Cell: () => {
+      Cell: (data) => {
+        let PoojaDetails = data.row.original;
+        // console.log(PoojaDetails);
         return (
           <CustomDropdown
             button={{
@@ -129,7 +143,10 @@ const TempleView = ({
                 name: "Edit",
                 className:
                   "flex items-center w-full text-[16px] text-[#A9A9A9] border-b-2 border-[#A9A9A9]",
-                onClick: onEditPoojaList,
+
+                onClick: () => {
+                  onEditPoojaList(PoojaDetails);
+                },
               },
               {
                 icon: <DisableIcon height={15} className="mr-4" />,
@@ -169,8 +186,6 @@ const TempleView = ({
 
   let EditContactDetailsProps = { id, temple_phone, temple_mobile, email, url };
 
-  // console.log(temple_phone)
-
   let EditPaymentProps = { account_number, ifsc_code, bank_name, upi_id, id };
 
   let EditDeitysProps = {
@@ -184,11 +199,14 @@ const TempleView = ({
     deity_7,
   };
   let EditHistoryProps = { id, other_image, story };
+
+  // console.log(pooja_uuid, "pooja_uuid0000000000" );
+
   const onEditTemple = (event) => {
     modal({
       show: true,
-      containerClassName: "w-full max-w-[800px]",
-      maxWidth: 800,
+      containerClassName: "w-full max-w-[500px]",
+      maxWidth: 550,
       header: {
         heading: "Edit Address",
       },
@@ -222,12 +240,13 @@ const TempleView = ({
     modal({
       show: true,
       containerClassName: " max-w-[500px]",
+      maxWidth: 550,
       header: {
         heading: "Edit Description",
       },
       component: (
         <div>
-          <EditDescription description={description} />
+          <EditDescription id={id} description={description} />
         </div>
       ),
       modalBodyClassName: "",
@@ -283,7 +302,7 @@ const TempleView = ({
     });
   };
 
-  const onEditPoojaList = (event) => {
+  const onEditPoojaList = (EditPoojaListProps) => {
     modal({
       show: true,
       containerClassName: " max-w-[500px]",
@@ -292,7 +311,7 @@ const TempleView = ({
       },
       component: (
         <div>
-          <EditPoojaList />
+          <EditPoojaList {...EditPoojaListProps} id={id} />
         </div>
       ),
       modalBodyClassName: "",
@@ -309,6 +328,21 @@ const TempleView = ({
       component: (
         <div>
           <AddPoojaList id={id} />
+        </div>
+      ),
+      modalBodyClassName: "",
+    });
+  };
+  const addToGallery = (event) => {
+    modal({
+      show: true,
+      containerClassName: " max-w-[500px]",
+      header: {
+        heading: "Add Gallery",
+      },
+      component: (
+        <div>
+          <AddToGallery id={id} />
         </div>
       ),
       modalBodyClassName: "",
@@ -406,7 +440,7 @@ const TempleView = ({
                 </div>
               )}
             </div>
-            <div className="flex gap-x-4 mt-2">
+            <div className="grid grid-cols-3 gap-4 mt-2">
               {deities.map((deity, index) => {
                 if (deity && deity !== "") {
                   return (
@@ -491,10 +525,24 @@ const TempleView = ({
         </div>
       </div>
 
-      <div className="py-5">
+      <div className="flex justify-between">
+        <h1 className="text-2xl font-semibold">Gallery</h1>
+        {admin && (
+          <button
+            type="button"
+            className="py-[8px] text-[14px] font-semibold text-[#fff] px-[40px] bg-[#ff6b07] rounded-[10px]"
+            onClick={addToGallery}
+          >
+            Add To Gallery
+          </button>
+        )}
+      </div>
+      <GalaryRow gallery={gallery} />
+
+      {/* <div className="py-5">
         <h2 className=" font-semibold text-[25px]">Gallery</h2>
         <GalaryRow gallery={gallery} />
-      </div>
+      </div> */}
 
       <div className="py-5">
         <div className="flex justify-between">

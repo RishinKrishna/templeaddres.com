@@ -1,20 +1,56 @@
 import React, { useState } from 'react';
+import { put } from '@/config/axiosConfig';
 
-const EditDescription = () => {
-  const [description, setDescription] = useState('');
-  const [descriptionError, setDescriptionError] = useState('');
 
-  const validateForm = () => {
-    let isValid = true;
-    if (!description || description.trim() === '') {
-      setDescriptionError('Please enter the description');
-      isValid = false;
-    } else {
-      setDescriptionError('');
-    }
-    return isValid;
+const convertToFormData = (data) => {
+  const formData = new FormData();
+  for (const key in data) {
+    formData.append(key, data[key]);
+  }
+  return formData;
+};
+
+
+
+const EditDescription = ({ id, description }) => {
+
+  const [formData, setFormData] = useState({
+    description: description || "",
+  });
+
+  const [formErrors, setFormErrors] = useState({
+    descriptionError: "",
+   
+  });
+  const formDataToSend = convertToFormData(formData);
+
+  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+
+    setFormErrors({
+      ...formErrors,
+      [`${name}Error`]: "",
+    });
   };
 
+  
+  const validateForm = () => {
+    let isValid = true;
+    const errors = {
+      descriptionError: "",
+    };
+  
+    if (!formData.description || formData.description.trim() === "") {
+      errors.descriptionError = "Please enter Temple Description";
+      isValid = false;
+    }
+    
+    setFormErrors(errors);
+    return isValid;
+  };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const isValid = validateForm();
@@ -22,7 +58,19 @@ const EditDescription = () => {
 
   
 
-    console.log('Description:', description);
+   
+
+    put({
+      api: `/temples/edit/${id}`,
+      data: formDataToSend,
+      toastConfig: {
+        messages: {
+          pending: "Please wait",
+          success: "Payment details updated successfully",
+          error: "Something went wrong",
+        },
+      },
+    })
   };
 
   return (
@@ -34,19 +82,14 @@ const EditDescription = () => {
             name="description"
             id="description"
             rows="4" 
-            className={`w-full py-2 pl-3 outline-none border border-[#00000052] text-secondary-gray bg-white bg-opacity-10 rounded-[6px] ${
-              descriptionError ? 'border-red-500' : ''
-            }`}
+            className={`w-full py-2 pl-3 outline-none border border-[#00000052] text-secondary-gray bg-white bg-opacity-10 rounded-[6px]           descriptionError ? 'border-red-500' : ''
+            `}
             placeholder="Enter the description"
-            value={description}
-            onChange={(e) => {
-              setDescription(e.target.value);
-              setDescriptionError('');
-            }}
+            value={formData.description}
+            onChange={handleChange}
           />
-          {descriptionError && (
-            <span className="text-red-500 text-[13px]">{descriptionError}</span>
-          )}
+         
+            <span className="text-red-500 text-[13px]">{formErrors.descriptionError}</span>
         </div>
         <div className="flex justify-end items-center mt-8">
           <button
