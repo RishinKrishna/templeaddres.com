@@ -73,7 +73,7 @@ const ServicesInfo = () => {
                 <LandmarkIcon />
               </div>
               <div className="">
-                <p className="text-secondary-gray ">Kakkor</p>
+                <p className="text-secondary-gray ">{service.location}</p>
               </div>
 
               <div className=" ml-auto">

@@ -73,6 +73,7 @@ const Login = () => {
       },
     }).then((response) => {
       if (response.data.success) {
+        localStorage.setItem('accessToken', response.data.data.access_token)
         router.push("/admin");
       }
     });

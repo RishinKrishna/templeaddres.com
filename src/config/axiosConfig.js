@@ -71,24 +71,32 @@ const post = ({ api, data, config, toastConfig }) => {
   });
 };
 
-const put = ({ api, data, config }) => {
-  return toast.promise(
-    new Promise((resolve, reject) => {
-      axiosInstance
-        .put(api, data, config)
-        .then((response) => {
-          resolve(response);
-        })
-        .catch((error) => {
-          // handleResponse(error);
-          reject();
-        });
-    }),
-    {
-      pending: "Promise is pending",
-      success: "Promise resolved 👌",
-      error: "Promise rejected 🤯",
-    }
-  );
+const put = ({ api, data, config, toastConfig }) => {
+  if (toastConfig && toastConfig.messages) {
+    return toast.promise(
+      new Promise((resolve, reject) => {
+        axiosInstance
+          .put(api, data, config)
+          .then((response) => {
+            resolve(response);
+          })
+          .catch((error) => {
+            reject();
+          });
+      }),
+      toastConfig.messages
+    );
+  }
+  return new Promise((resolve, reject) => {
+    axiosInstance
+      .put(api, data, config)
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((error) => {
+        reject();
+      });
+  });
 };
+
 export { get, post, put };

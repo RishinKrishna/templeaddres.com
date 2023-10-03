@@ -120,7 +120,7 @@ const Temples = () => {
           />
         );
       },
-    },
+    }, 
   ];
 
   const getTempleList = () => {

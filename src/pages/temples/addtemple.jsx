@@ -1,11 +1,11 @@
-import Layout from "@/Layout/admin";
 import EditIcon from "@/components/icons/EditIcon";
 import { useState } from "react";
 import { post } from "@/config/axiosConfig";
-
+import NonAdminLayout from "@/Layout";
 
 const Addtemple = () => {
   const [imagePreview, setImagePreview] = useState(null);
+
   const [isTermsChecked, setIsTermsChecked] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -49,14 +49,14 @@ const Addtemple = () => {
 
     if (type === "checkbox") {
       setIsTermsChecked(checked);
-    } else if (name === "image" && files[0]) {
+    } else if (name === "image") {
       setFormData({
         ...formData,
-        [name]: files[0], // handle image file
+        [name]: files[0],
       });
       setFormError({
         ...FormError,
-        imageErr: "", // clear image error on change
+        imageErr: "",
       });
     } else {
       setFormData({
@@ -160,12 +160,14 @@ const Addtemple = () => {
     }
     return true;
   };
- 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validateForm();
     if (!isValid) return;
 
+    const formDataToSend = new FormData();
+    formDataToSend.append("image", formData.image);
     post({
       api: "/temples/add",
       data: {
@@ -194,7 +196,7 @@ const Addtemple = () => {
         Add New Temple
       </h3>
       <div className="border-b-2 border-gray-100 " />
-      <div className="w-full grid lg:grid-cols-2 md:grig-cols-1 gap-6 mt-3 p-6">
+      <div className="w-full grid lg:grid-cols-2 md:grid-cols-1 gap-6 mt-3 p-6">
         <div className="w-full">
           <div className="text-center">
             {/* <label className="mb-2 block text-center">Temple Image</label> */}
@@ -286,25 +288,25 @@ const Addtemple = () => {
                 {FormError.addressErr}
               </span>
             </div>
-            <div className="mt-3">
-              <label className="mb-2 block ">Location</label>
-              <input
-                type="text"
-                name="location"
-                id="location"
-                className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px]"
-                placeholder="Enter Your Location"
-                onChange={handleChange}
-              />
-              <span className="text-red-500 text-[13px]">
-                {FormError.locationErr}
-              </span>
-            </div>
           </div>
         </div>
 
         <div className="w-full">
           <div className="">
+            <label className="mb-2 block ">Location</label>
+            <input
+              type="text"
+              name="location"
+              id="location"
+              className="w-full py-3 pl-4 outline-none border border-[#00000052] text-[#000] rounded-[6px]"
+              placeholder="Enter Your Location"
+              onChange={handleChange}
+            />
+            <span className="text-red-500 text-[13px]">
+              {FormError.locationErr}
+            </span>
+          </div>
+          <div className="mt-3">
             <label className="mb-2 block ">Association Person Number</label>
             <input
               type="number"
@@ -370,7 +372,7 @@ const Addtemple = () => {
                 name="termsConditions"
                 checked={isTermsChecked}
                 onChange={handleChange}
-              />
+              />{" "}
               I Agree With Terms & Conditions of Service
             </label>
             <br />
@@ -384,7 +386,7 @@ const Addtemple = () => {
               className="py-[9px]  font-semibold text-[#fff] px-[50px] bg-[#ff6b07] rounded-[10px] ml-auto"
               onClick={handleSubmit}
             >
-              Add Temple
+              Add Service
             </button>
           </div>
         </div>
@@ -392,5 +394,10 @@ const Addtemple = () => {
     </div>
   );
 };
-Addtemple.getLayout = (page) => <Layout>{page}</Layout>;
+
+Addtemple.getLayout = (page) => (
+  <NonAdminLayout navbar={{ containerClassName: "bg-white text-[#666666]" }}>
+    {page}
+  </NonAdminLayout>
+);
 export default Addtemple;

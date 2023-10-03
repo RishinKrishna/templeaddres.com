@@ -11,27 +11,36 @@ const TempleInfo = () => {
   const [gallery, setGallery] = useState([]);
   const [poojaList, setPoojaList] = useState([]);
 
-  useEffect(() => {
-    const fetchTempleId = () => {
-      get({ api: `/temples/view/${id}` }).then((response) => {
-        setTemple({ ...temple, ...response.data.data });
-      });
-    };
+  const fetchTempleId = () => {
+    get({ api: `/temples/view/${id}` }).then((response) => {
+      setTemple({ ...temple, ...response.data.data });
+    });
+  };
 
-    const getGallary = () => {
-      get({ api: `/temples/gallery-view/${id}` }).then((response) => {
-        let galleryObj = response.data.data;
-        const galleryArr = Object.keys(galleryObj)
-          .filter((imgObj) => !imgObj.includes("gallery"))
-          .map((imgKey) => galleryObj[imgKey]);
-        setGallery(galleryArr);
-      });
-    };
-    const getPoojaList = () => {
-      get({ api: `/temples/pooja-list/${id}` }).then((response) => {
-        setPoojaList(response.data.data);
-      });
-    };
+  const getGallary = () => {
+    get({ api: `/temples/gallery-view/${id}` }).then((response) => {
+      let galleryObj = response.data.data;
+      const galleryArr = Object.keys(galleryObj)
+        .filter((imgObj) => !imgObj.includes("gallery"))
+        .map((imgKey) => galleryObj[imgKey]);
+      setGallery(galleryArr);
+    });
+  };
+  const getPoojaList = () => {
+    get({ api: `/temples/pooja-list/${id}` }).then((response) => {
+      setPoojaList(response.data.data);
+    });
+  };
+  const onCloseModal = () => {
+    console.log("sopskdfhjwikope");
+    fetchTempleId();
+    getGallary();
+    getPoojaList();
+  };
+
+  let props = { ...temple, id, onCloseModal, gallery, admin: true, poojaList };
+
+  useEffect(() => {
     if (id && Object.keys(temple).length === 0) {
       fetchTempleId();
       getGallary();
@@ -41,12 +50,7 @@ const TempleInfo = () => {
 
   return (
     <>
-      <TempleView
-        {...temple}
-        gallery={gallery}
-        admin={true}
-        poojaList={poojaList}
-      />
+      <TempleView {...props} />
     </>
   );
 };

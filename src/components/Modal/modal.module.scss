@@ -10,7 +10,9 @@
   transform: translate(-50%, -50%);
   border-radius: 10px;
   border: 1px solid #fff;
-  color: #fff;
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.925); 
+
 
   .modal-header-container {
     width: 100%;
@@ -30,7 +32,7 @@
     }
   }
   .modal-body {
-    padding: 25px;
+    padding: 0 25px 25px 25px;
    
   }
 }

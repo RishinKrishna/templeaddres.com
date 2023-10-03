@@ -4,9 +4,11 @@ import { useState } from "react";
 import { post } from "@/config/axiosConfig";
 
 const AddServies = () => {
+  const [imagePreview, setImagePreview] = useState(null);
   const [isTermsChecked, setIsTermsChecked] = useState(false);
 
   const [formData, setFormData] = useState({
+    image: null,
     name: "",
     description: "",
     address: "",
@@ -21,6 +23,7 @@ const AddServies = () => {
   });
 
   const [FormError, setFormError] = useState({
+    imageErr: "",
     nameErr: "",
     descriptionErr: "",
     addressErr: "",
@@ -36,6 +39,14 @@ const AddServies = () => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+
+    if (name === "image" && files[0]) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(files[0]);
+    }
 
     if (type === "checkbox") {
       setIsTermsChecked(checked);
@@ -58,6 +69,7 @@ const AddServies = () => {
   };
 
   const validateForm = () => {
+    let imageErr = "";
     let nameErr = "";
     let descriptionErr = "";
     let addressErr = "";
@@ -69,6 +81,10 @@ const AddServies = () => {
     let serviceAreasErr = "";
     let phoneErr = "";
     let termsConditionsErr = "";
+
+    if (!formData.image) {
+      imageErr = "Please select an image";
+    }
 
     if (!formData.name || formData.name === "") {
       nameErr = "Please enter your name ";
@@ -108,6 +124,7 @@ const AddServies = () => {
     }
 
     if (
+      imageErr !== "" ||
       nameErr !== "" ||
       descriptionErr !== "" ||
       addressErr !== "" ||
@@ -122,6 +139,7 @@ const AddServies = () => {
     ) {
       setFormError({
         ...FormError,
+        imageErr,
         nameErr,
         descriptionErr,
         addressErr,
@@ -173,16 +191,42 @@ const AddServies = () => {
   return (
     <div className="bg-white rounded-[20px]">
       <h3 className="text-[20px] font-semibold mb-3 pl-6 pt-3">
-      Add New Servies
+        Add New Servies
       </h3>
       <div className="border-b-2 border-gray-100 " />
       <div className="w-full bg-white lg:p-6 grid lg:grid-cols-2 md:grig-cols-1 gap-6 mt-3 p-6">
         <div className="w-full">
-          <div className="flex justify-start items-center">
-            <div className="w-[82px] h-[82px] bg-green-200 rounded-full border-2 border-[#FF6B07]"></div>
-            <div className="ml-8">
-              <EditIcon />
+          <div className="text-center">
+            {/* <label className="mb-2 block text-center">Temple Image</label> */}
+            <div className="flex justify-center items-end">
+              <div className="flex justify-center items-center w-[40%] h-[120px] object-cover  border-2 border-[#FF6B07] rounded-lg">
+                {imagePreview && (
+                  <img
+                    src={imagePreview}
+                    alt="Preview"
+                    className="w-full h-[120px] p-1  object-cover rounded-lg"
+                  />
+                )}
+
+                <div className="flex items-center">
+                  <input
+                    type="file"
+                    name="image"
+                    id="image"
+                    accept="image/*"
+                    onChange={handleChange}
+                    className="py-3 pl-4 outline-none border hidden border-[#00000052] text-[#000] rounded-full mr-3"
+                  />
+                </div>
+              </div>
+              <EditIcon
+                className="cursor-pointer ml-5"
+                onClick={() => document.getElementById("image").click()}
+              />
             </div>
+            <span className="text-red-500 text-[13px]">
+              {FormError.imageErr}
+            </span>
           </div>
 
           <form action="" className="">
