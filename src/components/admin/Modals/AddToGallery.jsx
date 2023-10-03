@@ -12,15 +12,14 @@ const AddToGallery = () => {
     const imagesArray = selectedFilesArray.map((file) => {
       return URL.createObjectURL(file);
     });
-
     setSelectedImages((previousImages) => previousImages.concat(imagesArray));
 
     event.target.value = "";
   };
 
   function deleteHandler(image) {
-    setSelectedImages(selectedImages.filter((e) => e !== image));
-    URL.revokeObjectURL(image);
+    setSelectedImages(selectedImages.filter((imageLink) => imageLink !== image));
+    // URL.revokeObjectURL(image);
   }
 
   return (
@@ -41,6 +40,7 @@ const AddToGallery = () => {
       {selectedImages.length > 0 &&
         (selectedImages.length > 7 ? (
           <p className="error text-center ">
+            {/* eslint-disable-next-line react/no-unescaped-entities */}
             You can't upload more than 7 images! <br />
             <span className="text-[red]">
               please delete <b>{selectedImages.length - 7}</b> of them{" "}

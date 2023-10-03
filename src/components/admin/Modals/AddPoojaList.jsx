@@ -84,8 +84,8 @@ const AddPoojaList = ({ id }) => {
       post({
         api: `/temple/pooja/add/${id}`,
         data: {
-          pooja_name: formData.poojaCode,
-          pooja_code: formData.poojaName,
+          pooja_name: formData.poojaName,
+          pooja_code: formData.poojaCode,
           pooja_desc: formData.poojaDescription,
           remarks: formData.remark,
           types: formData.type,
@@ -108,7 +108,7 @@ const AddPoojaList = ({ id }) => {
         <div className="mb-3">
           <label className="mb-2 block">Pooja Code</label>
           <input
-            type="number"
+            type="text"
             name="poojaCode"
             id="poojaCode"
             className="w-full py-2 pl-3 outline-none border border-[#00000052] text-secondary-gray bg-white bg-opacity-10 rounded-[6px]"
