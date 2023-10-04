@@ -90,7 +90,8 @@ const Temples = () => {
     {
       Header: " ",
       accessor: "",
-      Cell: () => {
+      Cell: (data) => {
+        // let id = data.row.original.id
         return (
           <CustomDropdown
             button={{
@@ -109,6 +110,7 @@ const Temples = () => {
                 name: "Disable",
                 className:
                   "flex  items-center w-full text-[16px] text-[#A9A9A9] border-b-2 border-[#A9A9A9] ",
+                onClick: ()=> handleDisable(id),
               },
               {
                 icon: <TrashIcon height={15} className="mr-4" />,
@@ -120,8 +122,15 @@ const Temples = () => {
           />
         );
       },
-    }, 
+    },
   ];
+
+  const handleDisable = (id)=>{
+    // put)
+    // API PUT with id
+
+    // AFTER RESPONSE getTempleList()
+  }
 
   const getTempleList = () => {
     get({

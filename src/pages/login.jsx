@@ -2,7 +2,7 @@ import login_img from "../assets/login_img.jpg";
 import Image from "next/image";
 import Link from "next/link";
 import Styles from "../styles/login.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { post } from "../config/axiosConfig";
 import router from "next/router";
 
@@ -73,12 +73,18 @@ const Login = () => {
       },
     }).then((response) => {
       if (response.data.success) {
-        localStorage.setItem('accessToken', response.data.data.access_token)
+        localStorage.setItem("accessToken", response.data.data.access_token);
         router.push("/admin");
       }
     });
   };
 
+  useEffect(() => {
+    let token = localStorage.getItem("accessToken");
+    if (token && token !== "" && token !== null) {
+      router.push("/admin");
+    }
+  }, []);
   return (
     <section className="flex relative w-full h-[100vh] ">
       <div className="relative w-full h-[20%] md:h-[100vh] hidden md:block">
@@ -136,7 +142,7 @@ const Login = () => {
             <div className="mt-1 ">
               <label htmlFor="remember-me">
                 <input type="checkbox" id="remember-me" name="rememberMe" />
-                 Remember me
+                Remember me
               </label>
             </div>
 

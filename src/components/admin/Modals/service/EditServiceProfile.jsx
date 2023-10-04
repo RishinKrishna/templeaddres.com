@@ -57,7 +57,7 @@ const EditServiceProfile = ({
       setLocationError("");
     }
 
-    if (!selectedImage.image) {
+    if (!selectedImage.image && selectedImage.preview === "") {
       setImageError("Please select an image");
       isValid = false;
     } else {
@@ -94,7 +94,7 @@ const EditServiceProfile = ({
       formData.append("profileImage", selectedImage.image);
 
       put({
-        api: `/service/edit/${id}`, 
+        api: `/service/edit/${id}`,
         data: formData,
         toastConfig: {
           messages: {
@@ -102,14 +102,12 @@ const EditServiceProfile = ({
             success: "You have successfully updated Service",
             error: "Something went wrong",
           },
-          
         },
       })
         .then((response) => {
           console.log("Success:", response);
         })
         .catch((error) => {
-     
           console.error("Error:", error);
         });
     }
