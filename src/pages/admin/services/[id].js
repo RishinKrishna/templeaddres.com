@@ -11,8 +11,13 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import UserIcon from "@/components/icons/UserIcon";
 import { get } from "@/config/axiosConfig";
+import EditServiceProfile from "@/components/admin/Modals/service/EditServiceProfile";
+import { modal } from "@/components/Modal";
+import EditServiceDescription from "@/components/admin/Modals/service/EditServiceDescription";
+import EditServiceContactDetails from "@/components/admin/Modals/service/EditServiceContactDetails";
+import EditServiceAditionalDetails from "@/components/admin/Modals/service/EditServiceAditionalDetails";
 
-const ServicesInfo = () => {
+const ServicesInfo = ({ wh_1, wh_2, wh_3 }) => {
   const { query } = useRouter();
   const id = query.id;
   const [service, setService] = useState({});
@@ -28,6 +33,89 @@ const ServicesInfo = () => {
       getService();
     }
   }, [id]);
+
+  const onEditServiceProfile = (event) => {
+    modal({
+      show: true,
+      containerClassName: " max-w-[500px]",
+      maxWidth: 550,
+      header: {
+        heading: "Edit Service",
+      },
+      component: (
+        <div>
+          <EditServiceProfile
+            id={id}
+            profileImage={service.profile_image}
+            name={service.name}
+            address={service.address}
+            location={service.location}
+            wh_1={wh_1}
+            wh_2={wh_2}
+            wh_3={wh_3}
+          />
+        </div>
+      ),
+      modalBodyClassName: "",
+    });
+  };
+  const onEditServiceDescription = (event) => {
+    modal({
+      show: true,
+      containerClassName: " max-w-[500px]",
+      maxWidth: 550,
+      header: {
+        heading: "Edit Service Description",
+      },
+      component: (
+        <div>
+          <EditServiceDescription id={id} description={service.description} />
+        </div>
+      ),
+      modalBodyClassName: "",
+    });
+  };
+  const onEditServiceContactDetails = (event) => {
+    modal({
+      show: true,
+      containerClassName: " max-w-[500px]",
+      maxWidth: 500,
+      header: {
+        heading: "Edit Service Contact Details",
+      },
+      component: (
+        <div>
+          <EditServiceContactDetails
+            id={id}
+            email={service.email_address}
+            mobile={service.contact_number}
+          />
+        </div>
+      ),
+      modalBodyClassName: "",
+    });
+  };
+  const onEditServiceAditionalDetails = (event) => {
+    modal({
+      show: true,
+      containerClassName: " max-w-[500px]",
+      maxWidth: 500,
+      header: {
+        heading: "Edit Service Aditional Details",
+      },
+      component: (
+        <div>
+          <EditServiceAditionalDetails
+            id={id}
+            service_areas={service.service_areas}
+            booking_available={service.booking_available ? "Yes" : "No"}
+          />
+        </div>
+      ),
+      modalBodyClassName: "",
+    });
+  };
+
   return (
     <div className="bg-white grid lg:grid-cols-2 sm:grid-cols-1 gap-x-8 pb-10 p-5 rounded-[16px] relative">
       <div>
@@ -77,7 +165,9 @@ const ServicesInfo = () => {
               </div>
 
               <div className=" ml-auto">
-                <EditIcon />
+                <button type="button" onClick={onEditServiceProfile}>
+                  <EditIcon />
+                </button>
               </div>
             </div>
           </div>
@@ -87,15 +177,22 @@ const ServicesInfo = () => {
               <ClockIcon />
             </div>
             <div className="flex gap-x-6">
-              <p className="text-secondary-gray text-md ">
-                09:30 AM to 5:00 PM
-              </p>
+              {/* <p className="text-secondary-gray text-md ">
+                09:30 AM to 5:00 PM </p> */}
+              <p className="text-secondary-gray text-md ">{wh_1}</p>
+              <p className="text-secondary-gray text-md ">{wh_2}</p>
+              <p className="text-secondary-gray text-md ">{wh_3}</p>
             </div>
           </div>
           <div>
             <div className="my-4">
               <div className="flex justify-between">
                 <h1 className="text-xl font-[500]">Description</h1>
+                <div className=" ml-auto">
+                  <button type="button" onClick={onEditServiceDescription}>
+                    <EditIcon />
+                  </button>
+                </div>
               </div>
               <div className="border-b-2 border-opacity-20 border-b-secondary-gray pb-4">
                 <p className="text-secondary-gray mt-2  text-[13px]">
@@ -106,6 +203,11 @@ const ServicesInfo = () => {
             <div className="mb-4">
               <div className="flex justify-between my-3">
                 <h1 className="text-xl font-[500]">Contact Details</h1>
+                <div className=" ml-auto">
+                  <button type="button" onClick={onEditServiceContactDetails}>
+                    <EditIcon />
+                  </button>
+                </div>
               </div>
 
               <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-6 mt-3">
@@ -120,7 +222,17 @@ const ServicesInfo = () => {
                 </div>
               </div>
               <div className="mt-3">
-                <h1 className="text-xl font-[500]">Aditional Details</h1>
+                <div className="flex justify-between my-3">
+                  <h1 className="text-xl font-[500]">Aditional Details</h1>
+                  <div className=" ml-auto">
+                    <button
+                      type="button"
+                      onClick={onEditServiceAditionalDetails}
+                    >
+                      <EditIcon />
+                    </button>
+                  </div>
+                </div>
                 <p className="text-secondary-gray mt-2  text-[13px]">
                   Service Areas: {service.service_areas}
                 </p>

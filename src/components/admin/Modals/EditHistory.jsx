@@ -48,7 +48,7 @@ const EditHistory = ({ id, other_image = "", history_details }) => {
         toastConfig: {
           messages: {
             pending: "Please wait",
-            success: "Payment details updated successfully",
+            success: "History updated successfully",
             error: "Something went wrong",
           },
         },
@@ -129,6 +129,8 @@ const EditHistory = ({ id, other_image = "", history_details }) => {
         {imageError && (
           <span className="text-red-500 text-[13px]">{imageError}</span>
         )}
+
+        
         <div className="mt-3">
           <label className="mb-2 block">Edit History</label>
           <textarea

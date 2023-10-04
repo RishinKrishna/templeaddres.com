@@ -14,7 +14,6 @@ import EditIcon from "../icons/EditIcon";
 import DisableIcon from "../icons/DisableIcon";
 import TrashIcon from "../icons/TrashIcon";
 import { CustomDropdown } from "../CustomDropdown";
-import EyeIcon from "../icons/EyeIcon";
 import TemplesIcon from "../icons/TemplesIcon";
 import QrAlt from "../../assets/qr.png";
 import { modal } from "../Modal";
@@ -25,9 +24,7 @@ import EditHistory from "../admin/Modals/EditHistory";
 import EditTemple from "../admin/Modals/EditTemple";
 import EditPayment from "../admin/Modals/EditPayment";
 import EditPoojaList from "../admin/Modals/EditPoojaList";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import GoogleMaps from "../admin/GoogleMap";
-import router from "next/router";
 import AddPoojaList from "../admin/Modals/AddPoojaList";
 import AddToGallery from "../admin/Modals/AddToGallery";
 

@@ -160,7 +160,7 @@ const EditTemple = ({
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setSelectedImage({preview:reader.result, image:""});
+        setSelectedImage({ preview: reader.result, image: "" });
       };
       reader.readAsDataURL(file);
     }
