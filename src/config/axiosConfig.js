@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-
+import router from "next/router";
 const axiosInstance = axios.create();
 
 axiosInstance.interceptors.request.use((config) => {
@@ -14,7 +14,13 @@ axiosInstance.interceptors.request.use((config) => {
 const handleResponse = (error) => {
   let status = error.response?.status;
   let errorStatusCode = [400, 500, 404, 403];
+  let unAuthorizedStatusCode = [401];
+
+  if (unAuthorizedStatusCode.includes(status)) {
+    router.push("/login");
+  }
 };
+
 const get = ({ api, config, toastConfig }) => {
   if (toastConfig && toastConfig.messages) {
     return toast.promise(
@@ -25,6 +31,8 @@ const get = ({ api, config, toastConfig }) => {
             resolve(response);
           })
           .catch((error) => {
+            console.log(error);
+            handleResponse(error);
             reject();
           });
       }),
@@ -38,6 +46,8 @@ const get = ({ api, config, toastConfig }) => {
         resolve(response);
       })
       .catch((error) => {
+        console.log(error);
+        handleResponse(error);
         reject();
       });
   });
@@ -53,6 +63,8 @@ const post = ({ api, data, config, toastConfig }) => {
             resolve(response);
           })
           .catch((error) => {
+            console.log(error);
+            handleResponse(error);
             reject();
           });
       }),
@@ -66,6 +78,8 @@ const post = ({ api, data, config, toastConfig }) => {
         resolve(response);
       })
       .catch((error) => {
+        console.log(error);
+        handleResponse(error);
         reject();
       });
   });
@@ -81,6 +95,8 @@ const put = ({ api, data, config, toastConfig }) => {
             resolve(response);
           })
           .catch((error) => {
+            console.log(error);
+            handleResponse(error);
             reject();
           });
       }),
@@ -94,6 +110,8 @@ const put = ({ api, data, config, toastConfig }) => {
         resolve(response);
       })
       .catch((error) => {
+        console.log(error);
+        handleResponse(error);
         reject();
       });
   });
@@ -108,6 +126,8 @@ const deleteData = ({ api, data, config, toastConfig }) => {
             resolve(response);
           })
           .catch((error) => {
+            console.log(error);
+            handleResponse(error);
             reject();
           });
       }),
@@ -121,6 +141,8 @@ const deleteData = ({ api, data, config, toastConfig }) => {
         resolve(response);
       })
       .catch((error) => {
+        console.log(error);
+        handleResponse(error);
         reject();
       });
   });
