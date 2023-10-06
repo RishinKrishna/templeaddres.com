@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import { put } from '@/config/axiosConfig';
 
-
 const convertToFormData = (data) => {
-  const formData = new FormData();
-  for (const key in data) {
-    formData.append(key, data[key]);
-  }
-  return formData;
-};
-
-
-
-const EditDescription = ({ id, description }) => {
-
+    const formData = new FormData();
+    for (const key in data) {
+      formData.append(key, data[key]);
+    }
+    return formData;
+  };
+  
+  
+const EditServiceDescription = ({id, description}) => {
+    
   const [formData, setFormData] = useState({
     description: description || "",
   });
@@ -61,7 +59,7 @@ const EditDescription = ({ id, description }) => {
    
 
     put({
-      api: `/temples/edit/${id}`,
+      api: `/service/edit/${id}`,
       data: formDataToSend,
       toastConfig: {
         messages: {
@@ -75,33 +73,33 @@ const EditDescription = ({ id, description }) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="mb-2 block">Description</label>
-          <textarea
-            name="description"
-            id="description"
-            rows="4" 
-            className={`w-full py-2 pl-3 outline-none border border-[#00000052] text-secondary-gray bg-white bg-opacity-10 rounded-[6px]           descriptionError ? 'border-red-500' : ''
-            `}
-            placeholder="Enter the description"
-            value={formData.description}
-            onChange={handleChange}
-          />
-         
-            <span className="text-red-500 text-[13px]">{formErrors.descriptionError}</span>
-        </div>
-        <div className="flex justify-end items-center mt-8">
-          <button
-            type="submit"
-            className="py-[9px] font-semibold text-[#fff] px-[50px] bg-[#ff6b07] rounded-[10px]"
-          >
-            Save Description
-          </button>
-        </div>
-      </form>
-    </div>
-  );
-};
+    <form onSubmit={handleSubmit}>
+      <div className="mb-3">
+        <label className="mb-2 block">Description</label>
+        <textarea
+          name="description"
+          id="description"
+          rows="4" 
+          className={`w-full py-2 pl-3 outline-none border border-[#00000052] text-secondary-gray bg-white bg-opacity-10 rounded-[6px]           descriptionError ? 'border-red-500' : ''
+          `}
+          placeholder="Enter the description"
+          value={formData.description}
+          onChange={handleChange}
+        />
+       
+          <span className="text-red-500 text-[13px]">{formErrors.descriptionError}</span>
+      </div>
+      <div className="flex justify-end items-center mt-8">
+        <button
+          type="submit"
+          className="py-[9px] font-semibold text-[#fff] px-[50px] bg-[#ff6b07] rounded-[10px]"
+        >
+          Save Description
+        </button>
+      </div>
+    </form>
+  </div>    
+  )
+}
 
-export default EditDescription;
+export default EditServiceDescription

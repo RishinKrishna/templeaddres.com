@@ -1,35 +1,21 @@
 import React, { useState } from "react";
 import { put } from "@/config/axiosConfig";
 
-const EditContactDetails = ({
-  id,
-  temple_phone = "",
-  temple_mobile,
-  email,
-  url,
-}) => {
+const EditServiceContactDetails = ({ id, email, contact_number, mobile }) => {
   const [formErrors, setFormErrors] = useState({
-    phoneError: "",
-    mobileError: "",
     emailError: "",
-    urlError: "",
+    mobileError: "",
   });
-  const [inputTemplePhone, setInputTemplePhone] = useState(temple_phone);
-  const [inputTempleMobile, setInputTempleMobile] = useState(temple_mobile);
   const [inputEmail, setInputEmail] = useState(email);
-  const [inputUrl, setInputUrl] = useState(url);
+  const [inputMobile, setInputMobile] = useState(mobile || "");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === "temple_phone") {
-      setInputTemplePhone(value);
-    } else if (name === "temple_mobile") {
-      setInputTempleMobile(value);
-    } else if (name === "email") {
+    if (name === "email") {
       setInputEmail(value);
-    } else if (name === "url") {
-      setInputUrl(value);
+    } else if (name === "mobile") {
+      setInputMobile(value);
     }
 
     setFormErrors({
@@ -41,22 +27,24 @@ const EditContactDetails = ({
   const validateForm = () => {
     let isValid = true;
     const errors = {
-      phoneError: "",
+      emailError: "",
       mobileError: "",
     };
 
-    if (!inputTemplePhone || inputTemplePhone.trim() === "") {
-      errors.phoneError = "Please enter your phone number";
+    if (!inputEmail || inputEmail.trim() === "") {
+      errors.emailError = "Please enter your email address";
       isValid = false;
-    } else if (inputTemplePhone.length !== 10) {
-      errors.phoneError = "Phone should have 10 digits";
+    } else if (
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inputEmail) 
+    ) {
+      errors.emailError = "Invalid email address";
       isValid = false;
     }
 
-    if (!inputTempleMobile || inputTempleMobile.trim() === "") {
+    if (!inputMobile || inputMobile.trim() === "") {
       errors.mobileError = "Please enter your mobile number";
       isValid = false;
-    } else if (inputTempleMobile.length !== 10) {
+    } else if (inputMobile.length !== 10) {
       errors.mobileError = "Mobile should have 10 digits";
       isValid = false;
     }
@@ -71,11 +59,9 @@ const EditContactDetails = ({
     if (!isValid) return;
 
     let formData = new FormData();
-
-    formData.append("temple_phone", inputTemplePhone);
-    formData.append("temple_mobile", inputTempleMobile);
     formData.append("email", inputEmail);
-    formData.append("url", inputUrl);
+    formData.append("mobile", inputMobile);
+
     put({
       api: `/temples/edit/${id}`,
       data: formData,
@@ -93,32 +79,6 @@ const EditContactDetails = ({
     <div>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label className="mb-2 block">Phone</label>
-          <input
-            type="text"
-            name="temple_phone"
-            value={inputTemplePhone}
-            onChange={handleChange}
-            className="w-full py-2 pl-3 outline-none border border-[#00000052] text-secondary-gray bg-white bg-opacity-10 rounded-[6px]"
-          />
-          <span className="text-red-500 text-[13px]">
-            {formErrors.phoneError}
-          </span>
-        </div>
-        <div className="mb-3">
-          <label className="mb-2 block">Mobile</label>
-          <input
-            type="text"
-            name="temple_mobile"
-            value={inputTempleMobile}
-            onChange={handleChange}
-            className="w-full py-2 pl-3 outline-none border border-[#00000052] text-secondary-gray bg-white bg-opacity-10 rounded-[6px]"
-          />
-          <span className="text-red-500 text-[13px]">
-            {formErrors.mobileError}
-          </span>
-        </div>
-        <div className="mb-3">
           <label className="mb-2 block">Email</label>
           <input
             type="email"
@@ -132,16 +92,16 @@ const EditContactDetails = ({
           </span>
         </div>
         <div className="mb-3">
-          <label className="mb-2 block">URL</label>
+          <label className="mb-2 block">Mobile</label>
           <input
             type="text"
-            name="url"
-            value={inputUrl}
+            name="mobile"
+            value={inputMobile}
             onChange={handleChange}
             className="w-full py-2 pl-3 outline-none border border-[#00000052] text-secondary-gray bg-white bg-opacity-10 rounded-[6px]"
           />
           <span className="text-red-500 text-[13px]">
-            {formErrors.urlError}
+            {formErrors.mobileError}
           </span>
         </div>
         <div className="flex justify-end items-center mt-8">
@@ -157,4 +117,4 @@ const EditContactDetails = ({
   );
 };
 
-export default EditContactDetails;
+export default EditServiceContactDetails;

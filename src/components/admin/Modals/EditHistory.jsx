@@ -19,15 +19,8 @@ const EditHistory = ({ id, other_image = "", history_details }) => {
     image: null,
   });
 
-  const validateForm = () => {
-    let isValid = true;
-    if (!history || history.trim() === "") {
-      setHistoryError("Please enter the temple history");
-      isValid = false;
-    } else {
-      setHistoryError("");
-    }
-    return isValid;
+  const validateHistory = () => {
+    return !!history.trim();
   };
 
   const handleSubmit = (e) => {
@@ -48,7 +41,7 @@ const EditHistory = ({ id, other_image = "", history_details }) => {
         toastConfig: {
           messages: {
             pending: "Please wait",
-            success: "Payment details updated successfully",
+            success: "History updated successfully",
             error: "Something went wrong",
           },
         },
@@ -72,10 +65,6 @@ const EditHistory = ({ id, other_image = "", history_details }) => {
         setImageError("");
       }
     }
-  };
-
-  const validateHistory = () => {
-    return !!history.trim();
   };
 
   const handleImageChange = (e) => {
@@ -129,6 +118,7 @@ const EditHistory = ({ id, other_image = "", history_details }) => {
         {imageError && (
           <span className="text-red-500 text-[13px]">{imageError}</span>
         )}
+
         <div className="mt-3">
           <label className="mb-2 block">Edit History</label>
           <textarea

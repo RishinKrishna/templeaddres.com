@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { put } from "@/config/axiosConfig";
 import Image from "next/image";
+import EditIcon from "@/components/icons/EditIcon";
 
 const convertToFormData = (data) => {
   const formData = new FormData();
@@ -26,10 +27,11 @@ const EditTemple = ({
   country,
 }) => {
   const [selectedImage, setSelectedImage] = useState({
-    preview: "",
-    image: "",
+    preview: thumbnail,
+    image: null,
   });
   const [formData, setFormData] = useState({
+    // thumbnail: thumbnail || "",
     name: name || "",
     location: location || "",
     landmark: landmark || "",
@@ -160,7 +162,7 @@ const EditTemple = ({
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setSelectedImage({preview:reader.result, image:""});
+        setSelectedImage({ preview: reader.result, image: "" });
       };
       reader.readAsDataURL(file);
     }
@@ -169,34 +171,33 @@ const EditTemple = ({
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div className="rounded-md shadow-md text-center">
-          {selectedImage && (
-            <div className="mt-6">
-              <Image
-                src={selectedImage.preview}
-                alt="Preview"
-                width={500}
-                height={500}
-                className="w-full rounded-md"
-              />
-            </div>
-          )}
+        <div className="flex justify-start items-end">
+          <div className="flex justify-center items-center w-[200px] h-[200px] object-cover border-2 border-[#FF6B07] rounded-lg">
+            {selectedImage.preview !== "" && selectedImage.preview !== null && (
+              <div className="object-cover w-full h-full p-1">
+                <Image
+                  src={selectedImage.preview}
+                  alt="Preview"
+                  width={500}
+                  height={500}
+                  className="object-cover rounded-lg w-full h-full"
+                />
+              </div>
+            )}
 
-          <input
-            type="file"
-            id="file"
-            name="thumbnail"
-            className="hidden"
-            accept="image/*"
-            onChange={handleImageChange}
+            <input
+              type="file"
+              id="file"
+              name="thumbnail"
+              className="hidden"
+              accept="image/*"
+              onChange={handleImageChange}
+            />
+          </div>
+          <EditIcon
+            className="cursor-pointer ml-5"
+            onClick={() => document.getElementById("file").click()}
           />
-
-          <label
-            htmlFor="file"
-            className="block mt-4 cursor-pointer bg-[#ff6b07] text-white py-2 px-4 rounded-md"
-          >
-            Add Temple Image
-          </label>
         </div>
 
         <div className="mt-3">
@@ -213,7 +214,7 @@ const EditTemple = ({
           </span>
         </div>
         <div className="mt-3">
-          <label className="mb-2 block">Temple Name</label>
+          <label className="mb-2 block"> Town</label>
           <input
             type="text"
             name="town"

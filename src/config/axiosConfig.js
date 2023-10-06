@@ -98,5 +98,32 @@ const put = ({ api, data, config, toastConfig }) => {
       });
   });
 };
+const deleteData = ({ api, data, config, toastConfig }) => {
+  if (toastConfig && toastConfig.messages) {
+    return toast.promise(
+      new Promise((resolve, reject) => {
+        axiosInstance
+          .delete(api, { data, ...config })
+          .then((response) => {
+            resolve(response);
+          })
+          .catch((error) => {
+            reject();
+          });
+      }),
+      toastConfig.messages
+    );
+  }
+  return new Promise((resolve, reject) => {
+    axiosInstance
+      .delete(api, { data, ...config })
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((error) => {
+        reject();
+      });
+  });
+};
 
-export { get, post, put };
+export { get, post, put, deleteData };

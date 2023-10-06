@@ -7,7 +7,7 @@ import EyeIcon from "@/components/icons/EyeIcon";
 import MenuIcon from "@/components/icons/MenuIcon";
 import TrashIcon from "@/components/icons/TrashIcon";
 import UserIcon from "@/components/icons/UserIcon";
-import { get } from "@/config/axiosConfig";
+import { deleteData, get } from "@/config/axiosConfig";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import router from "next/router";
@@ -87,9 +87,11 @@ const Services = () => {
     {
       Header: " ",
       accessor: "",
-      Cell: () => {
+      Cell: (data) => {
+        let serviceDetails = data.row.original;
+        // console.log(serviceDetails);
         return (
-          <CustomDropdown 
+          <CustomDropdown
             button={{
               render: () => <MenuIcon />,
             }}
@@ -99,8 +101,13 @@ const Services = () => {
                 icon: <EditIcon height={15} className="mr-4" />,
                 name: "Edit",
                 className:
-                  "flex  items-center w-full text-[16px] text-[#A9A9A9] border-b-2 border-[#A9A9A9] ",
+                  "flex items-center w-full text-[16px] text-[#A9A9A9] border-b-2 border-[#A9A9A9] ",
+                onClick: () =>
+                  router.push(
+                    `/admin/services/addservice/${serviceDetails.id}`
+                  ),
               },
+
               {
                 icon: <DisableIcon height={15} className="mr-4" />,
                 name: "Disable",
@@ -112,6 +119,9 @@ const Services = () => {
                 name: "Delete",
                 className:
                   "flex  items-center w-full text-[16px] text-[#A9A9A9]  ",
+                onclick: () => {
+                  handleDelete(serviceDetails.id);
+                },
               },
             ]}
           />
@@ -119,6 +129,23 @@ const Services = () => {
       },
     },
   ];
+
+  const handleDelete = (id) => {
+    deleteData({
+      api: `/service/delete/${id}`,
+      toastConfig: {
+        messages: {
+          pending: "Please wait",
+          success: "Delete Successful",
+          error: "Something went wrong",
+        },
+      },
+    }).then((response) => {
+      if (response) {
+        getTempleList();
+      }
+    });
+  };
 
   const getTempleList = () => {
     get({

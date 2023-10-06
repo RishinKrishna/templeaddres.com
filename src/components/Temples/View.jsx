@@ -14,7 +14,6 @@ import EditIcon from "../icons/EditIcon";
 import DisableIcon from "../icons/DisableIcon";
 import TrashIcon from "../icons/TrashIcon";
 import { CustomDropdown } from "../CustomDropdown";
-import EyeIcon from "../icons/EyeIcon";
 import TemplesIcon from "../icons/TemplesIcon";
 import QrAlt from "../../assets/qr.png";
 import { modal } from "../Modal";
@@ -25,15 +24,12 @@ import EditHistory from "../admin/Modals/EditHistory";
 import EditTemple from "../admin/Modals/EditTemple";
 import EditPayment from "../admin/Modals/EditPayment";
 import EditPoojaList from "../admin/Modals/EditPoojaList";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import GoogleMaps from "../admin/GoogleMap";
-import router from "next/router";
 import AddPoojaList from "../admin/Modals/AddPoojaList";
 import AddToGallery from "../admin/Modals/AddToGallery";
-
+import { deleteData } from "@/config/axiosConfig";
 const TempleView = ({
   id,
-  pooja_uuid,
   thumbnail,
   name,
   landmark,
@@ -74,12 +70,7 @@ const TempleView = ({
   onCloseModal,
   longitude,
   latitude,
-  pooja_name,
-  pooja_code,
-  pooja_desc,
-  price,
-  remarks,
-  types,
+  pooja_uuid,
 }) => {
   const poojaTableHeaders = [
     {
@@ -130,7 +121,7 @@ const TempleView = ({
       accessor: "",
       Cell: (data) => {
         let PoojaDetails = data.row.original;
-        // console.log(PoojaDetails);
+        // console.log(PoojaDetails.pooja_uuid);
         return (
           <CustomDropdown
             button={{
@@ -158,7 +149,10 @@ const TempleView = ({
                 icon: <TrashIcon height={15} className="mr-4" />,
                 name: "Delete",
                 className:
-                  "flex  items-center w-full text-[16px] text-[#A9A9A9]  ",
+                  "flex items-center w-full text-[16px] text-[#A9A9A9]",
+                onClick: () => {
+                  handleDelete(id, PoojaDetails.pooja_uuid);
+                },
               },
             ]}
           />
@@ -166,6 +160,22 @@ const TempleView = ({
       },
     },
   ];
+  // console.log(pooja_uuid);
+
+  const handleDelete = (id, pooja_uuid) => {
+    deleteData({
+      api: `/temple/${id}/delete-pooja/${pooja_uuid}`,
+      toastConfig: {
+        messages: {
+          pending: "Please wait",
+          success: "Delete Successful",
+          error: "Something went wrong",
+        },
+      },
+    }).then((response) => {
+      
+    });
+  };
 
   let deities = [deity, deity_2, deity_3, deity_4, deity_5, deity_6, deity_7];
   let editTempleProps = {
@@ -198,6 +208,7 @@ const TempleView = ({
     deity_6,
     deity_7,
   };
+
   let EditHistoryProps = { id, other_image, story };
 
   // console.log(pooja_uuid, "pooja_uuid0000000000" );

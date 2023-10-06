@@ -4,12 +4,22 @@ import { useState } from "react";
 import { post } from "@/config/axiosConfig";
 
 
+const convertToFormData = (data) => {
+  const formData = new FormData();
+  for (const key in data) {
+    formData.append(key, data[key]);
+  }
+  return formData;
+};
+
+
+
 const Addtemple = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [isTermsChecked, setIsTermsChecked] = useState(false);
 
   const [formData, setFormData] = useState({
-    image: null,
+    image: "",
     name: "",
     deity: "",
     address: "",
@@ -36,6 +46,8 @@ const Addtemple = () => {
     termsConditionsErr: "",
   });
 
+  const formDataToSend = convertToFormData(formData);
+
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
 
@@ -52,11 +64,11 @@ const Addtemple = () => {
     } else if (name === "image" && files[0]) {
       setFormData({
         ...formData,
-        [name]: files[0], // handle image file
+        [name]: files[0], 
       });
       setFormError({
         ...FormError,
-        imageErr: "", // clear image error on change
+        imageErr: "", 
       });
     } else {
       setFormData({
@@ -166,16 +178,19 @@ const Addtemple = () => {
     const isValid = validateForm();
     if (!isValid) return;
 
+    const templeData = convertToFormData({
+      thumbnail: formData.image,
+      name: formData.name,
+      deity: formData.deity,
+      address: formData.address,
+      location: formData.location,
+      created_contact_num: formData.associationPersonNumber,
+      created_person_name: formData.associatedPersonName,
+    });
+
     post({
-      api: "/temples/add",
-      data: {
-        name: formData.name,
-        deity: formData.deity,
-        address: formData.address,
-        location: formData.location,
-        created_contact_num: formData.associationPersonNumber,
-        created_person_name: formData.associatedPersonName,
-      },
+      api: "/temples/add", 
+      data: templeData, 
       toastConfig: {
         messages: {
           pending: "Please wait",
@@ -184,7 +199,7 @@ const Addtemple = () => {
         },
       },
     }).then((response) => {
-      window.location.reload();
+      // window.location.reload();
     });
   };
 
