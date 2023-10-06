@@ -108,7 +108,7 @@ const Temples = () => {
                 className:
                   "flex  items-center w-full text-[16px] text-[#A9A9A9] border-b-2 border-[#A9A9A9] ",
                   onClick: () => {
-                    onEditTempleList(templeDetails);
+                    router.push(`/admin/temples/${templeDetails.id}`)
                   },
               },
               {
@@ -170,21 +170,6 @@ const Temples = () => {
     getTempleList();
   }, []);
 
-  const onEditTempleList = (templeDetailsProps) => {
-    modal({
-      show: true,
-      containerClassName: " max-w-[500px]",
-      header: {
-        heading: "Edit Service List",
-      },
-      component: (
-        <div>
-          <EditPoojaList {...templeDetailsProps} id={id} />
-        </div>
-      ),
-      modalBodyClassName: "",
-    });
-  };
 
 
   return (
