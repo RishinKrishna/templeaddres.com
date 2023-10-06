@@ -8,9 +8,6 @@ import ExportIcon from "@/components/icons/ExportIcon";
 import TemplesIcon from "@/components/icons/TemplesIcon";
 import ServiesIcon from "@/components/icons/ServiesIcon";
 import router from "next/router";
-import menu from "@/assets/menu.svg";
-import close from "@/assets/close.svg";
-import Image from "next/image";
 import { post } from "@/config/axiosConfig";
 const Header = ({ sidebarIsopen, setSidebarIsOpen }) => {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
@@ -50,6 +47,8 @@ const Header = ({ sidebarIsopen, setSidebarIsOpen }) => {
       router.push("/login");
     });
   };
+
+  const handleRoutes = (path) => router.push(path) 
   return (
     <div className="flex justify-end items-center w-full h-[65px] bg-white left-0 relative px-12">
       <div className="flex justify-center items-center">
