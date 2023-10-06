@@ -33,7 +33,7 @@ const Sidebar = () => {
             alt="menu"
             width={28}
             height={28}
-            className="object-contain mr-8 relative  top-[-390px] z-10 "
+            className="object-contain mr-8 relative  top-[-390px] right-0 z-50 "
           />
         </button>
         <div

@@ -11,7 +11,9 @@ import router from "next/router";
 import menu from "@/assets/menu.svg";
 import close from "@/assets/close.svg";
 import Image from "next/image";
+import { post } from "@/config/axiosConfig";
 const Header = ({ sidebarIsopen, setSidebarIsOpen }) => {
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const profileMenus = ["My Profile", "Update Password", "Sign Out"];
   const [open, setOpen] = useState(false);
 
@@ -35,8 +37,18 @@ const Header = ({ sidebarIsopen, setSidebarIsOpen }) => {
     };
   }, [open]);
 
-  const handleRoutes = (path) => {
-    router.push(path);
+  const handleSignOut = () => {
+    setShowConfirmationModal(true);
+  };
+  
+
+  const confirmSignOut = () => {
+    post({
+      api: `/auth/logout`,
+    }).then((response) => {
+      localStorage.clear();
+      router.push("/login");
+    });
   };
   return (
     <div className="flex justify-end items-center w-full h-[65px] bg-white left-0 relative px-12">
@@ -111,9 +123,36 @@ const Header = ({ sidebarIsopen, setSidebarIsOpen }) => {
               name: "Sign Out",
               className:
                 "py-3 flex font-poppins items-center w-full text-sm text-[#A9A9A9]  ",
+              onClick: handleSignOut,
             },
           ]}
-        />
+           
+           />
+           
+         {showConfirmationModal && (
+          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+            <div className="bg-white p-8 rounded-md">
+              <p className="text-lg mb-4">Are you sure you want to sign out?</p>
+              <div className="flex justify-end">
+                <button
+                  className="px-4 py-2 mr-4 border border-gray-300 rounded-md"
+                  onClick={() => setShowConfirmationModal(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="px-4 py-2 bg-red-500 text-white rounded-md"
+                  onClick={() => {
+                    confirmSignOut();
+                    setShowConfirmationModal(false);
+                  }}
+                >
+                  Sign Out
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

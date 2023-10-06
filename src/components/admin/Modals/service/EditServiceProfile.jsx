@@ -9,9 +9,10 @@ const EditServiceProfile = ({
   name: initialName,
   address: initialAddress,
   location: initialLocation,
+  consulting_time: initialconsulting_time,
 }) => {
   const [name, setName] = useState(initialName || "");
-  const [consultingTime, setConsultingTime] = useState("");
+  const [consultingTime, setConsultingTime] = useState(initialconsulting_time || "");
   const [address, setAddress] = useState(initialAddress || "");
   const [location, setLocation] = useState(initialLocation || "");
 
@@ -105,10 +106,10 @@ const EditServiceProfile = ({
         },
       })
         .then((response) => {
-          console.log("Success:", response);
+          window.location.reload();
         })
         .catch((error) => {
-          console.error("Error:", error);
+          
         });
     }
   };
@@ -117,15 +118,15 @@ const EditServiceProfile = ({
     <div>
       <form onSubmit={handleSubmit}>
         <div className="flex justify-start items-end">
-          <div className="flex justify-center items-center w-[30%] h-auto object-cover border-2 border-[#FF6B07] rounded-lg">
+          <div className="flex justify-center items-center w-[200px] h-[200px] object-cover border-2 border-[#FF6B07] rounded-lg">
             {selectedImage.preview !== "" && selectedImage.preview !== null && (
-              <div className="mt-6 object-cover">
+              <div className="object-cover w-full h-full p-1">
                 <Image
                   src={selectedImage.preview}
                   alt="Preview"
                   width={200}
                   height={200}
-                  className="w-full h-full object-cover rounded-lg"
+                  className="object-cover rounded-lg w-full h-full"
                 />
               </div>
             )}

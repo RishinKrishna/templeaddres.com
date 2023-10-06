@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { post } from "@/config/axiosConfig";
 
-const AddToGallery = () => {
+const AddToGallery = ({id}) => {
   const [selectedImages, setSelectedImages] = useState([]);
 
   const onSelectFile = (event) => {
@@ -16,6 +16,39 @@ const AddToGallery = () => {
 
     event.target.value = "";
   };
+
+
+  const uploadImages = () => {
+    const formData = new FormData();
+
+   
+    selectedImages.forEach((image, index) => {
+      formData.append(`image_${index + 1}`, image);
+    });
+
+   
+    post({
+      api: `/temple/edit-gallery/${id}`,
+      data: {
+        image_1 : formData.image_1,
+        image_2 : formData.image_2,
+        image_3 : formData.image_3,
+        image_4 : formData.image_4,
+        image_5 : formData.image_5,
+        image_6 : formData.image_6,
+        image_7 : formData.image_7,
+      },
+      toastConfig: {
+        messages: {
+          pending: "Please wait",
+          success: "Your Gallery Successfully Added",
+          error: "Something went wrong",
+        },
+      }
+     })
+    
+  };
+
 
   function deleteHandler(image) {
     setSelectedImages(selectedImages.filter((imageLink) => imageLink !== image));
@@ -47,15 +80,13 @@ const AddToGallery = () => {
             </span>
           </p>
         ) : (
-          <button
-            className="upload-btn block mx-auto  p-2 rounded-full w-40 h-12 bg-green text-[green]"
-            onClick={() => {
-              console.log(selectedImages);
-            }}
-          >
-            UPLOAD {selectedImages.length} IMAGE
-            {selectedImages.length === 1 ? "" : "S"}
-          </button>
+           <button
+        className="upload-btn block mx-auto my-2 p-1 rounded-md w-40 bg-green bg-[green] text-white"
+        onClick={uploadImages}
+      >
+        UPLOAD {selectedImages.length} IMAGE
+        {selectedImages.length === 1 ? "" : "S"}
+      </button>
         ))}
 
       <div className="flex flex-wrap justify-start grid grid-cols-3">

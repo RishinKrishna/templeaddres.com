@@ -6,11 +6,13 @@ import EditIcon from "@/components/icons/EditIcon";
 import EyeIcon from "@/components/icons/EyeIcon";
 import MenuIcon from "@/components/icons/MenuIcon";
 import TrashIcon from "@/components/icons/TrashIcon";
-import { get } from "@/config/axiosConfig";
+import { deleteData, get } from "@/config/axiosConfig";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import router from "next/router";
 import TemplesIcon from "@/components/icons/TemplesIcon";
+import { modal } from "@/components/Modal";
+
 const Temples = () => {
   const [templeList, setTempleList] = useState([]);
   let templeListHeaders = [
@@ -91,7 +93,8 @@ const Temples = () => {
       Header: " ",
       accessor: "",
       Cell: (data) => {
-        // let id = data.row.original.id
+        let templeDetails = data.row.original;
+        // console.log(templeDetails);
         return (
           <CustomDropdown
             button={{
@@ -104,6 +107,9 @@ const Temples = () => {
                 name: "Edit",
                 className:
                   "flex  items-center w-full text-[16px] text-[#A9A9A9] border-b-2 border-[#A9A9A9] ",
+                  onClick: () => {
+                    onEditTempleList(templeDetails);
+                  },
               },
               {
                 icon: <DisableIcon height={15} className="mr-4" />,
@@ -117,6 +123,9 @@ const Temples = () => {
                 name: "Delete",
                 className:
                   "flex  items-center w-full text-[16px] text-[#A9A9A9]  ",
+                  onClick: ()=> {
+                    handleDelete(templeDetails.id)
+                  },
               },
             ]}
           />
@@ -125,12 +134,29 @@ const Temples = () => {
     },
   ];
 
-  const handleDisable = (id)=>{
+
     // put)
     // API PUT with id
 
     // AFTER RESPONSE getTempleList()
-  }
+
+    const handleDelete = (id) => {
+      deleteData({
+        api: `/temples/delete/${id}`,
+        toastConfig: {
+          messages: {
+            pending: "Please wait",
+            success: "Delete Successful",
+            error: "Something went wrong",
+          },
+        },
+      }).then((response)=>{
+        if (response){
+          getTempleList()
+        }
+      })
+    };
+  
 
   const getTempleList = () => {
     get({
@@ -143,6 +169,24 @@ const Temples = () => {
   useEffect(() => {
     getTempleList();
   }, []);
+
+  const onEditTempleList = (templeDetailsProps) => {
+    modal({
+      show: true,
+      containerClassName: " max-w-[500px]",
+      header: {
+        heading: "Edit Service List",
+      },
+      component: (
+        <div>
+          <EditPoojaList {...templeDetailsProps} id={id} />
+        </div>
+      ),
+      modalBodyClassName: "",
+    });
+  };
+
+
   return (
     <div>
       <h1 className="font-outfit text-xl text-[#666666] font-semibold">

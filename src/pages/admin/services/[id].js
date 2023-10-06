@@ -17,7 +17,7 @@ import EditServiceDescription from "@/components/admin/Modals/service/EditServic
 import EditServiceContactDetails from "@/components/admin/Modals/service/EditServiceContactDetails";
 import EditServiceAditionalDetails from "@/components/admin/Modals/service/EditServiceAditionalDetails";
 
-const ServicesInfo = ({ wh_1, wh_2, wh_3 }) => {
+const ServicesInfo = () => {
   const { query } = useRouter();
   const id = query.id;
   const [service, setService] = useState({});
@@ -50,9 +50,7 @@ const ServicesInfo = ({ wh_1, wh_2, wh_3 }) => {
             name={service.name}
             address={service.address}
             location={service.location}
-            wh_1={wh_1}
-            wh_2={wh_2}
-            wh_3={wh_3}
+            consulting_time={service.consulting_time}
           />
         </div>
       ),
@@ -179,9 +177,12 @@ const ServicesInfo = ({ wh_1, wh_2, wh_3 }) => {
             <div className="flex gap-x-6">
               {/* <p className="text-secondary-gray text-md ">
                 09:30 AM to 5:00 PM </p> */}
-              <p className="text-secondary-gray text-md ">{wh_1}</p>
+              {/* <p className="text-secondary-gray text-md ">{wh_1}</p>
               <p className="text-secondary-gray text-md ">{wh_2}</p>
-              <p className="text-secondary-gray text-md ">{wh_3}</p>
+              <p className="text-secondary-gray text-md ">{wh_3}</p> */}
+              <p className="text-secondary-gray text-md ">
+                {service.consulting_time}
+              </p>
             </div>
           </div>
           <div>
