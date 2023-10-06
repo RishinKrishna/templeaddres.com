@@ -91,7 +91,7 @@ const TempleView = ({
     },
     {
       Header: "Description",
-      accessor: "description",
+      accessor: "pooja_desc",
     },
     {
       Header: "Price",
@@ -172,9 +172,7 @@ const TempleView = ({
           error: "Something went wrong",
         },
       },
-    }).then((response) => {
-      
-    });
+    }).then((response) => {});
   };
 
   let deities = [deity, deity_2, deity_3, deity_4, deity_5, deity_6, deity_7];
@@ -353,7 +351,7 @@ const TempleView = ({
       },
       component: (
         <div>
-          <AddToGallery id={id} />
+          <AddToGallery id={id} gallery={gallery} />
         </div>
       ),
       modalBodyClassName: "",
