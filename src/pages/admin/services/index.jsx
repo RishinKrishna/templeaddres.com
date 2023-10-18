@@ -119,7 +119,7 @@ const Services = () => {
                 name: "Delete",
                 className:
                   "flex  items-center w-full text-[16px] text-[#A9A9A9]  ",
-                onclick: () => {
+                onClick: () => {
                   handleDelete(serviceDetails.id);
                 },
               },

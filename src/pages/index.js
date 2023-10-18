@@ -22,6 +22,10 @@ const Home = () => {
   const getTemple = () => {
     get({
       api: "/temples/list",
+      loader: {
+        parent: "temple-cards",
+        component: () => <div> Loading</div>,
+      },
     }).then((response) => {
       setTempelsServices(response.data.data);
     });

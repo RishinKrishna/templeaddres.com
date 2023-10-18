@@ -36,7 +36,7 @@ const GalaryRow = ({ gallery = [] }) => {
           key={index}
           width={2000}
           height={2000}
-          src={src}
+          src={src.preview}
           alt="Galary"
           className="h-auto mr-7"
         />
