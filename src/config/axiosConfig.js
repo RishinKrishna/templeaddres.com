@@ -1,6 +1,8 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import router from "next/router";
+import { createRoot } from "react-dom/client";
+import { createPortal } from "react-dom";
 const axiosInstance = axios.create();
 
 axiosInstance.interceptors.request.use((config) => {
@@ -21,7 +23,14 @@ const handleResponse = (error) => {
   }
 };
 
-const get = ({ api, config, toastConfig }) => {
+const get = ({ api, config, toastConfig, loader = {} }) => {
+  // if (loader && loader.parent) {
+  //   console.log(parent);
+  //   if (parent) {
+  //     let root = createRoot(parent);
+  //     root.render(createPortal(loader.component(), parent));
+  //   }
+  // }
   if (toastConfig && toastConfig.messages) {
     return toast.promise(
       new Promise((resolve, reject) => {

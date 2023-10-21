@@ -1,5 +1,6 @@
 import NonAdminLayout from "@/Layout";
 import { CustomDropdown } from "@/components/CustomDropdown";
+import Loader from "@/components/Loader";
 import TempleView from "@/components/Temples/View";
 import DisableIcon from "@/components/icons/DisableIcon";
 import EditIcon from "@/components/icons/EditIcon";
@@ -117,7 +118,10 @@ const TempleViewPage = () => {
     }
   }, [id]);
 
-  return <TempleView {...temple} gallery={gallery} poojaList={poojaList} />;
+  if (Object.keys(temple).length > 0) {
+    return <TempleView {...temple} gallery={gallery} poojaList={poojaList} />;
+  }
+  return <Loader />;
 };
 
 TempleViewPage.getLayout = (page) => (

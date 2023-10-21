@@ -11,31 +11,21 @@ const AddToGallery = ({ id, gallery }) => {
     const selectedFilesArray = Array.from(selectedFiles);
 
     const imagesArray = selectedFilesArray.map((file) => {
-      return URL.createObjectURL(file);
+      return { preview: URL.createObjectURL(file), file };
     });
     setSelectedImages((previousImages) => previousImages.concat(imagesArray));
-
-    event.target.value = "";
   };
 
   const uploadImages = () => {
     const formData = new FormData();
 
-    selectedImages.forEach((image, index) => {
-      formData.append(`image_${index + 1}`, image);
+    selectedImages.forEach(({ file }, index) => {
+      formData.append(`image_${index + 1}`, file);
     });
 
     post({
       api: `/temple/edit-gallery/${id}`,
-      data: {
-        image_1: formData.image_1,
-        image_2: formData.image_2,
-        image_3: formData.image_3,
-        image_4: formData.image_4,
-        image_5: formData.image_5,
-        image_6: formData.image_6,
-        image_7: formData.image_7,
-      },
+      data: formData,
       toastConfig: {
         messages: {
           pending: "Please wait",
@@ -48,7 +38,7 @@ const AddToGallery = ({ id, gallery }) => {
 
   function deleteHandler(image) {
     setSelectedImages(
-      selectedImages.filter((imageLink) => imageLink !== image)
+      selectedImages.filter((imageLink) => imageLink.preview !== image.preview)
     );
     // URL.revokeObjectURL(image);
   }
@@ -87,13 +77,13 @@ const AddToGallery = ({ id, gallery }) => {
           </button>
         ))}
 
-      <div className="flex flex-wrap justify-start grid grid-cols-3">
+      <div className="grid flex-wrap justify-start  grid-cols-3">
         {selectedImages &&
           selectedImages.map((image, index) => {
             return (
               <div key={image} className="image m-2 shadow-md ">
                 <div className="">
-                  <Image src={image} width={200} height={200} alt="upload" />
+                  <Image src={image.preview} width={200} height={200} alt="upload" />
                   <div className="flex justify-between items-center">
                     <p className="p-2">{index + 1}</p>
                     <button

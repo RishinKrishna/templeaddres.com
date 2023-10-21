@@ -3,9 +3,21 @@ import EditIcon from "@/components/icons/EditIcon";
 import { useState } from "react";
 import { post } from "@/config/axiosConfig";
 
+
+
+const convertToFormData = (data) => {
+  const formData = new FormData();
+  for (const key in data) {
+    formData.append(key, data[key]);
+  }
+  return formData;
+};
+
+
 const AddServies = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [isTermsChecked, setIsTermsChecked] = useState(false);
+
 
   const [formData, setFormData] = useState({
     image: null,
@@ -36,9 +48,9 @@ const AddServies = () => {
     phoneErr: "",
     termsConditionsErr: "",
   });
-
+  const formDataToSend = convertToFormData(formData);
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type, checked, files } = e.target;
 
     if (name === "image" && files[0]) {
       const reader = new FileReader();
@@ -161,21 +173,25 @@ const AddServies = () => {
     e.preventDefault();
     const isValid = validateForm();
     if (!isValid) return;
-
+  
+    const requestData = {
+      name: formData.name,
+      description: formData.description,
+      address: formData.address,
+      booking_available: formData.bookingAvailable,
+      email: formData.email,
+      service: formData.service,
+      location: formData.location,
+      consultingTime: formData.consultingTime,
+      serviceAreas: formData.serviceAreas,
+      contact_number: formData.phone,
+    };
+  
+    const formDataToSend = convertToFormData(requestData);
+  
     post({
       api: "/service/add",
-      data: {
-        name: formData.name,
-        description: formData.description,
-        address: formData.address,
-        booking_available: formData.bookingAvailable,
-        email: formData.email,
-        service: formData.service,
-        location: formData.location,
-        consultingTime: formData.consultingTime,
-        serviceAreas: formData.serviceAreas,
-        contact_number: formData.phone,
-      },
+      data: formDataToSend, 
       toastConfig: {
         messages: {
           pending: "Please wait",
@@ -184,10 +200,10 @@ const AddServies = () => {
         },
       },
     }).then((response) => {
-      window.location.reload();
+     
     });
   };
-
+  
   return (
     <div className="bg-white rounded-[20px]">
       <h3 className="text-[20px] font-semibold mb-3 pl-6 pt-3">

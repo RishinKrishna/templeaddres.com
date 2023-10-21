@@ -10,20 +10,8 @@ import UserIcon from "../icons/UserIcon";
 import { get } from "@/config/axiosConfig";
 import service_circular_pattern_img from "@/assets/service_circular_pattern_img.png";
 
-const ServiceView = ({ id, admin }) => {
-  const [service, setService] = useState({});
+const ServiceView = ({ id, admin, service }) => {
 
-  useEffect(() => {
-    const getService = () => {
-      get({ api: `/services/view/${id}` }).then((response) => {
-        setService(response.data.data);
-      });
-    };
-
-    if (id) {
-      getService();
-    }
-  }, [id]);
 
   return (
     <div className="bg-white grid lg:grid-cols-2 sm:grid-cols-1 gap-x-8 pb-10 p-5 rounded-[16px] relative">

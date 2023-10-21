@@ -1,4 +1,5 @@
 import Layout from "@/Layout/admin";
+import Loader from "@/components/Loader";
 import TempleView from "@/components/Temples/View";
 import { get } from "@/config/axiosConfig";
 import { useRouter } from "next/router";
@@ -22,7 +23,10 @@ const TempleInfo = () => {
       let galleryObj = response.data.data;
       const galleryArr = Object.keys(galleryObj)
         .filter((imgObj) => !imgObj.includes("gallery"))
-        .map((imgKey) => galleryObj[imgKey]);
+        .map((imgKey) => ({
+          preview: galleryObj[imgKey],
+          file: galleryObj[imgKey],
+        }));
       setGallery(galleryArr);
     });
   };
@@ -48,11 +52,14 @@ const TempleInfo = () => {
     }
   }, [id]);
 
-  return (
-    <>
-      <TempleView {...props} />
-    </>
-  );
+  if (Object.keys(temple).length > 0) {
+    return (
+      <>
+        <TempleView {...props} />
+      </>
+    );
+  }
+  return <Loader />;
 };
 
 TempleInfo.getLayout = (page) => <Layout>{page}</Layout>;

@@ -6,13 +6,17 @@ import Link from "next/link";
 import NoDataIcon from "@/components/icons/NoDataIcon";
 import TemplesIcon from "../icons/TemplesIcon";
 import { useRouter } from "next/router";
+import Loader from "../Loader";
 
 const TempleCards = ({ serviceCard, selectedOption, query }) => {
   let pathname = useRouter().pathname;
   if (serviceCard && serviceCard.length > 0) {
     return (
       <div className="lg:py-10 md:py-6 mt-10 font-poppins">
-        <div className={`${Styles["temple_container"]} grid `}>
+        <div
+          className={`${Styles["temple_container"]} grid `}
+          id="temple-cards"
+        >
           {serviceCard
             .slice(0, 6)
             .map(({ id, thumbnail, name, location, description }, index) => {
@@ -86,14 +90,7 @@ const TempleCards = ({ serviceCard, selectedOption, query }) => {
       </div>
     );
   }
-  return (
-    <div className="w-full h-[50vh] flex justify-center items-center flex-col">
-      <NoDataIcon width="100" fill="#666666" className="opacity-50" />
-      <h1 className="text-3xl mt-4 font-bold text-[#666666] opacity-50">
-        No Data Found
-      </h1>
-    </div>
-  );
+  return <Loader />;
 };
 
 export default TempleCards;

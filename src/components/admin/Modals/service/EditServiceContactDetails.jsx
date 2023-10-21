@@ -59,8 +59,8 @@ const EditServiceContactDetails = ({ id, email, contact_number, mobile }) => {
     if (!isValid) return;
 
     let formData = new FormData();
-    formData.append("email", inputEmail);
-    formData.append("mobile", inputMobile);
+    formData.append("email_address", inputEmail);
+    formData.append("contact_number", inputMobile);
 
     put({
       api: `/temples/edit/${id}`,
